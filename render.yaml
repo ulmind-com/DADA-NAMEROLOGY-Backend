@@ -54,12 +54,14 @@ services:
       - key: CLOUDINARY_FOLDER
         value: dada-numerology
 
-      # Set to the admin panel's URL once it is deployed.
+      # "*" lets the admin panel, Expo web previews and any future client call the
+      # API from a browser. Auth is bearer-token only - no cookies - so a hostile
+      # page cannot ride an existing session the way it could with cookie auth.
       - key: CORS_ORIGINS_RAW
-        sync: false
-      # Optional: pattern for preview deployments, whose hostname changes each time.
+        value: "*"
+      # Only needed when CORS_ORIGINS_RAW is narrowed to an explicit list.
       - key: CORS_ORIGIN_REGEX
-        sync: false
+        value: ""
 
       - key: ADMIN_EMAIL
         sync: false

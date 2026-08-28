@@ -79,26 +79,29 @@ Sign in with the `ADMIN_EMAIL` / `ADMIN_PASSWORD` from step 1.
 
 ---
 
-## 3 · Lock down CORS
+## 3 · CORS
 
-Once the admin panel has a URL, set the API's `CORS_ORIGINS_RAW` to exactly that
-origin — no trailing slash, no path:
+The default is `CORS_ORIGINS_RAW=*`, which lets the admin panel, Expo web previews and
+anything else call the API from a browser.
+
+That is a reasonable default here because authentication is **bearer-token only**. A
+hostile page can send a request, but it has no way to attach someone else's token —
+tokens live in the admin panel's own storage, which the browser will not share
+cross-origin. There are no cookies to ride, so there is no CSRF surface.
+
+If sessions ever move to cookies, narrow it immediately to the exact origin — scheme
+and host, no trailing slash, no path:
 
 ```
-https://your-admin.vercel.app
+CORS_ORIGINS_RAW=https://your-admin.vercel.app
 ```
 
-Vercel gives every deployment its own preview hostname, which changes each time, so
-listing them is impractical. Match them with a pattern instead:
+Preview deployments get a new hostname each time, so match those by pattern rather than
+listing them:
 
 ```
-CORS_ORIGIN_REGEX=^https://dada-namerology-admin(-[a-z0-9-]+)?\.vercel\.app$
+CORS_ORIGIN_REGEX=^https://your-admin(-[a-z0-9-]+)?\.vercel\.app$
 ```
-
-Leave it empty if only the production domain needs access.
-
-Render restarts the API automatically. Anything else calling the API from a browser is
-then refused.
 
 ---
 
