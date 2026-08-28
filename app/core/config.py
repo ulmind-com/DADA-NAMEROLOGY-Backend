@@ -50,6 +50,9 @@ class Settings(BaseSettings):
 
     # --- cors (comma separated, or *)
     CORS_ORIGINS_RAW: str = "*"
+    # Optional regex for origins that change per deploy, e.g. Vercel previews:
+    #   ^https://dada-namerology-admin(-[a-z0-9-]+)?\.vercel\.app$
+    CORS_ORIGIN_REGEX: str = ""
 
     @property
     def email_from(self) -> str:

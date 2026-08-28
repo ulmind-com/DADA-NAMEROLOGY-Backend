@@ -57,6 +57,9 @@ services:
       # Set to the admin panel's URL once it is deployed.
       - key: CORS_ORIGINS_RAW
         sync: false
+      # Optional: pattern for preview deployments, whose hostname changes each time.
+      - key: CORS_ORIGIN_REGEX
+        sync: false
 
       - key: ADMIN_EMAIL
         sync: false

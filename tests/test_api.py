@@ -355,3 +355,35 @@ class TestProductionSafety:
         res = client.post(f"{B}/auth/signup/verify", json={"email": "burned@example.com", "code": "123456"})
         assert res.status_code == 400
         assert "No active code" in res.json()["message"]
+
+
+class TestCors:
+    """The admin panel is a browser client, so CORS is load-bearing, not cosmetic."""
+
+    ORIGIN = "https://dada-namerology-admin.vercel.app"
+    PREVIEW = "https://dada-namerology-admin-git-main-dada.vercel.app"
+
+    def _allowed(self, client, origin: str) -> str | None:
+        res = client.options(
+            f"{B}/config",
+            headers={"Origin": origin, "Access-Control-Request-Method": "GET"},
+        )
+        return res.headers.get("access-control-allow-origin")
+
+    def test_listed_origin_is_allowed(self, client, monkeypatch):
+        from starlette.middleware.cors import CORSMiddleware
+
+        from app.main import app
+
+        # rebuild the middleware the way a restart with new settings would
+        for m in app.user_middleware:
+            if m.cls is CORSMiddleware:
+                m.kwargs["allow_origins"] = [self.ORIGIN]
+                m.kwargs["allow_origin_regex"] = (
+                    r"^https://dada-namerology-admin(-[a-z0-9-]+)?\.vercel\.app$"
+                )
+        app.middleware_stack = app.build_middleware_stack()
+
+        assert self._allowed(client, self.ORIGIN) == self.ORIGIN
+        assert self._allowed(client, self.PREVIEW) == self.PREVIEW
+        assert self._allowed(client, "https://evil.example") is None

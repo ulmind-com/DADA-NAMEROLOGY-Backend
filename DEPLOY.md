@@ -88,12 +88,14 @@ origin — no trailing slash, no path:
 https://your-admin.vercel.app
 ```
 
-Vercel also gives every deployment its own preview URL. To let those through as well,
-list them comma-separated:
+Vercel gives every deployment its own preview hostname, which changes each time, so
+listing them is impractical. Match them with a pattern instead:
 
 ```
-https://your-admin.vercel.app,https://your-admin-git-main-you.vercel.app
+CORS_ORIGIN_REGEX=^https://dada-namerology-admin(-[a-z0-9-]+)?\.vercel\.app$
 ```
+
+Leave it empty if only the production domain needs access.
 
 Render restarts the API automatically. Anything else calling the API from a browser is
 then refused.
