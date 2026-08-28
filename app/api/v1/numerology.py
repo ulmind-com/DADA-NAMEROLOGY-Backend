@@ -184,16 +184,21 @@ def vehicle_suggest(body: PlateSuggestIn):
 
 
 # ----------------------------------------------------------------- REFERENCE
-@router.get("/reference/numbers", summary="All 1-9 planet profiles")
+@router.get("/reference/numbers", summary="Client's 1-9 root profiles (planet, element, colours, friends)")
 def reference_numbers():
-    return rules.all_root_profiles()
+    return {str(n): rules.root_profile_client(n) for n in range(1, 10)}
 
 
-@router.get("/reference/compounds", summary="All compound number meanings")
-def reference_compounds():
-    return rules.all_compounds()
+@router.get("/reference/name-chart", summary="Client's Name Compound Chart (3-100)")
+def reference_name_chart():
+    return rules.all_name_chart()
 
 
-@router.get("/reference/pairs", summary="All 81 pair meanings used by the TOTAL GRID")
+@router.get("/reference/vehicle", summary="Client's 1-99 vehicle master")
+def reference_vehicle():
+    return rules.all_vehicle_master()
+
+
+@router.get("/reference/pairs", summary="Pair meanings used by the mobile TOTAL GRID")
 def reference_pairs():
     return rules.all_pairs()

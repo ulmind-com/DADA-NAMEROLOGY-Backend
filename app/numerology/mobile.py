@@ -88,7 +88,7 @@ def analyse_mobile(
     missing = [n for n in "123456789" if n not in counts]
     repeated = {d: c for d, c in sorted(counts.items()) if c >= 3}
 
-    rp_total = rules.root_profile(total)
+    rp_total = rules.root_profile_client(total)
     result: dict = {
         "input": number,
         "number": digits,
@@ -98,12 +98,18 @@ def analyse_mobile(
         "compound": compound,
         "total": total,
         "chain": reduction_chain(compound),
-        "compound_meaning": rules.compound_meaning(compound),
+        "compound_meaning": {
+            "title": f"Number {total}",
+            "rating": "good",
+            "short": rp_total.get("description", ""),
+            "description": rules.vehicle_master(total).get("attributes", ""),
+        },
         "total_profile": {
             "number": total,
             "planet": rp_total.get("planet"),
-            "title": rp_total.get("title"),
-            "description": rp_total.get("description"),
+            "element": rp_total.get("element"),
+            "title": f"Number {total}",
+            "description": rules.vehicle_master(total).get("summary", ""),
             "colors": rp_total.get("colors", []),
         },
         "grid": grid,
@@ -123,7 +129,7 @@ def analyse_mobile(
     if dob:
         radical = radical_number(dob.day)
         destiny = destiny_number(dob.day, dob.month, dob.year)
-        rp_rad = rules.root_profile(radical)
+        rp_rad = rules.root_profile_client(radical)
         friendly = rp_rad.get("friendly", [])
         enemy = rp_rad.get("enemy", [])
         level = "friendly" if total in friendly else ("enemy" if total in enemy else "neutral")
@@ -173,7 +179,7 @@ def _recommendations(r: dict) -> list[str]:
             + ". Those energies are absent, so support them through colours, dates and daily habits."
         )
     for d, c in r["repeated_digits"].items():
-        planet = rules.root_profile(int(d)).get("planet", "")
+        planet = rules.root_profile_client(int(d)).get("planet", "")
         out.append(f"Digit {d} ({planet}) repeats {c} times — that planet's traits are amplified in your daily life.")
     if r["verdict"]["level"] in ("weak", "bad"):
         out.append("Use the 'Check New Number' tool before buying a new SIM and compare the scores side by side.")

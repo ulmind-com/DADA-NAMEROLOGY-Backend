@@ -322,11 +322,12 @@ def admin_report_pdf(report_id: str, db: DB = Depends(get_db), _: User = Depends
 
 
 # ----------------------------------------------------------------------- RULES
-@router.get("/rules/{kind}", summary="compound_meanings | root_profiles | pair_meanings")
+@router.get("/rules/{kind}", summary="name_chart | vehicle_master | vehicle_patterns | pair_meanings")
 def get_rules(kind: str, db: DB = Depends(get_db), _: User = Depends(admin_user)):
     base = {
-        "compound_meanings": rulestore.all_compounds,
-        "root_profiles": rulestore.all_root_profiles,
+        "name_chart": rulestore.all_name_chart,
+        "vehicle_master": rulestore.all_vehicle_master,
+        "vehicle_patterns": rulestore.vehicle_patterns,
         "pair_meanings": rulestore.all_pairs,
     }.get(kind)
     if not base:

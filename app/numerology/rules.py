@@ -47,26 +47,6 @@ def apply_overrides(kind: str, overrides: dict[str, dict]) -> None:
 
 
 # --------------------------------------------------------------- accessors
-def root_profile(n: int) -> dict:
-    return _get("root_profiles").get(str(n), {})
-
-
-def all_root_profiles() -> dict:
-    return _get("root_profiles")
-
-
-def compound_meaning(n: int) -> dict:
-    table = _get("compound_meanings")
-    if str(n) in table:
-        return table[str(n)]
-    # beyond 52 -> fall back to the reduced root
-    from .chaldean import reduce_to_root
-
-    return table.get(str(reduce_to_root(n)), {
-        "title": "", "rating": "average", "short": "", "description": "",
-    })
-
-
 def pair_meaning(a: int, b: int) -> dict:
     return _get("pair_meanings").get(f"{a}:{b}", {
         "pair": f"{a}:{b}", "rating": "average", "label": "Average",
@@ -76,10 +56,6 @@ def pair_meaning(a: int, b: int) -> dict:
 
 def all_pairs() -> dict:
     return _get("pair_meanings")
-
-
-def all_compounds() -> dict:
-    return _get("compound_meanings")
 
 
 RATING_ORDER = {"excellent": 4, "good": 3, "average": 2, "caution": 1, "bad": 0}
@@ -98,3 +74,67 @@ def rating_color(rating: str) -> str:
 
 def is_favourable(rating: str) -> bool:
     return RATING_ORDER.get(rating, 2) >= 3
+
+
+# ------------------------------------------------------- client master data
+# These come straight from the client's spreadsheets and Word charts, extracted
+# verbatim. They are the source of truth for what the app tells a user.
+
+def name_chart(n: int) -> dict:
+    """Client's Name Compound Chart, compound numbers 3-100."""
+    return _get("name_chart").get(str(n), {})
+
+
+def all_name_chart() -> dict:
+    return _get("name_chart")
+
+
+def name_root_short(n: int) -> str:
+    """Client's one-line meaning for a single-digit name number (1-9)."""
+    return _get("name_root_short").get(str(n), "")
+
+
+def vehicle_master(n: int) -> dict:
+    """Client's 1-99 vehicle master row."""
+    return _get("vehicle_master").get(str(n), {})
+
+
+def all_vehicle_master() -> dict:
+    return _get("vehicle_master")
+
+
+def vehicle_patterns() -> dict:
+    """Client's master-number, repeated-digit and sequential-series tables."""
+    return _get("vehicle_patterns")
+
+
+def name_favourable(compound: int) -> bool:
+    """Client's verdict: a name number is unfavourable only when the client's own
+    chart marks it 'Avoid this name number'. Everything else is acceptable."""
+    entry = name_chart(compound)
+    if entry:
+        return not entry.get("avoid", False)
+    # compounds beyond the chart fall back to the reduced root's chart entry
+    from .chaldean import reduce_to_root
+    root_entry = name_chart(reduce_to_root(compound))
+    return not root_entry.get("avoid", False)
+
+
+def root_profile_client(n: int) -> dict:
+    """Root-number profile sourced from the client's data: planet and element from
+    the 1-99 master, friendly/avoid from the master, and the one-line name meaning."""
+    m = vehicle_master(n)
+    return {
+        "number": n,
+        "planet": m.get("planet", ""),
+        "element": m.get("element", ""),
+        "friendly": m.get("friendly", []),
+        "enemy": m.get("avoid", []),
+        "colors": m.get("vehicle_colors", []),
+        "title": rules_short_title(n),
+        "description": name_root_short(n),
+    }
+
+
+def rules_short_title(n: int) -> str:
+    return f"Number {n}"

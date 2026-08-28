@@ -1,0 +1,101 @@
+{
+ "master": {
+  "11": {
+   "planet": "Moon / Sun (Water & Fire)",
+   "positive": "Exceptional mental protection, sharp driving intuition, high comfort shield.",
+   "risk": "Potential overthinking or indecisiveness in heavy traffic.",
+   "suitability": "EVs, Luxury Hatchbacks, Executive Sedans. Best for calm, intuitive drivers.",
+   "score": 88,
+   "grade": "Very Good"
+  },
+  "22": {
+   "planet": "Master Builder (Double Rahu - Air)",
+   "positive": "Massive vehicle structural strength, long-term durability, corporate fleet expansion.",
+   "risk": "Higher routine maintenance costs; complex electrical/software glitches.",
+   "suitability": "Heavy SUVs, Commercial Fleets, Tech-loaded EVs. Ideal for Business Owners.",
+   "score": 80,
+   "grade": "Very Good"
+  },
+  "33": {
+   "planet": "Master Teacher (Double Jupiter - Fire/Ether)",
+   "positive": "Supreme safety shield, family blessing, high social prestige, smooth travel.",
+   "risk": "Risk of vehicle over-use due to frequent community/family trips.",
+   "suitability": "Premium Luxury SUVs, Family Cruisers. Best for Executives, Doctors, Leaders.",
+   "score": 97,
+   "grade": "Excellent"
+  }
+ },
+ "repeated": {
+  "44": {
+   "planet": "Double Rahu (Air)",
+   "positive": "Extreme structural durability, heavy-duty commercial utility, high tech integration.",
+   "risk": "Stiff ride quality, software/electronic glitches if maintenance is ignored.",
+   "suitability": "Commercial Trucks, Heavy Machinery, Off-road SUVs.",
+   "score": 75,
+   "grade": "Good"
+  },
+  "55": {
+   "planet": "Double Mercury (Earth/Air)",
+   "positive": "Super-fast mobility, high commercial resale value, maximum profit for sales/logistics.",
+   "risk": "Tendency toward over-speeding; requires disciplined driver handling.",
+   "suitability": "Sports Sedans, Fleet Cabs, Express Delivery, City Hybrids.",
+   "score": 88,
+   "grade": "Very Good"
+  },
+  "66": {
+   "planet": "Double Venus (Water/Air)",
+   "positive": "Royal interior comfort, supreme elegance, high status symbol, smooth luxury ride.",
+   "risk": "High interior maintenance; sensitive to exterior paint/body scratches.",
+   "suitability": "Convertibles, Ultra-Luxury Sedans, Showroom Cars.",
+   "score": 96,
+   "grade": "Excellent"
+  },
+  "77": {
+   "planet": "Double Ketu (Water/Ether)",
+   "positive": "Invisible protective shield against road mishaps; peaceful solo journeys.",
+   "risk": "Isolation tendency; less suited for large family/group outings.",
+   "suitability": "Solo Cruisers, Off-road SUVs, Travel Vans.",
+   "score": 86,
+   "grade": "Very Good"
+  },
+  "88": {
+   "planet": "Double Saturn (Earth)",
+   "positive": "Unbreakable iron build, extreme endurance, long chassis lifespan.",
+   "risk": "Slow acceleration, heavier vehicle servicing, unexpected travel delays.",
+   "suitability": "Armored Fleets, Heavy Duty Trucks, Cargo Trailers.",
+   "score": 68,
+   "grade": "Neutral"
+  },
+  "99": {
+   "planet": "Double Mars (Fire)",
+   "positive": "Extraordinary engine power output, instant pickup, defense capability.",
+   "risk": "High risk of aggressive driving, road rage, and speed violations.",
+   "suitability": "High-Performance Sports Cars, Emergency & Defense Vehicles.",
+   "score": 88,
+   "grade": "Very Good"
+  }
+ },
+ "sequential": [
+  {
+   "pattern": "Ascending Series (Progressive)",
+   "example": "12, 23, 34, 45, 56, 67, 78, 89",
+   "impact": "Continuous Forward Flow",
+   "score": null,
+   "grade": "Progressive"
+  },
+  {
+   "pattern": "Descending Series (Regressive)",
+   "example": "21, 32, 43, 54, 65, 76, 87, 98",
+   "impact": "Reflective / Slow Flow",
+   "score": null,
+   "grade": "Regressive"
+  },
+  {
+   "pattern": "Continuous Triplets (High Growth)",
+   "example": "123, 234, 345, 456, 567, 678, 789",
+   "impact": "High Ascending Acceleration",
+   "score": null,
+   "grade": "High Growth"
+  }
+ ]
+}

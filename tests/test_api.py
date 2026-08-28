@@ -145,9 +145,11 @@ class TestNumerologyEndpoints:
         assert res.json()["result"]["start_letters"]
 
     def test_reference_tables(self, client):
+        # client's 1-9 roots, the Name Compound Chart, and the 1-99 vehicle master
         assert len(client.get(f"{B}/numerology/reference/numbers").json()) == 9
         assert len(client.get(f"{B}/numerology/reference/pairs").json()) == 81
-        assert len(client.get(f"{B}/numerology/reference/compounds").json()) == 52
+        assert len(client.get(f"{B}/numerology/reference/name-chart").json()) >= 90
+        assert len(client.get(f"{B}/numerology/reference/vehicle").json()) == 99
 
 
 class TestReports:
@@ -185,24 +187,25 @@ class TestAdmin:
         assert client.get(f"{B}/admin/users?q=tester", headers=admin_headers).json()["total"] >= 1
 
     def test_rule_override_goes_live_then_reverts(self, client, admin_headers):
+        # editing the client's Name Chart takes effect on the next request
         client.put(
             f"{B}/admin/rules",
             headers=admin_headers,
-            json={"kind": "compound_meanings", "key": "28", "data": {"short": "CUSTOM TEXT"}},
+            json={"kind": "name_chart", "key": "28", "data": {"description": "CLIENT EDIT 28"}},
         )
         assert (
             client.post(f"{B}/numerology/name/quick", json={"name": "Pankaj Kabiraj"}).json()[
                 "result"
-            ]["short"]
-            == "CUSTOM TEXT"
+            ]["description"]
+            == "CLIENT EDIT 28"
         )
 
-        client.delete(f"{B}/admin/rules/compound_meanings/28", headers=admin_headers)
+        client.delete(f"{B}/admin/rules/name_chart/28", headers=admin_headers)
         assert (
-            "again and again"
+            "emotional pain"
             in client.post(f"{B}/numerology/name/quick", json={"name": "Pankaj Kabiraj"}).json()[
                 "result"
-            ]["short"]
+            ]["description"]
         )
 
     def test_settings_roundtrip(self, client, admin_headers):

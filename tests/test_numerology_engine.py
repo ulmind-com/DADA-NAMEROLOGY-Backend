@@ -34,19 +34,24 @@ class TestChaldean:
 
 
 class TestNameReport:
-    def test_quick_matches_sheet_text(self):
+    def test_quick_uses_client_chart(self):
+        """Pankaj Kabiraj -> compound 28, total 1, meaning from the client's chart."""
         r = quick_name("Pankaj Kabiraj")
         assert r["compound"] == 28
         assert r["total"] == 1
-        assert "again and again" in r["short"]
-        assert r["needs_correction"] is True
-        assert "not perfectly aligned" in r["suggest"]
-
-    def test_favourable_name_needs_no_correction(self):
-        r = quick_name("Ravi")  # R2+A1+V6+I1 = 10, the Wheel of Fortune
-        assert r["compound"] == 10
+        assert r["title"] == "Name Number 28"
+        # description is the client's exact Name Number 28 text
+        assert "emotional pain" in r["description"]
+        # short is the client's one-line meaning for the root (1 = Communication)
+        assert "Communication" in r["short"]
+        # 28 is not on the client's avoid list, so no correction is forced
         assert r["needs_correction"] is False
-        assert "No correction is required" in r["suggest"]
+
+    def test_client_avoid_number_needs_correction(self):
+        """Compound 9 is on the client's explicit 'Avoid this name number' list."""
+        from app.numerology.rules import name_favourable
+        assert name_favourable(9) is False
+        assert name_favourable(28) is True
 
     def test_full_report_shape(self):
         r = full_name_report("Pankaj Kabiraj", date(1995, 8, 15), "male")
@@ -95,13 +100,17 @@ class TestMobile:
 
 
 class TestVehicle:
-    def test_plate_is_parsed(self):
+    def test_plate_uses_client_master(self):
         r = analyse_vehicle("WB 06 AB 1234")
         assert r["parts"]["state"] == "WB"
         assert r["running_number"] == "1234"
-        assert r["compound"] == 10
+        assert r["compound"] == 10  # 1+2+3+4
         assert r["total"] == 1
-        assert r["formatted"] == "WB 06 AB 1234"
+        # planet, colours and score come from the client's 1-99 master
+        assert "Sun" in r["total_profile"]["planet"]
+        assert r["colors"]  # client-supplied favoured colours
+        assert 0 <= r["score"] <= 100
+        assert r["grade"]
 
     def test_unstructured_plate_still_scores(self):
         r = analyse_vehicle("XYZ789")

@@ -20,22 +20,22 @@ from .chaldean import (
 
 def _compat(a: int, b: int) -> dict:
     """How two root numbers sit with each other."""
-    pa = rules.root_profile(a)
+    pa = rules.root_profile_client(a)
     if not pa:
         return {"level": "neutral", "label": "Neutral", "color": "#E0A32E", "note": ""}
     if b in pa.get("friendly", []):
         return {
             "level": "friendly", "label": "Friendly", "color": "#1E9E6A",
-            "note": f"{pa.get('planet')} supports {rules.root_profile(b).get('planet')} — this combination helps you.",
+            "note": f"{pa.get('planet')} supports {rules.root_profile_client(b).get('planet')} — this combination helps you.",
         }
     if b in pa.get("enemy", []):
         return {
             "level": "enemy", "label": "Enemy", "color": "#D24B4B",
-            "note": f"{pa.get('planet')} opposes {rules.root_profile(b).get('planet')} — this combination creates friction.",
+            "note": f"{pa.get('planet')} opposes {rules.root_profile_client(b).get('planet')} — this combination creates friction.",
         }
     return {
         "level": "neutral", "label": "Neutral", "color": "#E0A32E",
-        "note": f"{pa.get('planet')} is neutral to {rules.root_profile(b).get('planet')} — no strong push either way.",
+        "note": f"{pa.get('planet')} is neutral to {rules.root_profile_client(b).get('planet')} — no strong push either way.",
     }
 
 
@@ -45,12 +45,15 @@ def _luckiest_letters(target_roots: list[int]) -> list[str]:
 
 # ------------------------------------------------------- free / quick result
 def quick_name(name: str, kind: str = "personal") -> dict:
-    """The free tier shown on the first screen of the sheet."""
+    """Free name result, driven entirely by the client's Name Compound Chart."""
     a = analyse_name(name)
     compound = a["compound"]
     total = a["root"]
-    meaning = rules.compound_meaning(compound)
-    favourable = rules.is_favourable(meaning.get("rating", "average"))
+
+    entry = rules.name_chart(compound)
+    description = entry.get("description", "")
+    favourable = rules.name_favourable(compound)
+    rating = "good" if favourable else "bad"
 
     if favourable:
         suggest = (
@@ -70,11 +73,11 @@ def quick_name(name: str, kind: str = "personal") -> dict:
         "compound": compound,
         "total": total,
         "chain": a["chain"],
-        "title": meaning.get("title", ""),
-        "rating": meaning.get("rating", "average"),
-        "rating_color": rules.rating_color(meaning.get("rating", "average")),
-        "description": meaning.get("description", ""),
-        "short": meaning.get("short", ""),
+        "title": f"Name Number {compound}",
+        "rating": rating,
+        "rating_color": rules.rating_color(rating),
+        "description": description,
+        "short": rules.name_root_short(total),
         "suggest": suggest,
         "needs_correction": not favourable,
         "words": [
@@ -136,11 +139,10 @@ def suggest_corrections(
         if full == norm or full in candidates:
             return
         a = analyse_name(full)
-        meaning = rules.compound_meaning(a["compound"])
-        rating = meaning.get("rating", "average")
-        if not rules.is_favourable(rating):
+        if not rules.name_favourable(a["compound"]):
             return
-        score = rules.RATING_ORDER.get(rating, 2) * 10
+        entry = rules.name_chart(a["compound"])
+        score = 20
         # bonus when the corrected root befriends the birth numbers
         for birth in (radical, destiny):
             if birth:
@@ -151,10 +153,10 @@ def suggest_corrections(
             "name": " ".join(w.capitalize() for w in full_words),
             "compound": a["compound"],
             "total": a["root"],
-            "title": meaning.get("title", ""),
-            "rating": rating,
-            "rating_color": rules.rating_color(rating),
-            "short": meaning.get("short", ""),
+            "title": f"Name Number {a['compound']}",
+            "rating": "good",
+            "rating_color": rules.rating_color("good"),
+            "short": (entry.get("description", "")[:70] + "…") if entry.get("description") else "",
             "score": score,
             "change": _describe_change(norm, full),
         }
@@ -193,9 +195,9 @@ def full_name_report(
 
     radical = radical_number(dob.day)
     destiny = destiny_number(dob.day, dob.month, dob.year)
-    rp_rad = rules.root_profile(radical)
-    rp_des = rules.root_profile(destiny)
-    rp_name = rules.root_profile(a["root"])
+    rp_rad = rules.root_profile_client(radical)
+    rp_des = rules.root_profile_client(destiny)
+    rp_name = rules.root_profile_client(a["root"])
 
     friendly = sorted(set(rp_rad.get("friendly", [])) & set(rp_des.get("friendly", [])))
     enemy = sorted(set(rp_rad.get("enemy", [])) | set(rp_des.get("enemy", [])))
@@ -207,7 +209,7 @@ def full_name_report(
     corrections = suggest_corrections(name, radical, destiny)
 
     verdict_score = 0
-    verdict_score += rules.RATING_ORDER.get(quick["rating"], 2) * 15
+    verdict_score += 45 if quick["rating"] == "good" else 0
     verdict_score += {"friendly": 20, "neutral": 8, "enemy": 0}[name_vs_radical["level"]]
     verdict_score += {"friendly": 20, "neutral": 8, "enemy": 0}[name_vs_destiny["level"]]
     verdict_score = min(100, int(verdict_score * 100 / 100))
@@ -218,23 +220,22 @@ def full_name_report(
         "gender": gender,
         "radical": {
             "number": radical, "planet": rp_rad.get("planet"),
+            "element": rp_rad.get("element"),
             "title": rp_rad.get("title"), "description": rp_rad.get("description"),
-            "colors": rp_rad.get("colors", []), "gem": rp_rad.get("gem"),
-            "lucky_days": rp_rad.get("lucky_days", []),
-            "lucky_dates": rp_rad.get("lucky_dates", []),
+            "colors": rp_rad.get("colors", []),
         },
         "destiny": {
             "number": destiny, "planet": rp_des.get("planet"),
+            "element": rp_des.get("element"),
             "title": rp_des.get("title"), "description": rp_des.get("description"),
-            "career": rp_des.get("career", []),
         },
         "name_number": {
             "number": a["root"], "compound": a["compound"],
             "planet": rp_name.get("planet"), "title": rp_name.get("title"),
         },
-        "soul_urge": {"number": a["soul_urge"], "planet": rules.root_profile(a["soul_urge"]).get("planet"),
+        "soul_urge": {"number": a["soul_urge"], "planet": rules.root_profile_client(a["soul_urge"]).get("planet"),
                       "note": "What you truly want, drawn from the vowels of your name."},
-        "personality": {"number": a["personality"], "planet": rules.root_profile(a["personality"]).get("planet"),
+        "personality": {"number": a["personality"], "planet": rules.root_profile_client(a["personality"]).get("planet"),
                         "note": "How the world reads you, drawn from the consonants of your name."},
         "friendly_numbers": friendly,
         "neutral_numbers": neutral,
@@ -248,7 +249,7 @@ def full_name_report(
                 "root": w["root"],
                 "chain": w["chain"],
                 "letters": w["letters"],
-                "meaning": rules.compound_meaning(w["compound"]).get("short", ""),
+                "meaning": rules.name_root_short(w["root"]),
             }
             for w in a["words"]
         ],
@@ -264,10 +265,9 @@ def full_name_report(
 
 
 def _case_study(compound: int, name_root: int, radical: int, destiny: int) -> dict:
-    meaning = rules.compound_meaning(compound)
-    rp = rules.root_profile(name_root)
+    rp = rules.root_profile_client(name_root)
     lines = [
-        f"Your name carries compound number {compound} ({meaning.get('title', '')}), "
+        f"Your name carries compound number {compound} (Name Number {compound}), "
         f"which reduces to {name_root} — ruled by {rp.get('planet')}.",
         f"Your radical number is {radical} and your destiny number is {destiny}.",
     ]
@@ -290,16 +290,14 @@ def _case_study(compound: int, name_root: int, radical: int, destiny: int) -> di
 
 
 def _remedies(radical: int, destiny: int, rating: str) -> list[str]:
-    rp = rules.root_profile(radical)
-    rd = rules.root_profile(destiny)
+    rp = rules.root_profile_client(radical)
     out = [
-        f"Favourable colours: {', '.join(rp.get('colors', []))}.",
-        f"Keep important work on {', '.join(rp.get('lucky_days', []))}.",
-        f"Preferred dates of the month: {', '.join(str(d) for d in rp.get('lucky_dates', []))}.",
-        f"Supportive gemstone (consult before wearing): {rp.get('gem')}.",
-        f"Career directions that suit your destiny number: {', '.join(rd.get('career', [])[:3])}.",
+        f"Radical number {radical} is ruled by {rp.get('planet')} ({rp.get('element')}).",
+        f"Favourable colours for you: {', '.join(rp.get('colors', [])) or '—'}.",
+        f"Friendly numbers: {', '.join(map(str, rp.get('friendly', []))) or '—'}. "
+        f"Numbers to avoid: {', '.join(map(str, rp.get('enemy', []))) or '—'}.",
     ]
-    if not rules.is_favourable(rating):
+    if rating == "bad":
         out.insert(0, "Apply the suggested spelling correction and use it consistently everywhere — signature, documents and social media.")
     return out
 
@@ -308,8 +306,8 @@ def _remedies(radical: int, destiny: int, rating: str) -> list[str]:
 def newborn_report(dob: date, birth_time: str = "", place: str = "", gender: str = "") -> dict:
     radical = radical_number(dob.day)
     destiny = destiny_number(dob.day, dob.month, dob.year)
-    rp_rad = rules.root_profile(radical)
-    rp_des = rules.root_profile(destiny)
+    rp_rad = rules.root_profile_client(radical)
+    rp_des = rules.root_profile_client(destiny)
 
     friendly = sorted(set(rp_rad.get("friendly", [])) & set(rp_des.get("friendly", [])))
     if not friendly:
@@ -317,10 +315,14 @@ def newborn_report(dob: date, birth_time: str = "", place: str = "", gender: str
     enemy = sorted(set(rp_rad.get("enemy", [])) | set(rp_des.get("enemy", [])))
 
     good_compounds = [
-        {"compound": c, **rules.compound_meaning(c)}
-        for c in range(10, 53)
-        if rules.is_favourable(rules.compound_meaning(c).get("rating", "average"))
-        and reduce_to_root(c) in friendly
+        {
+            "compound": c,
+            "title": f"Name Number {c}",
+            "rating": "good",
+            "short": rules.name_chart(c).get("description", "")[:80],
+        }
+        for c in range(10, 101)
+        if rules.name_favourable(c) and reduce_to_root(c) in friendly
     ][:10]
 
     return {
@@ -328,10 +330,10 @@ def newborn_report(dob: date, birth_time: str = "", place: str = "", gender: str
         "time": birth_time,
         "place": place,
         "gender": gender,
-        "radical": {"number": radical, "planet": rp_rad.get("planet"), "title": rp_rad.get("title"),
-                    "description": rp_rad.get("description")},
-        "destiny": {"number": destiny, "planet": rp_des.get("planet"), "title": rp_des.get("title"),
-                    "description": rp_des.get("description")},
+        "radical": {"number": radical, "planet": rp_rad.get("planet"),
+                    "element": rp_rad.get("element"), "description": rp_rad.get("description")},
+        "destiny": {"number": destiny, "planet": rp_des.get("planet"),
+                    "element": rp_des.get("element"), "description": rp_des.get("description")},
         "chain": reduction_chain(int(f"{dob.day:02d}{dob.month:02d}{dob.year}")),
         "favourable_numbers": friendly,
         "avoid_numbers": enemy,
@@ -345,5 +347,4 @@ def newborn_report(dob: date, birth_time: str = "", place: str = "", gender: str
             f"Avoid names that total to {enemy}."
         ),
         "colors": rp_rad.get("colors", []),
-        "lucky_days": rp_rad.get("lucky_days", []),
     }

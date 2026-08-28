@@ -1,0 +1,3181 @@
+{
+ "1": {
+  "number": 1,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Root 1 (Sun (सूर्य)) energy. Balanced performance and vehicle compatibility.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 90,
+  "grade": "Excellent",
+  "summary": "Number 1 represents Sun (सूर्य) with Fire (अग्नि) element. Root 1 (Sun (सूर्य)) energy. Balanced performance and vehicle compatibility."
+ },
+ "2": {
+  "number": 2,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Root 2 (Moon (चंद्र)) energy. Balanced performance and vehicle compatibility.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 75,
+  "grade": "Good",
+  "summary": "Number 2 represents Moon (चंद्र) with Water (जल) element. Root 2 (Moon (चंद्र)) energy. Balanced performance and vehicle compatibility."
+ },
+ "3": {
+  "number": 3,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Root 3 (Jupiter (गुरु)) energy. Balanced performance and vehicle compatibility.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 92,
+  "grade": "Excellent",
+  "summary": "Number 3 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Root 3 (Jupiter (गुरु)) energy. Balanced performance and vehicle compatibility."
+ },
+ "4": {
+  "number": 4,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Root 4 (Rahu (राहु)) energy. Balanced performance and vehicle compatibility.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 55,
+  "grade": "Challenging",
+  "summary": "Number 4 represents Rahu (राहु) with Air / Shadow (वायु) element. Root 4 (Rahu (राहु)) energy. Balanced performance and vehicle compatibility."
+ },
+ "5": {
+  "number": 5,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Root 5 (Mercury (बुध)) energy. Balanced performance and vehicle compatibility.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 95,
+  "grade": "Excellent",
+  "summary": "Number 5 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Root 5 (Mercury (बुध)) energy. Balanced performance and vehicle compatibility."
+ },
+ "6": {
+  "number": 6,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Root 6 (Venus (शुक्र)) energy. Balanced performance and vehicle compatibility.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 96,
+  "grade": "Excellent",
+  "summary": "Number 6 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Root 6 (Venus (शुक्र)) energy. Balanced performance and vehicle compatibility."
+ },
+ "7": {
+  "number": 7,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Root 7 (Ketu (केतु)) energy. Balanced performance and vehicle compatibility.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 68,
+  "grade": "Neutral",
+  "summary": "Number 7 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Root 7 (Ketu (केतु)) energy. Balanced performance and vehicle compatibility."
+ },
+ "8": {
+  "number": 8,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. Root 8 (Saturn (शनि)) energy. Balanced performance and vehicle compatibility.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 50,
+  "grade": "Challenging",
+  "summary": "Number 8 represents Saturn (शनि) with Earth (पृथ्वी) element. Root 8 (Saturn (शनि)) energy. Balanced performance and vehicle compatibility."
+ },
+ "9": {
+  "number": 9,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Root 9 (Mars (मंगल)) energy. Balanced performance and vehicle compatibility.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 85,
+  "grade": "Very Good",
+  "summary": "Number 9 represents Mars (मंगल) with Fire (अग्नि) element. Root 9 (Mars (मंगल)) energy. Balanced performance and vehicle compatibility."
+ },
+ "10": {
+  "number": 10,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Wheel of Fortune. Highly fortunate, complete success.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 95,
+  "grade": "Excellent",
+  "summary": "Number 10 represents Sun (सूर्य) with Fire (अग्नि) element. Wheel of Fortune. Highly fortunate, complete success."
+ },
+ "11": {
+  "number": 11,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Master Number 11. High intuition, spiritual protection.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 88,
+  "grade": "Very Good",
+  "summary": "Number 11 represents Moon (चंद्र) with Water (जल) element. Master Number 11. High intuition, spiritual protection."
+ },
+ "12": {
+  "number": 12,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Sacrifice number. Needs careful driving & maintenance.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 62,
+  "grade": "Neutral",
+  "summary": "Number 12 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Sacrifice number. Needs careful driving & maintenance."
+ },
+ "13": {
+  "number": 13,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Karmic Number. Sudden changes, technical glitches possible.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 58,
+  "grade": "Challenging",
+  "summary": "Number 13 represents Rahu (राहु) with Air / Shadow (वायु) element. Karmic Number. Sudden changes, technical glitches possible."
+ },
+ "14": {
+  "number": 14,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Magnetic power, excellent for long travel and commerce.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 85,
+  "grade": "Very Good",
+  "summary": "Number 14 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Magnetic power, excellent for long travel and commerce."
+ },
+ "15": {
+  "number": 15,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Luxurious vibration, immense prosperity and luxury travel.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 94,
+  "grade": "Excellent",
+  "summary": "Number 15 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Luxurious vibration, immense prosperity and luxury travel."
+ },
+ "16": {
+  "number": 16,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Shattered Citadel. High risk of mechanical failures & sudden repair costs.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 42,
+  "grade": "Challenging",
+  "summary": "Number 16 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Shattered Citadel. High risk of mechanical failures & sudden repair costs."
+ },
+ "17": {
+  "number": 17,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. Star of the Magi. Superior luck, immortal fame, extreme safety.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 96,
+  "grade": "Excellent",
+  "summary": "Number 17 represents Saturn (शनि) with Earth (पृथ्वी) element. Star of the Magi. Superior luck, immortal fame, extreme safety."
+ },
+ "18": {
+  "number": 18,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Conflict number. Avoid reckless driving, risk of road rage.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 45,
+  "grade": "Challenging",
+  "summary": "Number 18 represents Mars (मंगल) with Fire (अग्नि) element. Conflict number. Avoid reckless driving, risk of road rage."
+ },
+ "19": {
+  "number": 19,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Prince of Heaven. Top auspiciousness, royal success and high status.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 98,
+  "grade": "Excellent",
+  "summary": "Number 19 represents Sun (सूर्य) with Fire (अग्नि) element. Prince of Heaven. Top auspiciousness, royal success and high status."
+ },
+ "20": {
+  "number": 20,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Awakening. Peaceful journeys, good for family use.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 70,
+  "grade": "Good",
+  "summary": "Number 20 represents Moon (चंद्र) with Water (जल) element. Awakening. Peaceful journeys, good for family use."
+ },
+ "21": {
+  "number": 21,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Crown of the Magi. Victory, growth, international travel.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 93,
+  "grade": "Excellent",
+  "summary": "Number 21 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Crown of the Magi. Victory, growth, international travel."
+ },
+ "22": {
+  "number": 22,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Master Builder. Great for heavy vehicles & corporate fleets.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 80,
+  "grade": "Very Good",
+  "summary": "Number 22 represents Rahu (राहु) with Air / Shadow (वायु) element. Master Builder. Great for heavy vehicles & corporate fleets."
+ },
+ "23": {
+  "number": 23,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Royal Star of the Bull. Highly fortunate, total safety & success.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 99,
+  "grade": "Excellent",
+  "summary": "Number 23 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Royal Star of the Bull. Highly fortunate, total safety & success."
+ },
+ "24": {
+  "number": 24,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Favored by high officials, excellent for personal & executive cars.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 95,
+  "grade": "Excellent",
+  "summary": "Number 24 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Favored by high officials, excellent for personal & executive cars."
+ },
+ "25": {
+  "number": 25,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Success through trial. Great for long-distance research travel.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 78,
+  "grade": "Good",
+  "summary": "Number 25 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Success through trial. Great for long-distance research travel."
+ },
+ "26": {
+  "number": 26,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. Partnership troubles. High maintenance & caution required.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 48,
+  "grade": "Challenging",
+  "summary": "Number 26 represents Saturn (शनि) with Earth (पृथ्वी) element. Partnership troubles. High maintenance & caution required."
+ },
+ "27": {
+  "number": 27,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Scepter of Command. Power, authority & executive authority.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 88,
+  "grade": "Very Good",
+  "summary": "Number 27 represents Mars (मंगल) with Fire (अग्नि) element. Scepter of Command. Power, authority & executive authority."
+ },
+ "28": {
+  "number": 28,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. High potential but unstable wealth/success. Needs caution.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 65,
+  "grade": "Neutral",
+  "summary": "Number 28 represents Sun (सूर्य) with Fire (अग्नि) element. High potential but unstable wealth/success. Needs caution."
+ },
+ "29": {
+  "number": 29,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Uncertainty & emotional stress. Regular maintenance needed.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 50,
+  "grade": "Challenging",
+  "summary": "Number 29 represents Moon (चंद्र) with Water (जल) element. Uncertainty & emotional stress. Regular maintenance needed."
+ },
+ "30": {
+  "number": 30,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Brilliant intellect, expansion and luxury growth.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 85,
+  "grade": "Very Good",
+  "summary": "Number 30 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Brilliant intellect, expansion and luxury growth."
+ },
+ "31": {
+  "number": 31,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Isolation tendencies, focus required during night driving.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 60,
+  "grade": "Neutral",
+  "summary": "Number 31 represents Rahu (राहु) with Air / Shadow (वायु) element. Isolation tendencies, focus required during night driving."
+ },
+ "32": {
+  "number": 32,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Star of Communication. Brings popularity, safety & commercial success.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 96,
+  "grade": "Excellent",
+  "summary": "Number 32 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Star of Communication. Brings popularity, safety & commercial success."
+ },
+ "33": {
+  "number": 33,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Master Teacher. Ultimate blessing, luxury and supreme safety.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 97,
+  "grade": "Excellent",
+  "summary": "Number 33 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Master Teacher. Ultimate blessing, luxury and supreme safety."
+ },
+ "34": {
+  "number": 34,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Steady progress, good for utility and daily commuting.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 72,
+  "grade": "Good",
+  "summary": "Number 34 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Steady progress, good for utility and daily commuting."
+ },
+ "35": {
+  "number": 35,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. Gain through travel, highly adaptable for multi-purpose vehicles.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 82,
+  "grade": "Very Good",
+  "summary": "Number 35 represents Saturn (शनि) with Earth (पृथ्वी) element. Gain through travel, highly adaptable for multi-purpose vehicles."
+ },
+ "36": {
+  "number": 36,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Creative authority, excellent for art & media professionals.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 86,
+  "grade": "Very Good",
+  "summary": "Number 36 represents Mars (मंगल) with Fire (अग्नि) element. Creative authority, excellent for art & media professionals."
+ },
+ "37": {
+  "number": 37,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Royal auspiciousness, high harmony, luck in partnership travel.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 95,
+  "grade": "Excellent",
+  "summary": "Number 37 represents Sun (सूर्य) with Fire (अग्नि) element. Royal auspiciousness, high harmony, luck in partnership travel."
+ },
+ "38": {
+  "number": 38,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Peaceful journeys, good for female owners & creative works.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 68,
+  "grade": "Good",
+  "summary": "Number 38 represents Moon (चंद्र) with Water (जल) element. Peaceful journeys, good for female owners & creative works."
+ },
+ "39": {
+  "number": 39,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Health & recovery, great for long distance & family tours.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 84,
+  "grade": "Very Good",
+  "summary": "Number 39 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Health & recovery, great for long distance & family tours."
+ },
+ "40": {
+  "number": 40,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Sudden structural gains, best for commercial transport.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 65,
+  "grade": "Neutral",
+  "summary": "Number 40 represents Rahu (राहु) with Air / Shadow (वायु) element. Sudden structural gains, best for commercial transport."
+ },
+ "41": {
+  "number": 41,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Leadership & sharp speed, highly beneficial for enterprise owners.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 92,
+  "grade": "Excellent",
+  "summary": "Number 41 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Leadership & sharp speed, highly beneficial for enterprise owners."
+ },
+ "42": {
+  "number": 42,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Love, luxury, and comfort. Smooth driving experience.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 88,
+  "grade": "Very Good",
+  "summary": "Number 42 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Love, luxury, and comfort. Smooth driving experience."
+ },
+ "43": {
+  "number": 43,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Obstacles & unexpected delays. Drive carefully.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 52,
+  "grade": "Challenging",
+  "summary": "Number 43 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Obstacles & unexpected delays. Drive carefully."
+ },
+ "44": {
+  "number": 44,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. Double Saturn stability. Strong build quality required.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 75,
+  "grade": "Good",
+  "summary": "Number 44 represents Saturn (शनि) with Earth (पृथ्वी) element. Double Saturn stability. Strong build quality required."
+ },
+ "45": {
+  "number": 45,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Strategic power, great for defense, legal & corporate leaders.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 89,
+  "grade": "Very Good",
+  "summary": "Number 45 represents Mars (मंगल) with Fire (अग्नि) element. Strategic power, great for defense, legal & corporate leaders."
+ },
+ "46": {
+  "number": 46,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Popularity, leadership elevation and royal comfort.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 91,
+  "grade": "Excellent",
+  "summary": "Number 46 represents Sun (सूर्य) with Fire (अग्नि) element. Popularity, leadership elevation and royal comfort."
+ },
+ "47": {
+  "number": 47,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Deep wisdom, safe night driving, good for personal reflection.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 76,
+  "grade": "Good",
+  "summary": "Number 47 represents Moon (चंद्र) with Water (जल) element. Deep wisdom, safe night driving, good for personal reflection."
+ },
+ "48": {
+  "number": 48,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Financial drain on vehicle repairs. Keep insurance updated.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 58,
+  "grade": "Challenging",
+  "summary": "Number 48 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Financial drain on vehicle repairs. Keep insurance updated."
+ },
+ "49": {
+  "number": 49,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Transformative energy, good for tech-driven vehicles.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 70,
+  "grade": "Good",
+  "summary": "Number 49 represents Rahu (राहु) with Air / Shadow (वायु) element. Transformative energy, good for tech-driven vehicles."
+ },
+ "50": {
+  "number": 50,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Freedom, fast mobility and business growth.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 90,
+  "grade": "Excellent",
+  "summary": "Number 50 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Freedom, fast mobility and business growth."
+ },
+ "51": {
+  "number": 51,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. High warrior energy, great success in competitive ventures.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 94,
+  "grade": "Excellent",
+  "summary": "Number 51 represents Venus (शुक्र) with Water / Air (जल / वायु) element. High warrior energy, great success in competitive ventures."
+ },
+ "52": {
+  "number": 52,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Unexpected turns. Requires vigilant driving.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 66,
+  "grade": "Neutral",
+  "summary": "Number 52 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Unexpected turns. Requires vigilant driving."
+ },
+ "53": {
+  "number": 53,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. Resourceful expansion, strong commercial utility.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 80,
+  "grade": "Very Good",
+  "summary": "Number 53 represents Saturn (शनि) with Earth (पृथ्वी) element. Resourceful expansion, strong commercial utility."
+ },
+ "54": {
+  "number": 54,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Disciplined growth, safe heavy duty long travel.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 78,
+  "grade": "Good",
+  "summary": "Number 54 represents Mars (मंगल) with Fire (अग्नि) element. Disciplined growth, safe heavy duty long travel."
+ },
+ "55": {
+  "number": 55,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Double Mercury power. Speed, intelligence, fleet efficiency.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 88,
+  "grade": "Very Good",
+  "summary": "Number 55 represents Sun (सूर्य) with Fire (अग्नि) element. Double Mercury power. Speed, intelligence, fleet efficiency."
+ },
+ "56": {
+  "number": 56,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Emotional swings, drive calmly in traffic.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 62,
+  "grade": "Neutral",
+  "summary": "Number 56 represents Moon (चंद्र) with Water (जल) element. Emotional swings, drive calmly in traffic."
+ },
+ "57": {
+  "number": 57,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Intuitive guidance, very lucky for family vehicles.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 82,
+  "grade": "Very Good",
+  "summary": "Number 57 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Intuitive guidance, very lucky for family vehicles."
+ },
+ "58": {
+  "number": 58,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Prone to mechanical wear & tear. Maintain regularly.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 64,
+  "grade": "Neutral",
+  "summary": "Number 58 represents Rahu (राहु) with Air / Shadow (वायु) element. Prone to mechanical wear & tear. Maintain regularly."
+ },
+ "59": {
+  "number": 59,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Global travel, high adaptability, lucky for rental/cab fleets.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 91,
+  "grade": "Excellent",
+  "summary": "Number 59 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Global travel, high adaptability, lucky for rental/cab fleets."
+ },
+ "60": {
+  "number": 60,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Harmonious luxury, smooth family rides.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 89,
+  "grade": "Very Good",
+  "summary": "Number 60 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Harmonious luxury, smooth family rides."
+ },
+ "61": {
+  "number": 61,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Quiet elegance, safe solo travel.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 74,
+  "grade": "Good",
+  "summary": "Number 61 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Quiet elegance, safe solo travel."
+ },
+ "62": {
+  "number": 62,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. Miscommunications, double check vehicle papers & status.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 56,
+  "grade": "Challenging",
+  "summary": "Number 62 represents Saturn (शनि) with Earth (पृथ्वी) element. Miscommunications, double check vehicle papers & status."
+ },
+ "63": {
+  "number": 63,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Divine protection, auspicious for spiritual & family travel.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 87,
+  "grade": "Very Good",
+  "summary": "Number 63 represents Mars (मंगल) with Fire (अग्नि) element. Divine protection, auspicious for spiritual & family travel."
+ },
+ "64": {
+  "number": 64,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Mixed results. Requires disciplined maintenance.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 60,
+  "grade": "Neutral",
+  "summary": "Number 64 represents Sun (सूर्य) with Fire (अग्नि) element. Mixed results. Requires disciplined maintenance."
+ },
+ "65": {
+  "number": 65,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Comfortable long rides, highly auspicious for personal use.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 83,
+  "grade": "Very Good",
+  "summary": "Number 65 represents Moon (चंद्र) with Water (जल) element. Comfortable long rides, highly auspicious for personal use."
+ },
+ "66": {
+  "number": 66,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Double Venus luxury. High prestige, comfort and glamour.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 96,
+  "grade": "Excellent",
+  "summary": "Number 66 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Double Venus luxury. High prestige, comfort and glamour."
+ },
+ "67": {
+  "number": 67,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Analytical depth, good for research & tech professionals.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 77,
+  "grade": "Good",
+  "summary": "Number 67 represents Rahu (राहु) with Air / Shadow (वायु) element. Analytical depth, good for research & tech professionals."
+ },
+ "68": {
+  "number": 68,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Practical utility, good for real estate and construction fleets.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 72,
+  "grade": "Good",
+  "summary": "Number 68 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Practical utility, good for real estate and construction fleets."
+ },
+ "69": {
+  "number": 69,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Universal goodwill, comfortable ride, safe travel.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 85,
+  "grade": "Very Good",
+  "summary": "Number 69 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Universal goodwill, comfortable ride, safe travel."
+ },
+ "70": {
+  "number": 70,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Philosophical vibration, safe and steady journeys.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 75,
+  "grade": "Good",
+  "summary": "Number 70 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Philosophical vibration, safe and steady journeys."
+ },
+ "71": {
+  "number": 71,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. Solitary power, strong performance on highways.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 80,
+  "grade": "Very Good",
+  "summary": "Number 71 represents Saturn (शनि) with Earth (पृथ्वी) element. Solitary power, strong performance on highways."
+ },
+ "72": {
+  "number": 72,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Graceful wisdom, safe family journeys.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 88,
+  "grade": "Very Good",
+  "summary": "Number 72 represents Mars (मंगल) with Fire (अग्नि) element. Graceful wisdom, safe family journeys."
+ },
+ "73": {
+  "number": 73,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Royal wisdom & authority. Excellent vehicle choice.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 92,
+  "grade": "Excellent",
+  "summary": "Number 73 represents Sun (सूर्य) with Fire (अग्नि) element. Royal wisdom & authority. Excellent vehicle choice."
+ },
+ "74": {
+  "number": 74,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Prone to sudden technical issues. Drive cautiously.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 58,
+  "grade": "Challenging",
+  "summary": "Number 74 represents Moon (चंद्र) with Water (जल) element. Prone to sudden technical issues. Drive cautiously."
+ },
+ "75": {
+  "number": 75,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Spiritual protection & smooth rides.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 81,
+  "grade": "Very Good",
+  "summary": "Number 75 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Spiritual protection & smooth rides."
+ },
+ "76": {
+  "number": 76,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Mixed vibrations. Suitable for cargo/utility.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 63,
+  "grade": "Neutral",
+  "summary": "Number 76 represents Rahu (राहु) with Air / Shadow (वायु) element. Mixed vibrations. Suitable for cargo/utility."
+ },
+ "77": {
+  "number": 77,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Double Ketu intuition. Very safe for solitary drivers.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 86,
+  "grade": "Very Good",
+  "summary": "Number 77 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Double Ketu intuition. Very safe for solitary drivers."
+ },
+ "78": {
+  "number": 78,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Balanced material gain, reliable for long-term ownership.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 79,
+  "grade": "Good",
+  "summary": "Number 78 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Balanced material gain, reliable for long-term ownership."
+ },
+ "79": {
+  "number": 79,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Victory over hurdles, reliable emergency & heavy travel.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 84,
+  "grade": "Very Good",
+  "summary": "Number 79 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Victory over hurdles, reliable emergency & heavy travel."
+ },
+ "80": {
+  "number": 80,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. Slow but steady progress. Requires patience.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 60,
+  "grade": "Neutral",
+  "summary": "Number 80 represents Saturn (शनि) with Earth (पृथ्वी) element. Slow but steady progress. Requires patience."
+ },
+ "81": {
+  "number": 81,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Disciplined power, safe commercial vehicle choice.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 72,
+  "grade": "Good",
+  "summary": "Number 81 represents Mars (मंगल) with Fire (अग्नि) element. Disciplined power, safe commercial vehicle choice."
+ },
+ "82": {
+  "number": 82,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Conflict between Sun & Saturn. Avoid aggressive driving.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 55,
+  "grade": "Challenging",
+  "summary": "Number 82 represents Sun (सूर्य) with Fire (अग्नि) element. Conflict between Sun & Saturn. Avoid aggressive driving."
+ },
+ "83": {
+  "number": 83,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Practical wisdom, solid build and safe journeys.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 78,
+  "grade": "Good",
+  "summary": "Number 83 represents Moon (चंद्र) with Water (जल) element. Practical wisdom, solid build and safe journeys."
+ },
+ "84": {
+  "number": 84,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Heavy karmic load. Frequent servicing recommended.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "Restricted / Utility Fleets (Requires Driver Number Match)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 52,
+  "grade": "Challenging",
+  "summary": "Number 84 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Heavy karmic load. Frequent servicing recommended."
+ },
+ "85": {
+  "number": 85,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Strong endurance, best for commercial fleets.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 74,
+  "grade": "Good",
+  "summary": "Number 85 represents Rahu (राहु) with Air / Shadow (वायु) element. Strong endurance, best for commercial fleets."
+ },
+ "86": {
+  "number": 86,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Material stability and comfortable luxury.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 82,
+  "grade": "Very Good",
+  "summary": "Number 86 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Material stability and comfortable luxury."
+ },
+ "87": {
+  "number": 87,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Protected journeys, strong endurance.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 85,
+  "grade": "Very Good",
+  "summary": "Number 87 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Protected journeys, strong endurance."
+ },
+ "88": {
+  "number": 88,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Double Saturn. Heavy power, best for heavy machinery/trucks.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 68,
+  "grade": "Good",
+  "summary": "Number 88 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Double Saturn. Heavy power, best for heavy machinery/trucks."
+ },
+ "89": {
+  "number": 89,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. High energy resilience, excellent for tough terrains.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 80,
+  "grade": "Very Good",
+  "summary": "Number 89 represents Saturn (शनि) with Earth (पृथ्वी) element. High energy resilience, excellent for tough terrains."
+ },
+ "90": {
+  "number": 90,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Humanitarian energy, safe emergency & medical vehicles.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 82,
+  "grade": "Very Good",
+  "summary": "Number 90 represents Mars (मंगल) with Fire (अग्नि) element. Humanitarian energy, safe emergency & medical vehicles."
+ },
+ "91": {
+  "number": 91,
+  "root": 1,
+  "planet": "Sun (सूर्य)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 1 (Sun (सूर्य)) vibration. Mars-Sun dynamic power. Dominant presence, top status.",
+  "vehicle_types": [
+   "Luxury Sedans",
+   "Executive SUVs",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Red",
+   "Gold",
+   "Orange",
+   "Yellow"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   8
+  ],
+  "score": 93,
+  "grade": "Excellent",
+  "summary": "Number 91 represents Sun (सूर्य) with Fire (अग्नि) element. Mars-Sun dynamic power. Dominant presence, top status."
+ },
+ "92": {
+  "number": 92,
+  "root": 2,
+  "planet": "Moon (चंद्र)",
+  "element": "Water (जल)",
+  "attributes": "Root 2 (Moon (चंद्र)) vibration. Emotional intensity. Keep cool while driving.",
+  "vehicle_types": [
+   "Hatchbacks",
+   "EVs",
+   "Soft-suspension Cruisers"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Silver",
+   "Cream",
+   "Light Blue"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "avoid": [
+   4,
+   8,
+   9
+  ],
+  "score": 65,
+  "grade": "Neutral",
+  "summary": "Number 92 represents Moon (चंद्र) with Water (जल) element. Emotional intensity. Keep cool while driving."
+ },
+ "93": {
+  "number": 93,
+  "root": 3,
+  "planet": "Jupiter (गुरु)",
+  "element": "Ether / Fire (आकाश / अग्नि)",
+  "attributes": "Root 3 (Jupiter (गुरु)) vibration. Jupiter-Mars blend. Rapid expansion, safe long trips.",
+  "vehicle_types": [
+   "Family SUVs",
+   "Vans",
+   "Commercial Fleets"
+  ],
+  "vehicle_colors": [
+   "Yellow",
+   "Gold",
+   "Amber",
+   "Dark Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   2,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   6
+  ],
+  "score": 95,
+  "grade": "Excellent",
+  "summary": "Number 93 represents Jupiter (गुरु) with Ether / Fire (आकाश / अग्नि) element. Jupiter-Mars blend. Rapid expansion, safe long trips."
+ },
+ "94": {
+  "number": 94,
+  "root": 4,
+  "planet": "Rahu (राहु)",
+  "element": "Air / Shadow (वायु)",
+  "attributes": "Root 4 (Rahu (राहु)) vibration. Hard work required, utility vehicle choice.",
+  "vehicle_types": [
+   "Heavy Commercial",
+   "Tech-loaded EVs",
+   "Off-roaders"
+  ],
+  "vehicle_colors": [
+   "Electric Blue",
+   "Grey",
+   "Metallic Steel"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 60,
+  "grade": "Neutral",
+  "summary": "Number 94 represents Rahu (राहु) with Air / Shadow (वायु) element. Hard work required, utility vehicle choice."
+ },
+ "95": {
+  "number": 95,
+  "root": 5,
+  "planet": "Mercury (बुध)",
+  "element": "Earth / Air (पृथ्वी / वायु)",
+  "attributes": "Root 5 (Mercury (बुध)) vibration. Fast mobility, high commercial profits & safe rides.",
+  "vehicle_types": [
+   "Agile City Hybrids",
+   "Crossovers",
+   "Sports Cars"
+  ],
+  "vehicle_colors": [
+   "Green",
+   "Turquoise",
+   "Light Grey",
+   "White"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "avoid": [],
+  "score": 92,
+  "grade": "Excellent",
+  "summary": "Number 95 represents Mercury (बुध) with Earth / Air (पृथ्वी / वायु) element. Fast mobility, high commercial profits & safe rides."
+ },
+ "96": {
+  "number": 96,
+  "root": 6,
+  "planet": "Venus (शुक्र)",
+  "element": "Water / Air (जल / वायु)",
+  "attributes": "Root 6 (Venus (शुक्र)) vibration. Luxury combined with high speed and elegance.",
+  "vehicle_types": [
+   "Ultra-Luxury Vehicles",
+   "Convertibles",
+   "Premium Sedans"
+  ],
+  "vehicle_colors": [
+   "White",
+   "Pastel Pink",
+   "Silver",
+   "Light Blue"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   3
+  ],
+  "score": 94,
+  "grade": "Excellent",
+  "summary": "Number 96 represents Venus (शुक्र) with Water / Air (जल / वायु) element. Luxury combined with high speed and elegance."
+ },
+ "97": {
+  "number": 97,
+  "root": 7,
+  "planet": "Ketu (केतु)",
+  "element": "Water / Ether (जल / आकाश)",
+  "attributes": "Root 7 (Ketu (केतु)) vibration. Courageous intuition, great for off-road adventures.",
+  "vehicle_types": [
+   "Solo Cruisers",
+   "Off-Roaders",
+   "Vintage Cars"
+  ],
+  "vehicle_colors": [
+   "Light Green",
+   "White",
+   "Smoky Grey"
+  ],
+  "best_use": "Family, Daily Commute, Balanced Commercial Use",
+  "friendly": [
+   1,
+   4,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   2,
+   9
+  ],
+  "score": 83,
+  "grade": "Very Good",
+  "summary": "Number 97 represents Ketu (केतु) with Water / Ether (जल / आकाश) element. Courageous intuition, great for off-road adventures."
+ },
+ "98": {
+  "number": 98,
+  "root": 8,
+  "planet": "Saturn (शनि)",
+  "element": "Earth (पृथ्वी)",
+  "attributes": "Root 8 (Saturn (शनि)) vibration. High physical power but needs controlled handling.",
+  "vehicle_types": [
+   "Heavy Utility",
+   "Armor/Trucks",
+   "Rugged SUVs"
+  ],
+  "vehicle_colors": [
+   "Black",
+   "Dark Blue",
+   "Charcoal"
+  ],
+  "best_use": "Utility Transport, Cargo, Specific Niche Work",
+  "friendly": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "avoid": [
+   1,
+   2,
+   4,
+   8,
+   9
+  ],
+  "score": 66,
+  "grade": "Neutral",
+  "summary": "Number 98 represents Saturn (शनि) with Earth (पृथ्वी) element. High physical power but needs controlled handling."
+ },
+ "99": {
+  "number": 99,
+  "root": 9,
+  "planet": "Mars (मंगल)",
+  "element": "Fire (अग्नि)",
+  "attributes": "Root 9 (Mars (मंगल)) vibration. Double Mars energy. Extreme power, drive responsibly.",
+  "vehicle_types": [
+   "High-Performance Cars",
+   "Defense/Emergency Vehicles"
+  ],
+  "vehicle_colors": [
+   "Deep Red",
+   "Crimson",
+   "Maroon"
+  ],
+  "best_use": "High Business & Personal (CEOs, VIPs, Luxury Fleets)",
+  "friendly": [
+   1,
+   3,
+   5,
+   9
+  ],
+  "avoid": [
+   2,
+   4,
+   7,
+   8
+  ],
+  "score": 88,
+  "grade": "Very Good",
+  "summary": "Number 99 represents Mars (मंगल) with Fire (अग्नि) element. Double Mars energy. Extreme power, drive responsibly."
+ }
+}
