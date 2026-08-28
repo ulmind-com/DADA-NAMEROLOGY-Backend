@@ -1,28 +1,22 @@
+"""MongoDB documents.
+
+Pydantic models with a Mongo `_id` alias, so route code keeps real attribute access
+(`user.email`, `report.type`) instead of juggling raw dictionaries.
+"""
+
 from __future__ import annotations
 
 import enum
 import uuid
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
+from typing import Any
 
-from sqlalchemy import (
-    JSON,
-    Boolean,
-    Date,
-    DateTime,
-    Enum,
-    Float,
-    ForeignKey,
-    Index,
-    Integer,
-    String,
-    Text,
-)
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from pydantic import BaseModel, ConfigDict, Field
 
-from app.db.session import Base
+from app.db.mongo import encode
 
 
-def _uuid() -> str:
+def new_id() -> str:
     return uuid.uuid4().hex
 
 
@@ -51,111 +45,103 @@ class OtpPurpose(enum.StrEnum):
     email_change = "email_change"
 
 
-class User(Base):
-    __tablename__ = "users"
+class Doc(BaseModel):
+    model_config = ConfigDict(populate_by_name=True, from_attributes=True)
 
-    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
-    email: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
-    full_name: Mapped[str] = mapped_column(String(120), default="")
-    phone: Mapped[str | None] = mapped_column(String(20), default=None)
-    hashed_password: Mapped[str | None] = mapped_column(String(255), default=None)
+    id: str = Field(default_factory=new_id, alias="_id")
 
-    google_id: Mapped[str | None] = mapped_column(String(64), unique=True, index=True, default=None)
-    avatar_url: Mapped[str | None] = mapped_column(String(512), default=None)
-
-    dob: Mapped[datetime | None] = mapped_column(Date, default=None)
-    birth_time: Mapped[str | None] = mapped_column(String(16), default=None)
-    birth_place: Mapped[str | None] = mapped_column(String(160), default=None)
-    gender: Mapped[str | None] = mapped_column(String(16), default=None)
-
-    role: Mapped[Role] = mapped_column(Enum(Role), default=Role.user)
-    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
-    is_email_verified: Mapped[bool] = mapped_column(Boolean, default=False)
-    is_premium: Mapped[bool] = mapped_column(Boolean, default=False)
-    premium_until: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), default=None)
-    free_reports_used: Mapped[int] = mapped_column(Integer, default=0)
-
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
-    last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), default=None)
-
-    reports: Mapped[list[Report]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    def to_mongo(self) -> dict[str, Any]:
+        return encode(self.model_dump(by_alias=True))
 
 
-class OtpCode(Base):
-    __tablename__ = "otp_codes"
-    __table_args__ = (Index("ix_otp_email_purpose", "email", "purpose"),)
+class User(Doc):
+    email: str
+    full_name: str = ""
+    phone: str | None = None
+    hashed_password: str | None = None
 
-    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
-    email: Mapped[str] = mapped_column(String(255), index=True, nullable=False)
-    code_hash: Mapped[str] = mapped_column(String(255), nullable=False)
-    purpose: Mapped[OtpPurpose] = mapped_column(Enum(OtpPurpose), default=OtpPurpose.signup)
-    attempts: Mapped[int] = mapped_column(Integer, default=0)
-    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
-    consumed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), default=None)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    google_id: str | None = None
+    avatar_url: str | None = None
+    avatar_public_id: str | None = None   # Cloudinary handle, so old images can be replaced
 
+    dob: date | None = None
+    birth_time: str | None = None
+    birth_place: str | None = None
+    gender: str | None = None
 
-class RefreshToken(Base):
-    __tablename__ = "refresh_tokens"
+    role: Role = Role.user
+    is_active: bool = True
+    is_email_verified: bool = False
+    is_premium: bool = False
+    premium_until: datetime | None = None
+    free_reports_used: int = 0
 
-    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
-    user_id: Mapped[str] = mapped_column(String(32), ForeignKey("users.id", ondelete="CASCADE"), index=True)
-    token_hash: Mapped[str] = mapped_column(String(255), index=True, nullable=False)
-    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
-    revoked: Mapped[bool] = mapped_column(Boolean, default=False)
-    device: Mapped[str | None] = mapped_column(String(160), default=None)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    created_at: datetime = Field(default_factory=utcnow)
+    last_login_at: datetime | None = None
 
-
-class Report(Base):
-    __tablename__ = "reports"
-
-    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
-    user_id: Mapped[str | None] = mapped_column(
-        String(32), ForeignKey("users.id", ondelete="CASCADE"), index=True, default=None
-    )
-    type: Mapped[ReportType] = mapped_column(Enum(ReportType), index=True)
-    tier: Mapped[str] = mapped_column(String(16), default="free")   # free | premium
-    title: Mapped[str] = mapped_column(String(200), default="")
-    subtitle: Mapped[str] = mapped_column(String(200), default="")
-    score: Mapped[float | None] = mapped_column(Float, default=None)
-    payload: Mapped[dict] = mapped_column(JSON, default=dict)   # what the user submitted
-    result: Mapped[dict] = mapped_column(JSON, default=dict)    # what the engine returned
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)
-
-    user: Mapped[User] = relationship(back_populates="reports")
+    @property
+    def provider(self) -> str:
+        if self.google_id and self.hashed_password:
+            return "google+password"
+        return "google" if self.google_id else "password"
 
 
-class Rule(Base):
+class OtpCode(Doc):
+    email: str
+    code_hash: str
+    purpose: OtpPurpose = OtpPurpose.signup
+    attempts: int = 0
+    expires_at: datetime
+    consumed_at: datetime | None = None
+    created_at: datetime = Field(default_factory=utcnow)
+
+
+class RefreshToken(Doc):
+    user_id: str
+    token_hash: str
+    expires_at: datetime
+    revoked: bool = False
+    device: str | None = None
+    created_at: datetime = Field(default_factory=utcnow)
+
+
+class Report(Doc):
+    user_id: str | None = None
+    type: ReportType
+    tier: str = "free"                     # free | premium
+    title: str = ""
+    subtitle: str = ""
+    score: float | None = None
+    payload: dict[str, Any] = Field(default_factory=dict)   # what the user submitted
+    result: dict[str, Any] = Field(default_factory=dict)    # what the engine returned
+    pdf_url: str | None = None             # Cloudinary link, set on first download
+    pdf_public_id: str | None = None
+    created_at: datetime = Field(default_factory=utcnow)
+
+
+class Rule(Doc):
     """Admin-editable override of a bundled numerology rule."""
 
-    __tablename__ = "rules"
-    __table_args__ = (Index("ix_rule_kind_key", "kind", "key", unique=True),)
-
-    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
-    kind: Mapped[str] = mapped_column(String(40), index=True)  # compound_meanings | root_profiles | pair_meanings
-    key: Mapped[str] = mapped_column(String(40), index=True)   # "28" | "5" | "9:5"
-    data: Mapped[dict] = mapped_column(JSON, default=dict)
-    updated_by: Mapped[str | None] = mapped_column(String(32), default=None)
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow)
+    kind: str                              # compound_meanings | root_profiles | pair_meanings
+    key: str                               # "28" | "5" | "9:5"
+    data: dict[str, Any] = Field(default_factory=dict)
+    updated_by: str | None = None
+    updated_at: datetime = Field(default_factory=utcnow)
 
 
-class AppSetting(Base):
-    __tablename__ = "app_settings"
+class AppSetting(Doc):
+    """`_id` is the setting key, so lookups are a primary-key hit."""
 
-    key: Mapped[str] = mapped_column(String(80), primary_key=True)
-    value: Mapped[dict] = mapped_column(JSON, default=dict)
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow)
+    id: str = Field(alias="_id")
+    value: dict[str, Any] = Field(default_factory=dict)
+    updated_at: datetime = Field(default_factory=utcnow)
 
 
-class AuditLog(Base):
-    __tablename__ = "audit_logs"
-
-    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
-    actor_id: Mapped[str | None] = mapped_column(String(32), index=True, default=None)
-    actor_email: Mapped[str] = mapped_column(String(255), default="")
-    action: Mapped[str] = mapped_column(String(80), index=True)
-    target: Mapped[str] = mapped_column(String(160), default="")
-    meta: Mapped[dict] = mapped_column(JSON, default=dict)
-    note: Mapped[str] = mapped_column(Text, default="")
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)
+class AuditLog(Doc):
+    actor_id: str | None = None
+    actor_email: str = ""
+    action: str = ""
+    target: str = ""
+    meta: dict[str, Any] = Field(default_factory=dict)
+    note: str = ""
+    created_at: datetime = Field(default_factory=utcnow)

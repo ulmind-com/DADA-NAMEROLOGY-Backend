@@ -28,7 +28,7 @@ With `SMTP_HOST` empty the signup OTP is returned in the API response instead of
 emailed, so the whole flow can be exercised with no mail credentials.
 
 ```bash
-uv run pytest        # 42 tests
+uv run pytest        # 52 tests, against a real Mongo test database
 uv run ruff check .  # lint
 ```
 
@@ -54,12 +54,12 @@ See `docs/NUMEROLOGY.md` for how the maths works and how to hand over new rules.
 
 ```
 app/
-├── main.py              app factory, error handlers, startup (tables, seed, rules)
+├── main.py              app factory, error handlers, startup (indexes, seed, rules)
 ├── core/
 │   ├── config.py        pydantic-settings, reads .env
 │   └── security.py      password + OTP hashing, JWT issue/verify
 ├── db/
-│   ├── session.py       engine + session factory
+│   ├── mongo.py         Mongo client, typed repositories, index management
 │   └── seed.py          super-admin and default settings on first boot
 ├── models/models.py     User · OtpCode · RefreshToken · Report · Rule · AppSetting · AuditLog
 ├── schemas/             request/response models
@@ -68,10 +68,11 @@ app/
 │   ├── email.py         branded HTML mail (logs to console when SMTP is unset)
 │   ├── google.py        Google ID-token verification
 │   ├── pdf.py           branded reportlab reports
+│   ├── storage.py       Cloudinary uploads (avatars + archived PDFs)
 │   └── settings_store.py
 ├── api/
 │   ├── deps.py          current_user / optional_user / admin_user / superadmin_user
-│   └── v1/              auth · numerology · reports · admin · meta
+│   └── v1/              auth · numerology · reports · public · admin · meta
 └── numerology/
     ├── chaldean.py      letter values, reduction, radical / destiny / kua
     ├── name.py          quick + full reports, corrections, new born
@@ -125,26 +126,64 @@ store, so changes are live on the **next request** — no restart, no redeploy.
 
 ## Database
 
-The API runs on **SQLAlchemy 2.0** — SQLite locally, PostgreSQL in production via
-`DATABASE_URL`. Tables are created on startup; Alembic is installed for when the schema
-needs versioned migrations.
+**MongoDB Atlas**, through PyMongo. `app/db/mongo.py` is a thin typed repository layer:
+documents are Pydantic models, so route code works with real objects (`user.email`,
+`report.type`) rather than raw dictionaries.
 
-> **Note:** a MongoDB Atlas cluster has been provisioned for this project. It is *not*
-> currently used — MongoDB is a document store and this schema is relational (users,
-> reports, rules, refresh tokens, audit log, with joins and aggregations behind the
-> admin dashboard). To go live, either point `DATABASE_URL` at a managed Postgres, or
-> ask for the data layer to be ported to MongoDB.
+Collections: `users`, `otp_codes`, `refresh_tokens`, `reports`, `rules`, `app_settings`,
+`audit_logs`.
+
+Indexes are created on every boot (`ensure_indexes`) and rebuilt automatically if their
+options change. Two are worth knowing about:
+
+- `google_id` is unique **only where it is a string** (a partial index). A plain sparse
+  index would collide on the explicit `null` that password-only accounts store.
+- `otp_codes.expires_at` and `refresh_tokens.expires_at` are TTL indexes, so Mongo
+  expires stale codes and tokens without a cleanup job.
+
+Mongo has no foreign keys, so `DB.delete_user_cascade()` removes a user's reports and
+refresh tokens explicitly, and the admin delete also clears their Cloudinary assets.
+
+Tests run against a real `dada_numerology_test` database that is dropped before and
+after the session, so aggregation pipelines are exercised for real. Point
+`TEST_MONGODB_URI` at a local `mongod` to run them offline.
+
+---
+
+## Cloudinary
+
+Used for two things, both optional — with `CLOUDINARY_*` unset the app degrades cleanly
+instead of failing.
+
+**Profile photos** — `POST /auth/me/avatar` (multipart, max 5 MB, JPG/PNG/WEBP/HEIC)
+uploads to `dada-numerology/avatars` and stores the URL on the user. Replacing a photo
+deletes the previous one; so does deleting the account.
+
+**Shared reports** — `POST /reports/{id}/share` archives the PDF to
+`dada-numerology/reports` and returns a link anyone can open, for WhatsApp or email.
+
+> Cloudinary blocks PDF **delivery** on new accounts (`deny or ACL failure`), and signed
+> URLs do not bypass it. So the share link points at this API's own
+> `GET /public/reports/{id}?t=<token>` endpoint, which serves the PDF against a
+> long-lived signed token — no sign-in needed, and the token cannot be forged or reused
+> for another report.
+>
+> To hand out the CDN link directly instead, enable **Settings → Security → PDF and ZIP
+> files delivery** in the Cloudinary console. The share endpoint checks deliverability
+> on each call, so it switches over on its own with no code change.
 
 ---
 
 ## Deploying
 
-1. Set a real `SECRET_KEY` (`openssl rand -hex 32`), a Postgres `DATABASE_URL`, SMTP
-   credentials and `GOOGLE_CLIENT_IDS_RAW`.
+1. Set a real `SECRET_KEY` (`openssl rand -hex 32`), `MONGODB_URI`, SMTP credentials,
+   `GOOGLE_CLIENT_IDS_RAW` and the `CLOUDINARY_*` keys.
 2. Set `OTP_DEV_ECHO=false` and `DEBUG=false`.
 3. Narrow `CORS_ORIGINS_RAW` to the admin panel's domain.
 4. Change `ADMIN_PASSWORD`, or delete the seeded admin once a real one exists.
-5. Run behind a process manager:
+5. In Atlas, add the server's IP to **Network Access** and give the database user
+   `readWrite` on `dada_numerology` only.
+6. Run behind a process manager:
    `uv run uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4`
 
 **Never commit `.env`.** It is gitignored; `.env.example` documents every key.

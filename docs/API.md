@@ -2,7 +2,7 @@
 
 Base URL: `/api/v1` · Interactive docs: `/docs` · Auth: `Authorization: Bearer <access_token>`
 
-42 endpoints.
+45 endpoints.
 
 Errors always come back as `{ "error": true, "message": "...", "status": <code> }` —
 `message` is written for humans and can be shown directly in the UI.
@@ -31,6 +31,8 @@ Signup is three steps; everything else is a single call.
 | `GET` | `/auth/me` | The signed-in user |
 | `DELETE` | `/auth/me` | Delete my account |
 | `PATCH` | `/auth/me` | Update profile details |
+| `POST` | `/auth/me/avatar` | Upload a profile photo |
+| `DELETE` | `/auth/me/avatar` | Remove the profile photo |
 | `POST` | `/auth/me/password` | Change password |
 | `POST` | `/auth/refresh` | Exchange a refresh token for a new session |
 | `POST` | `/auth/signup/complete` | Step 3 - name, phone, password |
@@ -66,6 +68,15 @@ A user's own saved readings. All require a bearer token.
 | `GET` | `/reports/{report_id}` | Full stored report |
 | `DELETE` | `/reports/{report_id}` | Delete a saved report |
 | `GET` | `/reports/{report_id}/pdf` | Download report as PDF |
+| `POST` | `/reports/{report_id}/share` | Get a shareable PDF link |
+
+## Public sharing
+
+No sign-in — access is granted by a signed token in the query string.
+
+| Method | Path | What it does |
+| --- | --- | --- |
+| `GET` | `/public/reports/{report_id}` | Open a shared report (no sign-in needed) |
 
 ## Admin
 
@@ -184,6 +195,38 @@ curl -X POST localhost:8000/api/v1/numerology/mobile \
 `+91` and a leading `0` are stripped automatically. A `0` inside the number has no
 planet, so it is reported as an amplifier of the digit beside it.
 
+### Sharing a report
+
+```bash
+curl -X POST localhost:8000/api/v1/reports/$REPORT_ID/share \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+```jsonc
+{
+  "url": "http://localhost:8000/api/v1/public/reports/82c534…?t=eyJhbGciOi…",
+  "cdn_url": "https://res.cloudinary.com/…/raw/upload/…/82c534….pdf",
+  "source": "api",       // "cloudinary" once PDF delivery is enabled on the account
+  "cached": false
+}
+```
+
+`url` opens for anyone, no sign-in — paste it into WhatsApp. The token is bound to that
+one report and cannot be reused for another. The PDF is also archived to Cloudinary
+(`cdn_url`); see the backend README for why the CDN link is not handed out by default.
+
+### Uploading a profile photo
+
+```bash
+curl -X POST localhost:8000/api/v1/auth/me/avatar \
+  -H "Authorization: Bearer $TOKEN" \
+  -F "file=@me.jpg;type=image/jpeg"
+```
+
+Returns the updated user with `avatar_url`. JPG, PNG, WEBP or HEIC, up to 5 MB.
+`DELETE /auth/me/avatar` removes it. With Cloudinary unconfigured both return **503**
+and the app falls back to the user's initial.
+
 ### Editing a meaning from the admin panel
 
 ```bash
@@ -203,8 +246,10 @@ restart. `DELETE /admin/rules/compound_meanings/28` puts the bundled default bac
 | `400` | Bad OTP, expired token, invalid input the schema could not catch |
 | `401` | Missing or expired access token — refresh, then retry once |
 | `402` | Free detailed-report quota used up — send the user to the upgrade screen |
-| `403` | Signed in, but not allowed (disabled account, or a non-admin hitting `/admin/*`) |
+| `403` | Signed in, but not allowed (disabled account, a non-admin hitting `/admin/*`, or a bad share token) |
 | `404` | Not found, or the resource belongs to another user |
 | `409` | Email already registered |
 | `422` | Validation failed — `message` names the field |
+| `413` | Uploaded image is larger than 5 MB |
 | `429` | OTP resend cooldown or too many wrong attempts |
+| `503` | Cloudinary is not configured, so uploads are unavailable |

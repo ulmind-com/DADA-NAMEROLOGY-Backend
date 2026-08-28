@@ -2,23 +2,22 @@ from __future__ import annotations
 
 import logging
 
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-
 from app.core.config import settings
 from app.core.security import hash_password
+from app.db.mongo import DB
 from app.models import Role, User
-from app.services.settings_store import DEFAULTS, get_setting, set_setting
+from app.services.settings_store import DEFAULTS, set_setting
 
 log = logging.getLogger("dada.seed")
 
 
-def seed(db: Session) -> None:
-    admin = db.scalars(select(User).where(User.email == settings.ADMIN_EMAIL.lower())).first()
-    if not admin:
-        db.add(
+def seed(db: DB) -> None:
+    """Idempotent first-boot data: the super-admin and the default app settings."""
+    email = settings.ADMIN_EMAIL.lower()
+    if not db.users.exists({"email": email}):
+        db.users.insert(
             User(
-                email=settings.ADMIN_EMAIL.lower(),
+                email=email,
                 full_name="Dada Admin",
                 hashed_password=hash_password(settings.ADMIN_PASSWORD),
                 role=Role.superadmin,
@@ -26,9 +25,8 @@ def seed(db: Session) -> None:
                 is_premium=True,
             )
         )
-        db.commit()
-        log.info("Seeded super-admin %s", settings.ADMIN_EMAIL)
+        log.info("Seeded super-admin %s", email)
 
     for key, value in DEFAULTS.items():
-        if not get_setting(db, key, {}):
+        if not db.settings.get(key):
             set_setting(db, key, value)

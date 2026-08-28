@@ -1,6 +1,7 @@
 from app.models.models import (  # noqa: F401
     AppSetting,
     AuditLog,
+    Doc,
     OtpCode,
     OtpPurpose,
     RefreshToken,
@@ -9,5 +10,6 @@ from app.models.models import (  # noqa: F401
     Role,
     Rule,
     User,
+    new_id,
     utcnow,
 )

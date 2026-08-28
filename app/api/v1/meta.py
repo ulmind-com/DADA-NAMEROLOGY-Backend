@@ -1,22 +1,26 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
 
 from app.core.config import settings
-from app.db.session import get_db
+from app.db.mongo import DB, get_db
 from app.services.settings_store import all_settings
 
 router = APIRouter(tags=["meta"])
 
 
 @router.get("/health")
-def health():
-    return {"status": "ok", "env": settings.ENV, "app": settings.PROJECT_NAME}
+def health(db: DB = Depends(get_db)):
+    try:
+        db.raw.client.admin.command("ping")
+        database = "up"
+    except Exception:
+        database = "down"
+    return {"status": "ok", "env": settings.ENV, "app": settings.PROJECT_NAME, "database": database}
 
 
 @router.get("/config", summary="Public runtime config the mobile app reads on launch")
-def public_config(db: Session = Depends(get_db)):
+def public_config(db: DB = Depends(get_db)):
     s = all_settings(db)
     return {
         "app_name": settings.PROJECT_NAME,
@@ -25,6 +29,7 @@ def public_config(db: Session = Depends(get_db)):
         "premium_price_inr": s.get("premium_price_inr", {}).get("value", 499),
         "announcement": s.get("announcement", {}).get("value", ""),
         "support_whatsapp": s.get("support_whatsapp", {}).get("value", ""),
+        "uploads_enabled": settings.cloudinary_enabled,
         "maintenance": {
             "enabled": bool(s.get("maintenance", {}).get("value", False)),
             "message": s.get("maintenance", {}).get("message", ""),

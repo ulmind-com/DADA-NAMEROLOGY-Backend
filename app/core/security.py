@@ -74,6 +74,11 @@ def create_signup_token(email: str) -> str:
     )
 
 
+def create_share_token(report_id: str, days: int = 365) -> str:
+    """Long-lived, unguessable proof that a report may be downloaded without signing in."""
+    return _create_token(report_id, timedelta(days=days), "share")
+
+
 def create_reset_token(email: str) -> str:
     return _create_token(
         email, timedelta(minutes=settings.SIGNUP_TOKEN_MINUTES), "reset", {"email": email}

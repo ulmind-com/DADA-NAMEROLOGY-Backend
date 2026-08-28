@@ -2,9 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from sqlalchemy.orm import Session
-
-from app.models import AppSetting
+from app.db.mongo import DB
+from app.models import AppSetting, utcnow
 
 DEFAULTS: dict[str, dict[str, Any]] = {
     "free_full_reports": {"value": 1, "label": "Free detailed reports per user"},
@@ -16,25 +15,23 @@ DEFAULTS: dict[str, dict[str, Any]] = {
 }
 
 
-def get_setting(db: Session, key: str, default: dict | None = None) -> dict:
-    row = db.get(AppSetting, key)
+def get_setting(db: DB, key: str, default: dict | None = None) -> dict:
+    row = db.settings.get(key)
     if row:
         return row.value or {}
     return default if default is not None else DEFAULTS.get(key, {})
 
 
-def set_setting(db: Session, key: str, value: dict) -> dict:
-    row = db.get(AppSetting, key)
-    if row:
-        row.value = value
-    else:
-        db.add(AppSetting(key=key, value=value))
-    db.commit()
+def set_setting(db: DB, key: str, value: dict) -> dict:
+    db.settings.upsert({"_id": key}, {"value": value, "updated_at": utcnow()})
     return value
 
 
-def all_settings(db: Session) -> dict[str, dict]:
+def all_settings(db: DB) -> dict[str, dict]:
     out = dict(DEFAULTS)
-    for row in db.query(AppSetting).all():
-        out[row.key] = row.value
+    for row in db.settings.find():
+        out[row.id] = row.value
     return out
+
+
+__all__ = ["DEFAULTS", "AppSetting", "all_settings", "get_setting", "set_setting"]

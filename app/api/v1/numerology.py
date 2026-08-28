@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 
 from app.api.deps import current_user, optional_user
-from app.db.session import get_db
+from app.db.mongo import DB, get_db
 from app.models import Report, ReportType, User
 from app.numerology import rules
 from app.numerology.chaldean import destiny_number, radical_number
@@ -27,7 +26,7 @@ router = APIRouter(prefix="/numerology", tags=["numerology"])
 
 
 def _save(
-    db: Session,
+    db: DB,
     user: User | None,
     rtype: ReportType,
     tier: str,
@@ -40,17 +39,15 @@ def _save(
     """Anonymous analyses are computed but not stored."""
     if not user:
         return None
-    report = Report(
-        user_id=user.id, type=rtype, tier=tier, title=title, subtitle=subtitle,
-        score=score, payload=payload, result=result,
+    return db.reports.insert(
+        Report(
+            user_id=user.id, type=rtype, tier=tier, title=title, subtitle=subtitle,
+            score=score, payload=payload, result=result,
+        )
     )
-    db.add(report)
-    db.commit()
-    db.refresh(report)
-    return report
 
 
-def _require_quota(db: Session, user: User) -> None:
+def _require_quota(db: DB, user: User) -> None:
     if user.is_premium:
         return
     free_limit = int(get_setting(db, "free_full_reports", {"value": 1}).get("value", 1))
@@ -61,17 +58,16 @@ def _require_quota(db: Session, user: User) -> None:
         )
 
 
-def _consume_quota(db: Session, user: User) -> None:
+def _consume_quota(db: DB, user: User) -> None:
     if not user.is_premium:
-        user.free_reports_used += 1
-        db.commit()
+        db.users.increment(user.id, "free_reports_used")
 
 
 # ------------------------------------------------------------------ NAME (free)
 @router.post("/name/quick", response_model=AnalysisOut, summary="Free name result")
 def name_quick(
     body: NameQuickIn,
-    db: Session = Depends(get_db),
+    db: DB = Depends(get_db),
     user: User | None = Depends(optional_user),
 ):
     result = quick_name(body.name, body.kind)
@@ -101,7 +97,7 @@ def name_corrections(body: NameQuickIn, user: User = Depends(current_user)):
 @router.post("/name/full", response_model=AnalysisOut, summary="Detailed name report")
 def name_full(
     body: NameFullIn,
-    db: Session = Depends(get_db),
+    db: DB = Depends(get_db),
     user: User = Depends(current_user),
 ):
     if not body.accept_terms:
@@ -121,7 +117,7 @@ def name_full(
 @router.post("/newborn", response_model=AnalysisOut, summary="New born name guidance")
 def newborn(
     body: NewBornIn,
-    db: Session = Depends(get_db),
+    db: DB = Depends(get_db),
     user: User | None = Depends(optional_user),
 ):
     result = newborn_report(body.dob, body.time or "", body.place or "", body.gender or "")
@@ -137,7 +133,7 @@ def newborn(
 @router.post("/mobile", response_model=AnalysisOut, summary="Mobile number analysis + TOTAL GRID")
 def mobile(
     body: MobileIn,
-    db: Session = Depends(get_db),
+    db: DB = Depends(get_db),
     user: User | None = Depends(optional_user),
 ):
     dob = body.dob or (user.dob if user else None)
@@ -167,7 +163,7 @@ def mobile_compare(
 @router.post("/vehicle", response_model=AnalysisOut, summary="Vehicle registration analysis")
 def vehicle(
     body: VehicleIn,
-    db: Session = Depends(get_db),
+    db: DB = Depends(get_db),
     user: User | None = Depends(optional_user),
 ):
     dob = body.dob or (user.dob if user else None)

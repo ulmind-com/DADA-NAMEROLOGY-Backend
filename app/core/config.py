@@ -20,8 +20,10 @@ class Settings(BaseSettings):
     SIGNUP_TOKEN_MINUTES: int = 20
     ALGORITHM: str = "HS256"
 
-    # --- database
-    DATABASE_URL: str = "sqlite:///./dada_numerology.db"
+    # --- database (MongoDB Atlas)
+    MONGODB_URI: str = "mongodb://localhost:27017"
+    MONGODB_DB: str = "dada_numerology"
+    MONGO_TIMEOUT_MS: int = 8000
 
     # --- otp
     OTP_LENGTH: int = 6
@@ -43,6 +45,20 @@ class Settings(BaseSettings):
 
     # --- cors (comma separated, or *)
     CORS_ORIGINS_RAW: str = "*"
+
+    # --- cloudinary (profile photos + stored PDF reports)
+    CLOUDINARY_CLOUD_NAME: str = ""
+    CLOUDINARY_CLOUD_API_KEY: str = ""
+    CLOUDINARY_CLOUD_SECRET: str = ""
+    CLOUDINARY_FOLDER: str = "dada-numerology"
+
+    @property
+    def cloudinary_enabled(self) -> bool:
+        return bool(
+            self.CLOUDINARY_CLOUD_NAME
+            and self.CLOUDINARY_CLOUD_API_KEY
+            and self.CLOUDINARY_CLOUD_SECRET
+        )
 
     # --- bootstrap admin
     ADMIN_EMAIL: str = "admin@dadanumerology.com"

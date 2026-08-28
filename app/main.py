@@ -11,30 +11,40 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.api.v1.router import api_router
 from app.core.config import settings
-from app.db.session import Base, SessionLocal, engine
+from app.db.mongo import DB, close_client, ensure_indexes, get_database
 
 logging.basicConfig(
     level=logging.INFO if not settings.DEBUG else logging.DEBUG,
     format="%(asctime)s  %(levelname)-7s  %(name)s  %(message)s",
 )
+# PyMongo logs every command at DEBUG, which drowns out everything else.
+for noisy in ("pymongo", "pymongo.command", "pymongo.serverSelection", "pymongo.connection",
+              "pymongo.topology", "httpx", "httpcore"):
+    logging.getLogger(noisy).setLevel(logging.WARNING)
+
 log = logging.getLogger("dada")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    import app.models  # noqa: F401  (register mappers)
-
-    Base.metadata.create_all(bind=engine)
-
     from app.api.v1.admin import reload_rules
     from app.db.seed import seed
 
-    with SessionLocal() as db:
-        seed(db)
-        reload_rules(db)
+    db = DB(get_database())
+    db.raw.client.admin.command("ping")      # fail fast if Mongo is unreachable
+    ensure_indexes(db)
+    seed(db)
+    reload_rules(db)
 
-    log.info("%s API ready  (env=%s)", settings.PROJECT_NAME, settings.ENV)
+    log.info(
+        "%s API ready  (env=%s, db=%s, uploads=%s)",
+        settings.PROJECT_NAME,
+        settings.ENV,
+        settings.MONGODB_DB,
+        "on" if settings.cloudinary_enabled else "off",
+    )
     yield
+    close_client()
 
 
 app = FastAPI(

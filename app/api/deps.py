@@ -2,21 +2,20 @@ from __future__ import annotations
 
 from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from sqlalchemy.orm import Session
 
 from app.core.security import decode_token
-from app.db.session import get_db
+from app.db.mongo import DB, get_db
 from app.models import Role, User
 
 bearer = HTTPBearer(auto_error=False)
 optional_bearer = HTTPBearer(auto_error=False)
 
 
-def _user_from_token(db: Session, token: str) -> User:
+def _user_from_token(db: DB, token: str) -> User:
     payload = decode_token(token, "access")
     if not payload:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Session expired. Please sign in again.")
-    user = db.get(User, payload.get("sub"))
+    user = db.users.get(payload.get("sub"))
     if not user:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Account not found.")
     if not user.is_active:
@@ -26,7 +25,7 @@ def _user_from_token(db: Session, token: str) -> User:
 
 def current_user(
     creds: HTTPAuthorizationCredentials | None = Depends(bearer),
-    db: Session = Depends(get_db),
+    db: DB = Depends(get_db),
 ) -> User:
     if not creds:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Sign in to continue.")
@@ -35,7 +34,7 @@ def current_user(
 
 def optional_user(
     creds: HTTPAuthorizationCredentials | None = Depends(optional_bearer),
-    db: Session = Depends(get_db),
+    db: DB = Depends(get_db),
 ) -> User | None:
     if not creds:
         return None
