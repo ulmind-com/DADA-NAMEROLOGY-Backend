@@ -52,17 +52,28 @@ curl https://<your-api>.onrender.com/api/v1/health
 
 ## 2 · Admin panel
 
-**Render → New → Blueprint → connect `DADA-NAMEROLOGY-Admin` → Apply**, and set:
+The admin repo carries both a `vercel.json` and a `render.yaml`, so it deploys to either.
+
+### Vercel
+
+**Add New → Project → import `DADA-NAMEROLOGY-Admin`.** Vercel reads `vercel.json` and
+detects Vite, so the only thing to set is one environment variable:
 
 | Key | Value |
 | --- | --- |
 | `VITE_API_URL` | `https://<your-api>.onrender.com/api/v1` |
 
-It is a static site: `npm ci && npm run build`, published from `dist`, with a rewrite so
-deep links like `/users/abc123` survive a refresh.
+Add it for **Production, Preview and Development**, then Deploy.
 
-`VITE_API_URL` is compiled into the bundle, so changing it later needs
-**Manual Deploy → Clear build cache & deploy**.
+### Render
+
+**New → Blueprint → connect the repo → Apply**, and set the same `VITE_API_URL`.
+It builds with `npm ci && npm run build` and publishes `dist`.
+
+### Either way
+
+`VITE_API_URL` is compiled into the bundle, so changing it later needs a fresh deploy
+(Vercel: **Redeploy**; Render: **Manual Deploy → Clear build cache & deploy**).
 
 Sign in with the `ADMIN_EMAIL` / `ADMIN_PASSWORD` from step 1.
 
@@ -74,7 +85,14 @@ Once the admin panel has a URL, set the API's `CORS_ORIGINS_RAW` to exactly that
 origin — no trailing slash, no path:
 
 ```
-https://dada-numerology-admin.onrender.com
+https://your-admin.vercel.app
+```
+
+Vercel also gives every deployment its own preview URL. To let those through as well,
+list them comma-separated:
+
+```
+https://your-admin.vercel.app,https://your-admin-git-main-you.vercel.app
 ```
 
 Render restarts the API automatically. Anything else calling the API from a browser is
@@ -130,6 +148,14 @@ domain verified, or nobody can register.
 links point at `GET /api/v1/public/reports/{id}?t=…` on the API. To hand out Cloudinary
 CDN links instead, enable **Settings → Security → PDF and ZIP files delivery** in the
 Cloudinary console — the API notices and switches over on its own.
+
+**`ADMIN_PASSWORD` only applies on first boot.** The seed never overwrites an existing
+account's password — otherwise every deploy would undo a password change. If the admin
+already exists with a different password, the startup log says so; change it from the
+admin panel, or delete the account and redeploy to have it re-seeded.
+
+**Keep dev and production apart.** Set `MONGODB_DB=dada_numerology_dev` locally so
+development never writes into the production database on the same cluster.
 
 **Rotate what has been shared.** Any credential that has passed through chat, email or a
 ticket should be rotated once you are live: the Atlas password, the Resend key and the
