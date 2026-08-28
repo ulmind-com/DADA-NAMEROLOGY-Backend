@@ -332,3 +332,26 @@ class TestUploads:
 
     def test_config_reports_upload_availability(self, client):
         assert client.get(f"{B}/config").json()["uploads_enabled"] is False
+
+
+class TestProductionSafety:
+    def test_signup_fails_loudly_when_no_otp_can_be_delivered(self, client, monkeypatch):
+        """With SMTP unset and OTP_DEV_ECHO off, the user would never receive a code.
+        The API must say so instead of sending them to an unpassable screen."""
+        from app.core.config import settings
+
+        monkeypatch.setattr(settings, "OTP_DEV_ECHO", False)
+        res = client.post(f"{B}/auth/signup/start", json={"email": "nodelivery@example.com"})
+        assert res.status_code == 503
+        assert "verification email" in res.json()["message"]
+
+    def test_the_dead_code_is_not_left_usable(self, client, monkeypatch):
+        """The undeliverable code is consumed, so a later guess cannot verify it."""
+        from app.core.config import settings
+
+        monkeypatch.setattr(settings, "OTP_DEV_ECHO", False)
+        client.post(f"{B}/auth/signup/start", json={"email": "burned@example.com"})
+        monkeypatch.setattr(settings, "OTP_DEV_ECHO", True)
+        res = client.post(f"{B}/auth/signup/verify", json={"email": "burned@example.com", "code": "123456"})
+        assert res.status_code == 400
+        assert "No active code" in res.json()["message"]

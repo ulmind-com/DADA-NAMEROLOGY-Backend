@@ -40,3 +40,7 @@ ignore = ["B008", "E501"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
+
+# requirements.txt is generated from uv.lock for the Render build:
+#   uv export --no-dev --no-emit-project --format requirements-txt > requirements.txt
+# Regenerate it whenever a dependency changes.

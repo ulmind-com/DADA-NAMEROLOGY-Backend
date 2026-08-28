@@ -32,7 +32,12 @@ class Settings(BaseSettings):
     OTP_RESEND_SECONDS: int = 45
     OTP_DEV_ECHO: bool = True   # in dev the OTP is returned in the response + logged
 
-    # --- email (SMTP)
+    # --- email
+    # Resend is preferred: it is an HTTPS API, so it works on hosts that block
+    # outbound SMTP ports. SMTP_* is kept as a fallback transport.
+    RESEND_API_KEY: str = ""
+    RESEND_FROM: str = ""          # falls back to SMTP_FROM
+
     SMTP_HOST: str = ""
     SMTP_PORT: int = 587
     SMTP_USER: str = ""
@@ -45,6 +50,14 @@ class Settings(BaseSettings):
 
     # --- cors (comma separated, or *)
     CORS_ORIGINS_RAW: str = "*"
+
+    @property
+    def email_from(self) -> str:
+        return self.RESEND_FROM or self.SMTP_FROM
+
+    @property
+    def email_enabled(self) -> bool:
+        return bool(self.RESEND_API_KEY or self.SMTP_HOST)
 
     # --- cloudinary (profile photos + stored PDF reports)
     CLOUDINARY_CLOUD_NAME: str = ""

@@ -174,16 +174,31 @@ deletes the previous one; so does deleting the account.
 
 ---
 
+## Email
+
+**Resend** is the primary transport — an HTTPS API, so it keeps working on hosts that
+block outbound SMTP ports (Render among them). Set `RESEND_API_KEY` and `RESEND_FROM`;
+the from-address must sit on a domain verified in the Resend dashboard.
+
+`SMTP_*` is a fallback, used only when `RESEND_API_KEY` is empty. With neither set the
+OTP is written to the log and returned in the API response for local development.
+
+> In production (`OTP_DEV_ECHO=false`) a message that cannot be delivered returns
+> **503** and the code is discarded, instead of sending the user to a verification
+> screen they could never pass.
+
+---
+
 ## Deploying
 
-1. Set a real `SECRET_KEY` (`openssl rand -hex 32`), `MONGODB_URI`, SMTP credentials,
-   `GOOGLE_CLIENT_IDS_RAW` and the `CLOUDINARY_*` keys.
-2. Set `OTP_DEV_ECHO=false` and `DEBUG=false`.
-3. Narrow `CORS_ORIGINS_RAW` to the admin panel's domain.
-4. Change `ADMIN_PASSWORD`, or delete the seeded admin once a real one exists.
-5. In Atlas, add the server's IP to **Network Access** and give the database user
-   `readWrite` on `dada_numerology` only.
-6. Run behind a process manager:
-   `uv run uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4`
+`render.yaml` in this repo is a Render Blueprint — see **[DEPLOY.md](DEPLOY.md)** for
+the full walkthrough, including the admin panel, Atlas network access and EAS builds.
+
+The short version:
+
+1. Render → New → Blueprint → this repo. Render prompts for every secret and generates
+   `SECRET_KEY` itself.
+2. Deploy the admin panel, then set the API's `CORS_ORIGINS_RAW` to its URL.
+3. Give the Atlas database user `readWrite` on `dada_numerology` only.
 
 **Never commit `.env`.** It is gitignored; `.env.example` documents every key.

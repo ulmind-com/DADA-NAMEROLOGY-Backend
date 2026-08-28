@@ -1,0 +1,63 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# In Render: New → Blueprint → connect DADA-NAMEROLOGY-Backend.
+# Values marked `sync: false` are prompted for on deploy and never stored in git.
+services:
+  - type: web
+    name: dada-numerology-api
+    runtime: python
+    plan: free
+    region: singapore          # closest free region to India; change if you prefer
+    branch: main
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 2
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+
+      # --- runtime mode
+      - key: ENV
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: OTP_DEV_ECHO
+        value: "false"          # must stay false: production OTPs go by email only
+
+      # --- generated once by Render, never seen by anyone
+      - key: SECRET_KEY
+        generateValue: true
+
+      # --- prompted on first deploy
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: dada_numerology
+
+      # --- email (Resend HTTPS API; no SMTP ports needed)
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM
+        sync: false
+
+      - key: GOOGLE_CLIENT_IDS_RAW
+        sync: false
+
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_CLOUD_API_KEY
+        sync: false
+      - key: CLOUDINARY_CLOUD_SECRET
+        sync: false
+      - key: CLOUDINARY_FOLDER
+        value: dada-numerology
+
+      # Set to the admin panel's URL once it is deployed.
+      - key: CORS_ORIGINS_RAW
+        sync: false
+
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false

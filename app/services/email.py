@@ -10,9 +10,13 @@ import logging
 import smtplib
 from email.message import EmailMessage
 
+import httpx
+
 from app.core.config import settings
 
 log = logging.getLogger("dada.email")
+
+RESEND_ENDPOINT = "https://api.resend.com/emails"
 
 BRAND = "#B3441E"
 BG = "#FBF3E7"
@@ -65,20 +69,44 @@ def _otp_html(code: str, purpose: str, name: str = "") -> str:
 </div>"""
 
 
-def send_email(to: str, subject: str, html: str, text: str = "") -> bool:
-    if not settings.SMTP_HOST:
-        log.warning("[EMAIL:DEV] to=%s subject=%s\n%s", to, subject, text or "(html only)")
+def _send_via_resend(to: str, subject: str, html: str, text: str) -> bool:
+    """Resend's HTTPS API — preferred, since many hosts block outbound SMTP ports."""
+    try:
+        res = httpx.post(
+            RESEND_ENDPOINT,
+            headers={"Authorization": f"Bearer {settings.RESEND_API_KEY}"},
+            json={
+                "from": settings.email_from,
+                "to": [to],
+                "subject": subject,
+                "html": html,
+                "text": text or "Please view this email in an HTML-capable client.",
+            },
+            timeout=20.0,
+        )
+    except Exception as exc:  # pragma: no cover - network dependent
+        log.error("Resend request to %s failed: %s", to, exc)
         return False
 
+    if res.status_code >= 400:
+        # Resend explains refusals clearly (unverified domain, bad key, rate limit)
+        log.error("Resend rejected mail to %s (%s): %s", to, res.status_code, res.text[:300])
+        return False
+
+    log.info("Sent %r to %s via Resend (id=%s)", subject, to, res.json().get("id"))
+    return True
+
+
+def _send_via_smtp(to: str, subject: str, html: str, text: str) -> bool:
     msg = EmailMessage()
     msg["Subject"] = subject
-    msg["From"] = settings.SMTP_FROM
+    msg["From"] = settings.email_from
     msg["To"] = to
     msg.set_content(text or "Please view this email in an HTML-capable client.")
     msg.add_alternative(html, subtype="html")
 
     try:
-        with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT, timeout=15) as srv:
+        with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT, timeout=20) as srv:
             if settings.SMTP_TLS:
                 srv.starttls()
             if settings.SMTP_USER:
@@ -86,8 +114,19 @@ def send_email(to: str, subject: str, html: str, text: str = "") -> bool:
             srv.send_message(msg)
         return True
     except Exception as exc:  # pragma: no cover - network dependent
-        log.error("SMTP send failed to %s: %s", to, exc)
+        log.error("SMTP send to %s failed: %s", to, exc)
         return False
+
+
+def send_email(to: str, subject: str, html: str, text: str = "") -> bool:
+    """Resend first, SMTP second, console last. Returns whether it actually left."""
+    if settings.RESEND_API_KEY:
+        return _send_via_resend(to, subject, html, text)
+    if settings.SMTP_HOST:
+        return _send_via_smtp(to, subject, html, text)
+
+    log.warning("[EMAIL:DEV] to=%s subject=%s\n%s", to, subject, text or "(html only)")
+    return False
 
 
 def send_otp_email(to: str, code: str, purpose: str = "signup", name: str = "") -> bool:

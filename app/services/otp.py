@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from datetime import UTC, datetime, timedelta
 
 from fastapi import HTTPException, status
@@ -9,6 +10,8 @@ from app.core.security import generate_otp, hash_otp, verify_otp
 from app.db.mongo import DB, DESC
 from app.models import OtpCode, OtpPurpose
 from app.services.email import send_otp_email
+
+log = logging.getLogger("dada.otp")
 
 
 def _now() -> datetime:
@@ -38,16 +41,30 @@ def issue_otp(db: DB, email: str, purpose: OtpPurpose, name: str = "") -> dict:
         db.otps.update(latest.id, {"consumed_at": _now()})
 
     code = generate_otp()
-    db.otps.insert(
+    row_id = db.otps.insert(
         OtpCode(
             email=email,
             code_hash=hash_otp(code),
             purpose=purpose,
             expires_at=_now() + timedelta(minutes=settings.OTP_TTL_MINUTES),
         )
-    )
+    ).id
 
     delivered = send_otp_email(email, code, purpose.value, name)
+
+    if not delivered and not settings.OTP_DEV_ECHO:
+        # Nothing was emailed and the code is not echoed back, so the user would be
+        # sent to a verification screen they could never pass. Fail loudly instead.
+        db.otps.update(row_id, {"consumed_at": _now()})
+        log.error(
+            "OTP for %s could not be delivered and OTP_DEV_ECHO is off — "
+            "configure SMTP_HOST or signup cannot complete.",
+            email,
+        )
+        raise HTTPException(
+            status.HTTP_503_SERVICE_UNAVAILABLE,
+            "We could not send the verification email right now. Please try again shortly.",
+        )
 
     out = {
         "email": email,
