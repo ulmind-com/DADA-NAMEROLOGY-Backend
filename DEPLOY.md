@@ -33,7 +33,9 @@ from the list you were given:
 Prefer clicking through by hand? The blueprint is equivalent to:
 
 - **Runtime** Python 3 · **Build** `pip install --upgrade pip && pip install -r requirements.txt`
-- **Start** `uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 2`
+- **Start** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+
+Stay on one worker while on the free plan — 512 MB does not fit two.
 - **Health check path** `/api/v1/health`
 
 ### Check it came up

@@ -10,7 +10,8 @@ services:
     region: singapore          # closest free region to India; change if you prefer
     branch: main
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 2
+    # One worker: the free plan has 512 MB RAM and each worker costs ~180 MB.
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/v1/health
     autoDeploy: true
     envVars:
