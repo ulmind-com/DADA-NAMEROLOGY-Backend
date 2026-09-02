@@ -147,7 +147,7 @@ class TestNumerologyEndpoints:
     def test_reference_tables(self, client):
         # client's 1-9 roots, the Name Compound Chart, and the 1-99 vehicle master
         assert len(client.get(f"{B}/numerology/reference/numbers").json()) == 9
-        assert len(client.get(f"{B}/numerology/reference/pairs").json()) == 81
+        assert len(client.get(f"{B}/numerology/reference/mobile-combinations").json()) == 35
         assert len(client.get(f"{B}/numerology/reference/name-chart").json()) >= 90
         assert len(client.get(f"{B}/numerology/reference/vehicle").json()) == 99
 

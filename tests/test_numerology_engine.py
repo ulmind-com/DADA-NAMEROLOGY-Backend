@@ -84,10 +84,15 @@ class TestMobile:
         assert clean_number("+91 95311 99355") == "9531199355"
         assert clean_number("09531199355") == "9531199355"
 
-    def test_zero_is_treated_as_an_amplifier(self):
+    def test_zeros_are_excluded_from_pairs(self):
+        """Client's Mobile Numerology notes exclude zeros before pairing."""
         grid = pair_grid("109")
-        assert grid[0]["pair"] == "1:0"
-        assert "magnifies" in grid[0]["impact"]
+        assert [g["pair"] for g in grid] == ["1:9"]  # the 0 is dropped
+        assert all(g["rating"] in ("benefic", "neutral", "malefic") for g in grid)
+
+    def test_universal_benefic_total(self):
+        """Client rule: total 1/3/5/6 benefic, 4/7/8 malefic, 2/9 neutral."""
+        assert analyse_mobile("9531199355")["total_class"] == "benefic"  # total 5
 
     def test_owner_dob_changes_the_score(self):
         plain = analyse_mobile("9531199355")

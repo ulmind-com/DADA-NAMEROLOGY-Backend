@@ -45,7 +45,7 @@ class AdminUserUpdateIn(BaseModel):
 
 
 class RuleUpsertIn(BaseModel):
-    kind: str = Field(pattern="^(name_chart|vehicle_master|vehicle_patterns|pair_meanings)$")
+    kind: str = Field(pattern="^(name_chart|vehicle_master|vehicle_patterns|mobile_combinations)$")
     key: str
     data: dict[str, Any]
 

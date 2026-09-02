@@ -22,31 +22,36 @@ def clean_number(raw: str) -> str:
     return digits
 
 
+_RATING_META = {
+    "benefic": {"label": "Benefic", "color": "#1E9E6A", "score": 2},
+    "neutral": {"label": "Neutral", "color": "#E0A32E", "score": 1},
+    "malefic": {"label": "Malefic", "color": "#D24B4B", "score": 0},
+}
+
+
 def pair_grid(digits: str) -> list[dict]:
-    """Consecutive digit pairs, exactly like the client's TOTAL GRID (9:5, 5:3, 3:1 ...)."""
+    """Internal combinations per the client's Mobile Numerology notes: zeros are
+    excluded, then consecutive digit pairs are read and classified benefic /
+    neutral / malefic from the client's combination tables."""
+    clean = digits.replace("0", "")
     grid = []
-    for i in range(len(digits) - 1):
-        a, b = int(digits[i]), int(digits[i + 1])
-        if a == 0 or b == 0:
-            # zero has no planet; it amplifies the digit beside it
-            other = b if a == 0 else a
-            grid.append({
-                "pair": f"{a}:{b}",
-                "index": i,
-                "first": a, "second": b,
-                "planets": "Zero (amplifier)",
-                "rating": "average",
-                "label": "Average",
-                "color": "#E0A32E",
-                "score": 1,
-                "impact": (
-                    f"Zero has no planet of its own — it magnifies {other}. "
-                    "It makes the neighbouring energy stronger, for better or worse."
-                ),
-            })
-            continue
-        m = rules.pair_meaning(a, b)
-        grid.append({**m, "index": i})
+    for i in range(len(clean) - 1):
+        a, b = int(clean[i]), int(clean[i + 1])
+        combo = rules.mobile_combination(a, b)
+        rating = combo.get("rating", "neutral")
+        meta = _RATING_META[rating]
+        traits = combo.get("traits", [])
+        grid.append({
+            "pair": f"{a}:{b}",
+            "index": i,
+            "first": a, "second": b,
+            "planets": combo.get("planets", ""),
+            "rating": rating,
+            "label": meta["label"],
+            "color": meta["color"],
+            "score": meta["score"],
+            "impact": "; ".join(traits[:4]) if traits else "",
+        })
     return grid
 
 
@@ -82,7 +87,12 @@ def analyse_mobile(
     compound = sum(int(d) for d in digits) if digits else 0
     total = reduce_to_root(compound)
     grid = pair_grid(digits)
-    score = _grid_score(grid)
+    grid_score = _grid_score(grid)
+    # The client's primary rule: the mobile Total 1/3/5/6 is benefic, 4/7/8 malefic,
+    # 2/9 neutral. Weight that alongside the internal-combination grid.
+    total_class = rules.MOBILE_TOTAL_CLASS.get(total, "neutral")
+    total_points = {"benefic": 100, "neutral": 55, "malefic": 25}[total_class]
+    score = round(total_points * 0.5 + grid_score * 0.5)
 
     counts = Counter(digits)
     missing = [n for n in "123456789" if n not in counts]
@@ -99,24 +109,25 @@ def analyse_mobile(
         "total": total,
         "chain": reduction_chain(compound),
         "compound_meaning": {
-            "title": f"Number {total}",
-            "rating": "good",
-            "short": rp_total.get("description", ""),
-            "description": rules.vehicle_master(total).get("attributes", ""),
+            "title": f"Total {total}",
+            "rating": {"benefic": "good", "neutral": "average", "malefic": "bad"}[total_class],
+            "short": rules.mobile_total_meaning(total)[:90],
+            "description": rules.mobile_total_meaning(total),
         },
+        "total_class": total_class,
         "total_profile": {
             "number": total,
             "planet": rp_total.get("planet"),
             "element": rp_total.get("element"),
-            "title": f"Number {total}",
-            "description": rules.vehicle_master(total).get("summary", ""),
+            "title": {"benefic": "Benefic Total", "neutral": "Neutral Total", "malefic": "Malefic Total"}[total_class],
+            "description": rules.mobile_total_meaning(total),
             "colors": rp_total.get("colors", []),
         },
         "grid": grid,
         "grid_summary": {
-            "good": sum(1 for g in grid if g["rating"] == "good"),
-            "average": sum(1 for g in grid if g["rating"] == "average"),
-            "bad": sum(1 for g in grid if g["rating"] == "bad"),
+            "good": sum(1 for g in grid if g["rating"] == "benefic"),
+            "average": sum(1 for g in grid if g["rating"] == "neutral"),
+            "bad": sum(1 for g in grid if g["rating"] == "malefic"),
             "total_pairs": len(grid),
         },
         "score": score,
@@ -164,7 +175,7 @@ def analyse_mobile(
 
 def _recommendations(r: dict) -> list[str]:
     out: list[str] = []
-    bad = [g for g in r["grid"] if g["rating"] == "bad"]
+    bad = [g for g in r["grid"] if g["rating"] == "malefic"]
     if bad:
         out.append(
             f"{len(bad)} weak pair(s) found: "

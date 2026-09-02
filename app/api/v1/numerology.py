@@ -199,6 +199,6 @@ def reference_vehicle():
     return rules.all_vehicle_master()
 
 
-@router.get("/reference/pairs", summary="Pair meanings used by the mobile TOTAL GRID")
-def reference_pairs():
-    return rules.all_pairs()
+@router.get("/reference/mobile-combinations", summary="Client's mobile digit-pair combinations")
+def reference_mobile_combinations():
+    return rules.all_mobile_combinations()

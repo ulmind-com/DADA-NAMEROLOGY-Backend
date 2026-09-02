@@ -47,17 +47,6 @@ def apply_overrides(kind: str, overrides: dict[str, dict]) -> None:
 
 
 # --------------------------------------------------------------- accessors
-def pair_meaning(a: int, b: int) -> dict:
-    return _get("pair_meanings").get(f"{a}:{b}", {
-        "pair": f"{a}:{b}", "rating": "average", "label": "Average",
-        "color": "#E0A32E", "score": 1, "impact": "", "planets": "",
-    })
-
-
-def all_pairs() -> dict:
-    return _get("pair_meanings")
-
-
 RATING_ORDER = {"excellent": 4, "good": 3, "average": 2, "caution": 1, "bad": 0}
 RATING_COLOR = {
     "excellent": "#0E8F5E",
@@ -138,3 +127,25 @@ def root_profile_client(n: int) -> dict:
 
 def rules_short_title(n: int) -> str:
     return f"Number {n}"
+
+
+def mobile_total_meaning(n: int) -> str:
+    return _get("mobile_total").get(str(n), "")
+
+
+def mobile_combination(a: int, b: int) -> dict:
+    """Client's benefic/neutral/malefic verdict for a digit pair (order-independent)."""
+    key = f"{min(a, b)}{max(a, b)}"
+    return _get("mobile_combinations").get(key, {})
+
+
+def all_mobile_combinations() -> dict:
+    return _get("mobile_combinations")
+
+
+# Client's Universal Benefic Total (Mobile Numerology Notes, section 8)
+MOBILE_TOTAL_CLASS = {
+    1: "benefic", 3: "benefic", 5: "benefic", 6: "benefic",
+    4: "malefic", 7: "malefic", 8: "malefic",
+    2: "neutral", 9: "neutral",
+}

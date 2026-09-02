@@ -1,0 +1,605 @@
+{
+ "13": {
+  "pair": "31",
+  "digits": [
+   1,
+   3
+  ],
+  "rating": "benefic",
+  "planets": "1= Sun, 3= Jupiter",
+  "traits": [
+   " Combination of knowledge & leadership",
+   " Good in education",
+   " Knowledgeable",
+   " Good for education-related field",
+   " Good advisors",
+   " Respectful & popular"
+  ]
+ },
+ "15": {
+  "pair": "51",
+  "digits": [
+   1,
+   5
+  ],
+  "rating": "benefic",
+  "planets": "1= Sun, 5= Mercury  Good for business",
+  "traits": [
+   " Good in communication",
+   " Leadership qualities",
+   " Make their father famous/proud",
+   " Good leader",
+   " Authoritative"
+  ]
+ },
+ "19": {
+  "pair": "91",
+  "digits": [
+   1,
+   9
+  ],
+  "rating": "benefic",
+  "planets": "1= Sun, 9=Mars  Sun & Mars Combo",
+  "traits": [
+   " Powerful Combination",
+   " Makes native powerful",
+   " Anger & Dictatorship",
+   " Works for the welfare of others",
+   " Professional person",
+   " Works at higher positions or places",
+   " Good for politics",
+   " Good for surgeons or any fields where tolls"
+  ]
+ },
+ "25": {
+  "pair": "52",
+  "digits": [
+   2,
+   5
+  ],
+  "rating": "benefic",
+  "planets": "2=Moon, 5=Mercury  Moon & Mercury Combo",
+  "traits": [
+   " Balance of emotional intelligence &",
+   "communication",
+   " Handle difficult situations easily",
+   " Good for healing & medical related fields",
+   " Good for occult",
+   " Good listener & communicator",
+   " Avoid finance-related fields"
+  ]
+ },
+ "29": {
+  "pair": "92",
+  "digits": [
+   2,
+   9
+  ],
+  "rating": "benefic",
+  "planets": "2=Moon, 5=Mars  Moon & Mars Combo",
+  "traits": [
+   " If a person wants to be independent it’s a",
+   "good combination but if a person wants to",
+   "be dependable it’s a bad combination.",
+   "Eg) Mom/Housewife -- a good combo",
+   "Ambitious girl – bad combo",
+   " Person doesn't face money-related issues",
+   "but is dependent on others",
+   " Lives happily on someone else’s money"
+  ]
+ },
+ "37": {
+  "pair": "73",
+  "digits": [
+   3,
+   7
+  ],
+  "rating": "benefic",
+  "planets": "3=Jupiter, 7=Ketu  Jupiter & Ketu Combo",
+  "traits": [
+   " Enhanced traits of Jupiter",
+   " Complete personality",
+   " Knowledgeable person",
+   " Will benefit from knowledge",
+   " Good for knowledge-based field or",
+   "business"
+  ]
+ },
+ "38": {
+  "pair": "83",
+  "digits": [
+   3,
+   8
+  ],
+  "rating": "benefic",
+  "planets": "3=Jupiter, 8=Saturn  Jupiter & Saturn Combo",
+  "traits": [
+   " Good for property, real estate",
+   " Combo of fair judgement &",
+   "communication",
+   " Good counselor, mediator, judge, or any",
+   "field where fair judgment between two",
+   "parties is required"
+  ]
+ },
+ "47": {
+  "pair": "74",
+  "digits": [
+   4,
+   7
+  ],
+  "rating": "benefic",
+  "planets": "4=Rahu, 7=Ketu  Honest,",
+  "traits": [
+   " Intelligent,",
+   " gives importance of Integrity,",
+   " Organized",
+   " Spiritual",
+   " Rahu-Ketu Comb"
+  ]
+ },
+ "57": {
+  "pair": "75",
+  "digits": [
+   5,
+   7
+  ],
+  "rating": "benefic",
+  "planets": "5=Mercury, 7=Ketu  Mercury-Ketu Combo",
+  "traits": [
+   " Speaker,",
+   " Writer,",
+   " Public relations,",
+   " Good Expressive person,",
+   " A lot of peoplecome to them for advice"
+  ]
+ },
+ "69": {
+  "pair": "96",
+  "digits": [
+   6,
+   9
+  ],
+  "rating": "benefic",
+  "planets": "6=Venus, 9=Mars  69 blends the nurturing, harmonious energy",
+  "traits": [
+   "of 6 with the compassionate, idealistic",
+   "energy of 9.",
+   " This combination may suggest a focus on",
+   "creating harmony in personal relationships",
+   "and a strong desire to contribute to the",
+   "greater good.",
+   " It can also indicate a balance between",
+   "caring for others and pursuing higher"
+  ]
+ },
+ "78": {
+  "pair": "87",
+  "digits": [
+   7,
+   8
+  ],
+  "rating": "benefic",
+  "planets": "7=Ketu, 8=Saturn  78 blends the spiritual, introspective",
+  "traits": [
+   "qualities of 7 with the practical, ambitious",
+   "energy of 8.",
+   " This combination suggests a balance",
+   "between seeking personal wisdom and",
+   "pursuing material success.",
+   " It may indicate an ability to achieve goals",
+   "through deep understanding and strategic",
+   "thinking."
+  ]
+ },
+ "17": {
+  "pair": "71",
+  "digits": [
+   1,
+   7
+  ],
+  "rating": "neutral",
+  "planets": "1=Sun, 7=Ketu  Surya Ketu Combo",
+  "traits": [
+   " Good leader",
+   " Support from government",
+   " Name & fame",
+   " Benefit from intuition and",
+   "research",
+   " Profit from manipulation or",
+   "lying",
+   " Avoid if multiple 777 in DOB or"
+  ]
+ },
+ "23": {
+  "pair": "32",
+  "digits": [
+   2,
+   3
+  ],
+  "rating": "neutral",
+  "planets": "2=Moon, 3=Jupiter  Moon & Jupiter combo",
+  "traits": [
+   " Good in education",
+   " Knowledgeable person",
+   " Strict nature with own kids",
+   " Many enemies but none of them",
+   "able to harm"
+  ]
+ },
+ "24": {
+  "pair": "42",
+  "digits": [
+   2,
+   4
+  ],
+  "rating": "neutral",
+  "planets": "2=Moon, 4=Ketu  Negative & destructive thinking",
+  "traits": [
+   " Impractical",
+   " Get bored easily",
+   " Makes different plans",
+   " Issues with mother",
+   " Be in illusion",
+   " Good for professions where",
+   "illusive thinking is required"
+  ]
+ },
+ "35": {
+  "pair": "53",
+  "digits": [
+   3,
+   5
+  ],
+  "rating": "neutral",
+  "planets": "3=Jupiter, 5=Mercury  Jupiter & mercury combo",
+  "traits": [
+   " Good in communication",
+   " Liquid money issues but",
+   "otherwise good economic",
+   "condition",
+   " Get success away from home",
+   " Fear of father"
+  ]
+ },
+ "36": {
+  "pair": "63",
+  "digits": [
+   3,
+   6
+  ],
+  "rating": "neutral",
+  "planets": "3=Jupiter, 6=Venus  Knowledgeable",
+  "traits": [
+   " Jupiter Venus combo",
+   " Clashes & confusion in",
+   "knowledge",
+   " Opposite mentality",
+   " Because of contrasting thoughts",
+   "clashes will be there and won't",
+   "be able to present yourself",
+   "properly"
+  ]
+ },
+ "39": {
+  "pair": "93",
+  "digits": [
+   3,
+   9
+  ],
+  "rating": "neutral",
+  "planets": "3=Jupiter, 9=Mars  Strong desire to take action",
+  "traits": [
+   " Loves to display or show off",
+   "their skills",
+   " Duality in nature",
+   " Struggle to get recognition"
+  ]
+ },
+ "49": {
+  "pair": "94",
+  "digits": [
+   4,
+   9
+  ],
+  "rating": "neutral",
+  "planets": "4=Rahu, 9=Mars  Overconfident",
+  "traits": [
+   " Over impulsive",
+   " Over adventurous",
+   " Loves to take risks",
+   " Criminal minded"
+  ]
+ },
+ "56": {
+  "pair": "65",
+  "digits": [
+   5,
+   6
+  ],
+  "rating": "neutral",
+  "planets": "5=Mercury, 6=Venus  Hurdles in relationships",
+  "traits": [
+   " Good for business",
+   " Business minded",
+   " Hesitate to ask for own money",
+   " Travel"
+  ]
+ },
+ "58": {
+  "pair": "85",
+  "digits": [
+   5,
+   8
+  ],
+  "rating": "neutral",
+  "planets": "5=Mercury, 8=Saturn  Faces delay, struggles",
+  "traits": [
+   " Slow progress",
+   " Money gets stuck issues",
+   " Practical nature",
+   " Inclination towards financial",
+   "front and business"
+  ]
+ },
+ "59": {
+  "pair": "95",
+  "digits": [
+   5,
+   9
+  ],
+  "rating": "neutral",
+  "planets": "5=Mercury, 9=Mars  Manipulation in communication",
+  "traits": [
+   " Impulsiveness &",
+   "straightforwardness in",
+   "communication",
+   " Relationship issues because of",
+   "their communication"
+  ]
+ },
+ "79": {
+  "pair": "97",
+  "digits": [
+   7,
+   9
+  ],
+  "rating": "neutral",
+  "planets": "7=Ketu, 9=Mars  Ketu Mars Combo",
+  "traits": [
+   " Success after separation from",
+   "father",
+   " Girls staying away from their",
+   "father’s house after marriage",
+   "may get successful as they are",
+   "away from home",
+   "Malefic combinationsand Their Traits:",
+   "In numerology, malefic combinations refer to sequences or pairings of numbers that are"
+  ]
+ },
+ "14": {
+  "pair": "41",
+  "digits": [
+   1,
+   4
+  ],
+  "rating": "malefic",
+  "planets": "1=Sun, 4=Rahu  Surya Rahu combo",
+  "traits": [
+   " Steals electricity, steals taxes",
+   "from government",
+   " Faces defamation",
+   " Struggle with government-related",
+   "tasks",
+   " Attract loan liabilities",
+   " Attract legal notices",
+   " Health issues"
+  ]
+ },
+ "16": {
+  "pair": "61",
+  "digits": [
+   1,
+   6
+  ],
+  "rating": "malefic",
+  "planets": "1=Sun, 6=Venus  Sun & Venus combo",
+  "traits": [
+   " Money loss",
+   " Job loss",
+   " UTI issues",
+   " Spouse health issues",
+   " Married life issues"
+  ]
+ },
+ "18": {
+  "pair": "81",
+  "digits": [
+   1,
+   8
+  ],
+  "rating": "malefic",
+  "planets": "1=Sun, 8=Saturn  Issues between father son",
+  "traits": [
+   " Issues with government-related",
+   "work",
+   " Issues with senior and bosses",
+   " Spouse health issues"
+  ]
+ },
+ "26": {
+  "pair": "62",
+  "digits": [
+   2,
+   6
+  ],
+  "rating": "malefic",
+  "planets": "2=Moon, 6=Venus  Moon Venus Combo",
+  "traits": [
+   " A blend of feminine energy",
+   " Gives importance to feelings and",
+   "emotions",
+   " Gets attached easily",
+   " Issues with mother-in-law",
+   " UTI issues, less sperm count,",
+   "Diabetes",
+   " Break in education"
+  ]
+ },
+ "27": {
+  "pair": "72",
+  "digits": [
+   2,
+   7
+  ],
+  "rating": "malefic",
+  "planets": "2=Moon, 7=Ketu  Over emotional",
+  "traits": [
+   " Anxiety",
+   " Depression",
+   " Joint pain",
+   " Arthritis",
+   " Think too much",
+   " Enhanced intuition",
+   " Urine, kidney related issues"
+  ]
+ },
+ "28": {
+  "pair": "82",
+  "digits": [
+   2,
+   8
+  ],
+  "rating": "malefic",
+  "planets": "2=Moon, 8=Saturn  A personhasa decent amount of",
+  "traits": [
+   "Money",
+   " Issues in partnership",
+   " Accident prone",
+   " Destructive thoughts",
+   " Excessive Medical/Hospital",
+   "Expenditure",
+   " 2 marriages in the Family,",
+   " Try to avoid Bad company it can"
+  ]
+ },
+ "34": {
+  "pair": "43",
+  "digits": [
+   3,
+   4
+  ],
+  "rating": "malefic",
+  "planets": "3=Jupiter, 4=Rahu  Legs shivering",
+  "traits": [
+   " Paralysis to someone in the family",
+   " Breathing-related issues to person",
+   " If DOB has 3 or more times 8",
+   "then don't take this combo",
+   " Parkinson's issue in the family"
+  ]
+ },
+ "45": {
+  "pair": "54",
+  "digits": [
+   4,
+   5
+  ],
+  "rating": "malefic",
+  "planets": "4=Rahu, 5=Mercury  Needs to visit Hospital visits for",
+  "traits": [
+   "different medical reasons",
+   " Needs to visit court, jail, etc. for",
+   "different issues",
+   " Life with Restrictions",
+   " Buddha & Rahu combo (Bandhan",
+   "yog)",
+   " Skin-related issues",
+   " Intelligent"
+  ]
+ },
+ "46": {
+  "pair": "64",
+  "digits": [
+   4,
+   6
+  ],
+  "rating": "malefic",
+  "planets": "4=Rahu, 6=Venus  Extra relationship",
+  "traits": [
+   " Inter-cast marriage",
+   " UTI infection",
+   " Negative thinking",
+   " Issues with reproductive organs"
+  ]
+ },
+ "48": {
+  "pair": "84",
+  "digits": [
+   4,
+   8
+  ],
+  "rating": "malefic",
+  "planets": "4=Rahu, 8=Saturn  (Very Negative) Blood related",
+  "traits": [
+   "disease",
+   " Incurable problems",
+   " Deficiency in sexual pleasure",
+   " Joint pain",
+   " Physical weakness",
+   " Rahu Shani Combo"
+  ]
+ },
+ "67": {
+  "pair": "76",
+  "digits": [
+   6,
+   7
+  ],
+  "rating": "malefic",
+  "planets": "6=Venus, 7=Ketu  Not loyal towards partner",
+  "traits": [
+   " Attracted towards luxury",
+   " Multiple love affair",
+   " Chances of Love marriage",
+   " Issue in Spouse health",
+   " Chances of disturbed married life"
+  ]
+ },
+ "68": {
+  "pair": "86",
+  "digits": [
+   6,
+   8
+  ],
+  "rating": "malefic",
+  "planets": "6=Venus, 8=Saturn  Eye Problem",
+  "traits": [
+   " Issue in any one organ of body",
+   " If multiple 1 in DOB thendon’t",
+   "recommend this combo",
+   " Chronic disease",
+   " Eye problems",
+   " Issues in organs of the body"
+  ]
+ },
+ "89": {
+  "pair": "98",
+  "digits": [
+   8,
+   9
+  ],
+  "rating": "malefic",
+  "planets": "8=Saturn, 9=Mars  Argumentative,",
+  "traits": [
+   " Works with Principle,",
+   " A person might get chronic issues",
+   "in the later part of life",
+   " Health issues",
+   "Multiple Numbers and Their Effects:",
+   "You can incorporate universal benefic numbers such as 1, 3, 5, and 6 up to two times i.e.",
+   "more than two times it gives bad results.",
+   " Multiple Number 1: (Sun: 1, 11, 111, 1111…..)"
+  ]
+ }
+}

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import io
 from datetime import datetime
+from pathlib import Path
 
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
@@ -12,6 +13,7 @@ from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.platypus import (
     HRFlowable,
+    Image,
     KeepTogether,
     PageBreak,
     Paragraph,
@@ -29,6 +31,11 @@ LINE = colors.HexColor("#EBD9C0")
 
 _ss = getSampleStyleSheet()
 H1 = ParagraphStyle("h1", parent=_ss["Title"], fontName="Times-Bold", fontSize=22, textColor=INK, spaceAfter=2)
+GANESHA = Path(__file__).parent / "ganesha.png"
+BRAND_BIG = ParagraphStyle("brandBig", parent=_ss["Title"], fontName="Times-Bold",
+                           fontSize=40, leading=42, textColor=BRAND, alignment=TA_CENTER, spaceAfter=0)
+BRAND_SUB = ParagraphStyle("brandSub", parent=_ss["Normal"], fontName="Helvetica-Bold",
+                           fontSize=15, textColor=INK, alignment=TA_CENTER, spaceBefore=2)
 KICKER = ParagraphStyle("kick", parent=_ss["Normal"], fontName="Helvetica-Bold", fontSize=9,
                         textColor=BRAND, alignment=TA_CENTER, spaceAfter=4)
 H2 = ParagraphStyle("h2", parent=_ss["Heading2"], fontName="Helvetica-Bold", fontSize=12.5,
@@ -108,14 +115,20 @@ def build_report_pdf(report_type: str, title: str, result: dict, user_name: str 
         leftMargin=20 * mm, rightMargin=20 * mm, topMargin=22 * mm, bottomMargin=20 * mm,
         title=f"{title} — DADA'S NUMEROLOGY", author="DADA'S NUMEROLOGY",
     )
-    S: list = [
-        Paragraph("DADA'S", KICKER),
-        Paragraph("NUMEROLOGY", H1),
+    S: list = []
+    if GANESHA.exists():
+        img = Image(str(GANESHA), width=34 * mm, height=34 * mm)
+        img.hAlign = "CENTER"
+        S += [img, Spacer(1, 4)]
+    S += [
+        Paragraph("DADA'S", BRAND_BIG),
+        Paragraph("NUMEROLOGY", BRAND_SUB),
+        Spacer(1, 6),
         Paragraph(
             f"{report_type.upper()} REPORT &nbsp;·&nbsp; {datetime.now().strftime('%d %B %Y')}",
             ParagraphStyle("sub", parent=SMALL, alignment=TA_CENTER),
         ),
-        Spacer(1, 6),
+        Spacer(1, 8),
         HRFlowable(width="100%", thickness=0.8, color=LINE),
         Spacer(1, 12),
         Paragraph(title, ParagraphStyle("t", parent=H1, fontSize=17, alignment=TA_CENTER)),

@@ -322,13 +322,13 @@ def admin_report_pdf(report_id: str, db: DB = Depends(get_db), _: User = Depends
 
 
 # ----------------------------------------------------------------------- RULES
-@router.get("/rules/{kind}", summary="name_chart | vehicle_master | vehicle_patterns | pair_meanings")
+@router.get("/rules/{kind}", summary="name_chart | vehicle_master | vehicle_patterns | mobile_combinations")
 def get_rules(kind: str, db: DB = Depends(get_db), _: User = Depends(admin_user)):
     base = {
         "name_chart": rulestore.all_name_chart,
         "vehicle_master": rulestore.all_vehicle_master,
         "vehicle_patterns": rulestore.vehicle_patterns,
-        "pair_meanings": rulestore.all_pairs,
+        "mobile_combinations": rulestore.all_mobile_combinations,
     }.get(kind)
     if not base:
         raise HTTPException(status.HTTP_400_BAD_REQUEST, "Unknown rule set.")
