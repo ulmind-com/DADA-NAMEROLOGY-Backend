@@ -254,7 +254,23 @@ def analyse_mobile(
             },
         }
         # blend personal fit into the headline score
-        result["score"] = max(0, min(100, score + {"friendly": 10, "neutral": 0, "enemy": -15}[level]))
+        # The client's finalising Step 2: "Ensure that the chosen mobile total is
+        # compatible with your Mulank and Bhagyank." That is a rule, not a bonus,
+        # so it joins the checklist and the score stays "points passed".
+        checklist.append({
+            "point": "The mobile total should be compatible with your Mulank and Bhagyank.",
+            "passed": level == "friendly",
+            "detail": (
+                f"Total {total} is "
+                + {"friendly": "among your lucky numbers",
+                   "neutral": "neutral for you",
+                   "enemy": "on your unlucky list"}[level]
+                + f" (Mulank {radical})."
+            ),
+        })
+        result["checklist"] = checklist
+        result["score"] = round(sum(1 for c in checklist if c["passed"]) * 100 / len(checklist))
+        result["recommendations"] = _recommendations(result)
         result["verdict"] = _verdict(result["score"])
 
     result["recommendations"] = _recommendations(result)

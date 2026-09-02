@@ -163,6 +163,25 @@ class TestMobileClientChecklist:
         assert len(r["checklist"]) == 5
         assert r["score"] == round(sum(c["passed"] for c in r["checklist"]) * 100 / 5)
 
+    def test_score_is_only_ever_points_passed(self):
+        """No invented weighting anywhere: the figure is passed/total, with or
+        without a date of birth (which adds the client's compatibility check)."""
+        from datetime import date
+
+        for args in [("9531199355", None), ("9531199355", date(1985, 6, 18)),
+                     ("112335", date(1990, 1, 15)), ("4788", date(1978, 7, 3))]:
+            r = analyse_mobile(*args)
+            passed = sum(1 for c in r["checklist"] if c["passed"])
+            assert r["score"] == round(passed * 100 / len(r["checklist"])), r["checklist"]
+
+    def test_dob_adds_the_clients_compatibility_check(self):
+        from datetime import date
+
+        plain = analyse_mobile("9531199355")
+        owned = analyse_mobile("9531199355", date(1985, 6, 18))
+        assert len(owned["checklist"]) == len(plain["checklist"]) + 1
+        assert "Mulank" in owned["checklist"][-1]["point"]
+
     def test_client_repeat_limits_are_enforced(self):
         r = analyse_mobile("9531199355")
         by_point = {c["point"]: c for c in r["checklist"]}
