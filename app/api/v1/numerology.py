@@ -10,6 +10,7 @@ from app.numerology.chaldean import destiny_number, radical_number
 from app.numerology.mobile import analyse_mobile, compare_numbers
 from app.numerology.name import full_name_report, newborn_report, quick_name, suggest_corrections
 from app.numerology.numeroscope import build as build_numeroscope
+from app.numerology.numeroscope import recommend_mobile_total
 from app.numerology.vehicle import analyse_vehicle, suggest_plate_numbers
 from app.schemas.numerology import (
     AnalysisOut,
@@ -210,6 +211,19 @@ def numeroscope(body: NewBornIn):
     """The client's numeroscope: the 3x3 grid built from the date of birth, with the
     missing, lucky, unlucky and neutral numbers derived from their compatibility table."""
     return AnalysisOut(result=build_numeroscope(body.dob))
+
+
+@router.post("/mobile/recommend", response_model=AnalysisOut,
+             summary="Which mobile total to aim for (client's finalising method)")
+def mobile_recommend(body: NewBornIn):
+    """Runs the client's 'Finalizing a beneficial mobile number' steps: benefic
+    totals absent from the grid that are also compatible with Mulank and Bhagyank."""
+    return AnalysisOut(result=recommend_mobile_total(body.dob))
+
+
+@router.get("/reference/vehicle-summary", summary="Client's favourable / caution vehicle numbers")
+def reference_vehicle_summary():
+    return rules.vehicle_summary()
 
 
 @router.get("/reference/compatibility", summary="Client's Compatibility of Numbers table")

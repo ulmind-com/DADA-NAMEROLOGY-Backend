@@ -365,6 +365,14 @@ def _vehicle_sections(r: dict) -> list:
     S = [Paragraph("Result", H2), _kv_table(rows)]
     if r.get("owner"):
         S += [Spacer(1, 6), Paragraph(pdf_text(r["owner"]["match"]["note"]), BODY)]
+    if r.get("client_list"):
+        cl = r["client_list"]
+        head = ("Most Favourable Number" if cl["standing"] == "most_favourable"
+                else "Use With Caution")
+        S += [Paragraph(f"{head} - {pdf_text(cl.get('label',''))}", H2),
+              Paragraph(pdf_text(cl.get("note", "")), BODY),
+              Paragraph("Listed numbers: "
+                        + pdf_text(", ".join(str(x) for x in cl.get("numbers", []))), SMALL)]
     if r.get("sequence"):
         sq = r["sequence"]
         S += [Paragraph(f"Series: {pdf_text(sq.get('pattern',''))}", H2),

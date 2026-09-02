@@ -224,3 +224,16 @@ def good_compounds(root: int) -> dict:
 
 def all_good_compounds() -> dict:
     return _get("mobile_good_compounds")
+
+
+def vehicle_summary() -> dict:
+    """Client's 'Favorable vs Unfavorable Vehicle Numbers' summary lists."""
+    return _get("vehicle_patterns").get("summary", {})
+
+
+def benefic_combinations() -> dict:
+    """Only the combinations the client classes as benefic."""
+    return {
+        k: v for k, v in _get("mobile_combinations").items()
+        if v.get("rating") == "benefic"
+    }

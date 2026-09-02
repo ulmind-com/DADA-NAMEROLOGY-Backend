@@ -90,3 +90,57 @@ def build(dob: date) -> dict:
 def good_compounds_for(total: int) -> dict:
     """The client lists good compounds only for the benefic roots 1, 3, 5 and 6."""
     return rules.good_compounds(total)
+
+
+def recommend_mobile_total(dob: date) -> dict:
+    """The client's 'Finalizing a beneficial mobile number', steps 1 and 2.
+
+    Step 1 — of the universal benefic totals (1, 3, 5, 6), see which are already
+             present in the grid; the ones absent can be considered.
+    Step 2 — keep only those that are also harmonious with both the Mulank and the
+             Bhagyank, i.e. that appear in the lucky numbers.
+
+    The client's own summary: "select a number that is a universal benefic number
+    (1, 3, 5 or 6), is absent from the grid, and is harmonious with both the Mulank
+    and Bhagyank."
+    """
+    scope = build(dob)
+    benefic = [n for n, cls in rules.MOBILE_TOTAL_CLASS.items() if cls == "benefic"]
+    benefic.sort()
+
+    present = [n for n in benefic if scope["counts"][str(n)] > 0]
+    absent = [n for n in benefic if scope["counts"][str(n)] == 0]
+    lucky = scope["lucky_numbers"]
+
+    recommended = [n for n in absent if n in lucky]
+    # the client's preferred pick is absent AND lucky; if none qualifies, a benefic
+    # number that is at least lucky is the next best thing
+    second_choice = [n for n in benefic if n in lucky and n not in recommended]
+
+    return {
+        **{k: scope[k] for k in ("dob", "mulank", "bhagyank", "grid", "counts",
+                                 "missing_numbers", "lucky_numbers",
+                                 "unlucky_numbers", "neutral_numbers")},
+        "benefic_totals": benefic,
+        "benefic_present_in_grid": present,
+        "benefic_absent_from_grid": absent,
+        "recommended_totals": recommended,
+        "alternative_totals": second_choice,
+        "method": [
+            "Step 1: of the universal benefic totals 1, 3, 5 and 6, consider the ones "
+            "not already present in your grid.",
+            "Step 2: keep only those that are also compatible with your Mulank and "
+            "Bhagyank, i.e. that appear in your lucky numbers.",
+            "Step 3: choose internal combinations that match what you want the number "
+            "to support.",
+            "Step 4: a number may carry more than one benefic combination.",
+        ],
+        "benefic_combinations": [
+            {
+                "pair": v.get("pair", k),
+                "planets": v.get("planets", ""),
+                "traits": v.get("traits", []),
+            }
+            for k, v in sorted(rules.benefic_combinations().items())
+        ],
+    }

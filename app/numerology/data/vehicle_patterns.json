@@ -129,5 +129,84 @@
    "score": null,
    "grade": "Premium UI"
   }
- ]
+ ],
+ "summary": {
+  "most_favourable": [
+   {
+    "numbers": [
+     23,
+     32,
+     50,
+     95
+    ],
+    "label": "Mercury Energy - Root 5",
+    "note": "The ultimate commercial and personal numbers. Brings fast mobility, zero legal hassle, and exceptional resale value."
+   },
+   {
+    "numbers": [
+     15,
+     24,
+     33,
+     42,
+     66
+    ],
+    "label": "Venus Energy - Root 6",
+    "note": "Brings high comfort, luxury, safety, social charm, and prestige."
+   },
+   {
+    "numbers": [
+     10,
+     19,
+     37,
+     73,
+     91
+    ],
+    "label": "Sun Energy - Root 1",
+    "note": "Delivers authority, leadership, strong road presence, and government/corporate success."
+   },
+   {
+    "numbers": [
+     17,
+     27,
+     36,
+     45,
+     59
+    ],
+    "label": "Compound Magnets",
+    "note": "Known as \"Star of the Magi\" and \"Scepter of Command.\" Offers protection, smooth travel, and success."
+   }
+  ],
+  "caution": [
+   {
+    "numbers": [
+     13
+    ],
+    "label": "Karmic Rahu",
+    "note": "Susceptible to sudden electrical/mechanical glitches and unexpected repair expenses."
+   },
+   {
+    "numbers": [
+     16
+    ],
+    "label": "Shattered Citadel",
+    "note": "High risk of sudden breakdowns, body damages, or unexpected maintenance bills."
+   },
+   {
+    "numbers": [
+     18
+    ],
+    "label": "Aggressive Mars/Saturn Conflict",
+    "note": "Requires extra care regarding speed control, avoiding road rage, and maintaining focused driving."
+   },
+   {
+    "numbers": [
+     26,
+     48,
+     84
+    ],
+    "label": "Heavy Saturn Loads",
+    "note": "Heavy maintenance load; can cause unexpected delays in long-distance trips if vehicle servicing is delayed."
+   }
+  ]
+ }
 }

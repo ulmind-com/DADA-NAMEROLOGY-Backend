@@ -305,3 +305,50 @@ class TestVehicleSequences:
 
         assert pdf_text("won’t") == "won't"
         assert pdf_text("a — b") == "a - b"
+
+
+class TestFinalisingAMobileNumber:
+    """The client's third worked example, from 'Finalizing a beneficial mobile number'."""
+
+    def test_client_example_11_3_1986(self):
+        from datetime import date
+
+        from app.numerology.numeroscope import recommend_mobile_total
+
+        r = recommend_mobile_total(date(1986, 3, 11))
+        assert (r["mulank"], r["bhagyank"]) == (2, 2)        # client: M=2, B=2
+        assert sorted(r["missing_numbers"]) == [4, 5, 7]     # client: 4,5,7
+        assert r["lucky_numbers"] == [1, 2, 3, 5]            # client: 1,2,3,5
+        assert r["unlucky_numbers"] == [4, 8, 9]             # client: 4,8,9
+        assert r["neutral_numbers"] == [6, 7]                # client: 6,7
+        # the client concludes 5 can be recommended as the mobile total
+        assert r["recommended_totals"] == [5]
+
+    def test_recommendation_only_offers_benefic_totals(self):
+        from datetime import date
+
+        from app.numerology.numeroscope import recommend_mobile_total
+        from app.numerology.rules import MOBILE_TOTAL_CLASS
+
+        for d in (date(1990, 1, 15), date(1978, 7, 3), date(2001, 12, 28)):
+            r = recommend_mobile_total(d)
+            for n in r["recommended_totals"]:
+                assert MOBILE_TOTAL_CLASS[n] == "benefic"
+                assert n in r["lucky_numbers"]
+                assert r["counts"][str(n)] == 0               # absent from the grid
+
+
+class TestVehicleClientLists:
+    """The client's 'Favorable vs Unfavorable Vehicle Numbers' summary."""
+
+    def test_favourable_numbers_are_flagged(self):
+        assert analyse_vehicle("WB 26 J 0050")["client_list"]["standing"] == "most_favourable"
+        assert analyse_vehicle("WB 06 AB 1234")["client_list"]["standing"] == "most_favourable"
+
+    def test_caution_numbers_are_flagged(self):
+        c = analyse_vehicle("KA 01 AB 0013")["client_list"]
+        assert c["standing"] == "caution" and c["label"] == "Karmic Rahu"
+        assert analyse_vehicle("WB 06 AB 0016")["client_list"]["label"] == "Shattered Citadel"
+
+    def test_unlisted_number_reports_nothing(self):
+        assert analyse_vehicle("WB 06 AB 0021")["client_list"] is None

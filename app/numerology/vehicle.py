@@ -200,6 +200,24 @@ def analyse_vehicle(
             },
         }
 
+    # The client's summary lists of most-favourable and caution numbers
+    # The client names these as plate numbers (23, 32, 50 ...), so match both the
+    # running number itself and its compound.
+    candidates = {run_compound}
+    if running:
+        candidates.add(int(running))          # leading zeros stripped, e.g. "0050" -> 50
+    summary = rules.vehicle_summary()
+    listed = None
+    for standing in ("most_favourable", "caution"):
+        for entry in summary.get(standing, []):
+            hit = candidates & set(entry.get("numbers", []))
+            if hit:
+                listed = {"standing": standing, "matched": sorted(hit)[0], **entry}
+                break
+        if listed:
+            break
+    result["client_list"] = listed
+
     result["score"] = max(0, min(100, int(score)))
     result["verdict"] = _grade_to_verdict(grade, result["score"])
     result["recommendations"] = _recommendations(result)
