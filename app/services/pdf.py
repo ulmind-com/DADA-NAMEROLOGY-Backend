@@ -36,6 +36,12 @@ def pdf_text(value) -> str:
     text = "" if value is None else str(value)
     text = text.replace("\u2022", "\u00b7").replace("\u25aa", "\u00b7")
     text = text.replace("\u2605", "*")
+    # smart punctuation would otherwise be dropped, turning "won't" into "wont"
+    for fancy, plain in (
+        ("\u2018", "'"), ("\u2019", "'"), ("\u201c", '"'), ("\u201d", '"'),
+        ("\u2013", "-"), ("\u2014", "-"), ("\u2026", "..."), ("\u00a0", " "),
+    ):
+        text = text.replace(fancy, plain)
     out = []
     for ch in text:
         if ch in "\n\t":
@@ -258,6 +264,46 @@ def _name_sections(r: dict) -> list:
     return S
 
 
+def _numeroscope_block(n: dict) -> list:
+    """The client's 3x3 grid plus the missing / lucky / unlucky numbers."""
+    data = [[Paragraph(f"<b>{c['display'] or '-'}</b>", CENTER) for c in row] for row in n["grid"]]
+    t = Table(data, colWidths=[22 * mm] * 3, rowHeights=[13 * mm] * 3)
+    t.setStyle(TableStyle([
+        ("GRID", (0, 0), (-1, -1), 0.6, LINE),
+        ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#FFFDF8")),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+    ]))
+    t.hAlign = "CENTER"
+
+    def join(xs) -> str:
+        return ", ".join(str(x) for x in xs) or "-"
+
+    return [
+        KeepTogether([
+            Paragraph("Numeroscope", H2),
+            t,
+            Spacer(1, 8),
+        ]),
+        _kv_table([
+            ("Mulank", f"{n['mulank']} - {n['mulank_planet']} ({n['mulank_role']})"),
+            ("Bhagyank", f"{n['bhagyank']} - {n['bhagyank_planet']} ({n['bhagyank_role']})"),
+            ("Missing numbers", join(n["missing_numbers"])),
+            ("Lucky numbers", join(n["lucky_numbers"])),
+            ("Unlucky numbers", join(n["unlucky_numbers"])),
+            ("Neutral numbers", join(n["neutral_numbers"])),
+        ]),
+    ]
+
+
+def _good_compounds_block(g: dict) -> list:
+    out = [Paragraph(f"Good Compounds of {g.get('root')}", H2),
+           Paragraph(pdf_text(", ".join(str(c) for c in g.get("compounds", []))), BODY)]
+    if g.get("helps_with"):
+        out.append(Paragraph("These compounds help with: "
+                             + pdf_text(", ".join(g["helps_with"])) + ".", SMALL))
+    return out
+
+
 def _mobile_sections(r: dict) -> list:
     rows = [
         ("Mobile Number", r.get("formatted", "")),
@@ -296,6 +342,10 @@ def _mobile_sections(r: dict) -> list:
             ("TOPPADDING", (0, 0), (-1, -1), 5), ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
         ]))
         S.append(t)
+    if r.get("numeroscope"):
+        S += _numeroscope_block(r["numeroscope"])
+    if r.get("good_compounds"):
+        S += _good_compounds_block(r["good_compounds"])
     if r.get("recommendations"):
         S.append(Paragraph("Recommendations", H2))
         S += _bullets(r["recommendations"])
@@ -315,6 +365,15 @@ def _vehicle_sections(r: dict) -> list:
     S = [Paragraph("Result", H2), _kv_table(rows)]
     if r.get("owner"):
         S += [Spacer(1, 6), Paragraph(pdf_text(r["owner"]["match"]["note"]), BODY)]
+    if r.get("sequence"):
+        sq = r["sequence"]
+        S += [Paragraph(f"Series: {pdf_text(sq.get('pattern',''))}", H2),
+              _kv_table([(k, v) for k, v in [
+                  ("Matched run", sq.get("matched", "")),
+                  ("Mechanics", sq.get("mechanics", "")),
+                  ("Impact", sq.get("impact", "")),
+                  ("Recommended use", sq.get("recommended_use", "")),
+              ] if v])]
     if r.get("grid"):
         S += [Paragraph("Digit Pair Grid", H2), _grid_table(r["grid"])]
     if r.get("recommendations"):

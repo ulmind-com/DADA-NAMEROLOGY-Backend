@@ -78,24 +78,56 @@
  "sequential": [
   {
    "pattern": "Ascending Series (Progressive)",
-   "example": "12, 23, 34, 45, 56, 67, 78, 89",
-   "impact": "Continuous Forward Flow",
+   "examples": [
+    12,
+    23,
+    34,
+    45,
+    56,
+    67,
+    78,
+    89
+   ],
+   "mechanics": "Continuous Forward Flow",
+   "impact": "Smooth, breakdown-free journeys; step-by-step career and business expansion.",
+   "recommended_use": "Corporate Cabs, Executive Daily Cars, Sales Fleets.",
    "score": null,
-   "grade": "Progressive"
+   "grade": ""
   },
   {
    "pattern": "Descending Series (Regressive)",
-   "example": "21, 32, 43, 54, 65, 76, 87, 98",
-   "impact": "Reflective / Slow Flow",
+   "examples": [
+    21,
+    32,
+    43,
+    54,
+    65,
+    76,
+    87,
+    98
+   ],
+   "mechanics": "Reflective / Slow Flow",
+   "impact": "Can cause sluggish commercial performance; good for vintage/restored cars.",
+   "recommended_use": "Restored Vintage Cars, Solo Secondary Vehicles.",
    "score": null,
-   "grade": "Regressive"
+   "grade": ""
   },
   {
    "pattern": "Continuous Triplets (High Growth)",
-   "example": "123, 234, 345, 456, 567, 678, 789",
-   "impact": "High Ascending Acceleration",
+   "examples": [
+    123,
+    234,
+    345,
+    456,
+    567,
+    678,
+    789
+   ],
+   "mechanics": "High Ascending Acceleration",
+   "impact": "Rapid commercial growth, natural road harmony, excellent resale value.",
+   "recommended_use": "CEOs, Directors, Express Transport Fleets.",
    "score": null,
-   "grade": "High Growth"
+   "grade": "Premium UI"
   }
  ]
 }

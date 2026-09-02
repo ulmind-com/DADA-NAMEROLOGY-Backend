@@ -1,0 +1,238 @@
+{
+ "1": {
+  "number": 1,
+  "planet": "Sun",
+  "role": "King",
+  "lucky": [
+   1,
+   2,
+   3,
+   5,
+   6,
+   9
+  ],
+  "lucky_conditional": [],
+  "enemy": [
+   8
+  ],
+  "enemy_conditional": [],
+  "neutral": [
+   4,
+   7
+  ],
+  "neutral_conditional": []
+ },
+ "2": {
+  "number": 2,
+  "planet": "Moon",
+  "role": "Queen",
+  "lucky": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "lucky_conditional": [],
+  "enemy": [
+   4,
+   8,
+   9
+  ],
+  "enemy_conditional": [],
+  "neutral": [
+   6,
+   7
+  ],
+  "neutral_conditional": []
+ },
+ "3": {
+  "number": 3,
+  "planet": "Jupiter",
+  "role": "Teacher",
+  "lucky": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "lucky_conditional": [
+   7
+  ],
+  "enemy": [
+   6
+  ],
+  "enemy_conditional": [],
+  "neutral": [
+   4,
+   8,
+   9
+  ],
+  "neutral_conditional": [
+   7
+  ]
+ },
+ "4": {
+  "number": 4,
+  "planet": "Rahu",
+  "role": "Mysterious",
+  "lucky": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "lucky_conditional": [
+   8,
+   4
+  ],
+  "enemy": [
+   2,
+   9
+  ],
+  "enemy_conditional": [
+   4,
+   8
+  ],
+  "neutral": [
+   3
+  ],
+  "neutral_conditional": []
+ },
+ "5": {
+  "number": 5,
+  "planet": "Mercury",
+  "role": "Prince",
+  "lucky": [
+   1,
+   2,
+   3,
+   5,
+   6
+  ],
+  "lucky_conditional": [],
+  "enemy": [],
+  "enemy_conditional": [],
+  "neutral": [
+   4,
+   7,
+   8,
+   9
+  ],
+  "neutral_conditional": []
+ },
+ "6": {
+  "number": 6,
+  "planet": "Venus",
+  "role": "Teacher",
+  "lucky": [
+   1,
+   5,
+   6,
+   7
+  ],
+  "lucky_conditional": [],
+  "enemy": [
+   3
+  ],
+  "enemy_conditional": [],
+  "neutral": [
+   2,
+   4,
+   8,
+   9
+  ],
+  "neutral_conditional": []
+ },
+ "7": {
+  "number": 7,
+  "planet": "Ketu",
+  "role": "Saint",
+  "lucky": [
+   1,
+   3,
+   4,
+   5,
+   6
+  ],
+  "lucky_conditional": [],
+  "enemy": [],
+  "enemy_conditional": [],
+  "neutral": [
+   8,
+   2,
+   7,
+   9
+  ],
+  "neutral_conditional": []
+ },
+ "8": {
+  "number": 8,
+  "planet": "Saturn",
+  "role": "Judge",
+  "lucky": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "lucky_conditional": [
+   4,
+   8
+  ],
+  "enemy": [
+   1,
+   2
+  ],
+  "enemy_conditional": [
+   4,
+   8
+  ],
+  "neutral": [
+   9
+  ],
+  "neutral_conditional": []
+ },
+ "9": {
+  "number": 9,
+  "planet": "Mars",
+  "role": "Commander",
+  "lucky": [
+   1,
+   3,
+   5
+  ],
+  "lucky_conditional": [],
+  "enemy": [
+   4,
+   2
+  ],
+  "enemy_conditional": [],
+  "neutral": [
+   6,
+   7,
+   8,
+   9
+  ],
+  "neutral_conditional": []
+ },
+ "_note": {
+  "star": "A * marks a conditional relation: the temporary relation between them is good but the permanent relation is bad."
+ },
+ "_ideal_grid": [
+  [
+   4,
+   9,
+   2
+  ],
+  [
+   3,
+   5,
+   7
+  ],
+  [
+   8,
+   1,
+   6
+  ]
+ ]
+}

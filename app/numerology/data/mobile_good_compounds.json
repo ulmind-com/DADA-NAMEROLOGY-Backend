@@ -1,0 +1,67 @@
+{
+ "1": {
+  "root": 1,
+  "compounds": [
+   46,
+   64,
+   37,
+   55
+  ],
+  "helps_with": [
+   "Authority",
+   "Leadership",
+   "Government-related tasks",
+   "Good career and professions",
+   "Fame &Respect"
+  ]
+ },
+ "3": {
+  "root": 3,
+  "compounds": [
+   66,
+   39,
+   30
+  ],
+  "helps_with": [
+   "Knowledge related field",
+   "Education related field",
+   "Teaching",
+   "Overall prosperity",
+   "Good for occult also"
+  ]
+ },
+ "5": {
+  "root": 5,
+  "compounds": [
+   41,
+   32,
+   50,
+   59
+  ],
+  "helps_with": [
+   "Overall balance",
+   "Good profession",
+   "Business",
+   "Communication",
+   "Money flow"
+  ]
+ },
+ "6": {
+  "root": 6,
+  "compounds": [
+   42,
+   24,
+   33,
+   60,
+   51
+  ],
+  "helps_with": [
+   "Luxury",
+   "Money flow",
+   "Foreign travel",
+   "Relationships",
+   "42 compound is good for marriage or marriage-related issues",
+   "33 compound is good for foreign, abroad, visa, etc. related things."
+  ]
+ }
+}

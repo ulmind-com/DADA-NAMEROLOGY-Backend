@@ -56,6 +56,24 @@ def _grade_to_verdict(grade: str, score: int) -> dict:
     return _verdict(score)
 
 
+def _sequential(running: str) -> dict | None:
+    """Client's Serial & Sequential Series table: does the running number contain an
+    ascending, descending or triplet run they list?"""
+    for row in rules.vehicle_patterns().get("sequential", []):
+        for ex in row.get("examples", []):
+            if str(ex) in running:
+                return {
+                    "pattern": row.get("pattern", ""),
+                    "matched": str(ex),
+                    "mechanics": row.get("mechanics", ""),
+                    "impact": row.get("impact", ""),
+                    "recommended_use": row.get("recommended_use", ""),
+                    "score": row.get("score"),
+                    "grade": row.get("grade", ""),
+                }
+    return None
+
+
 def _master_or_repeat(running: str) -> dict | None:
     """Client's special-pattern note for master numbers and repeated double digits."""
     patterns = rules.vehicle_patterns()
@@ -108,6 +126,11 @@ def analyse_vehicle(
     if pattern and pattern.get("score"):
         score = round((score + int(pattern["score"])) / 2)
 
+    # Serial / sequential series from the client's third pattern table
+    sequence = _sequential(running)
+    if sequence and sequence.get("score"):
+        score = round((score + int(sequence["score"])) / 2)
+
     result: dict = {
         "input": registration,
         "registration": plate,
@@ -148,6 +171,7 @@ def analyse_vehicle(
         "colors": master.get("vehicle_colors", []),
         "avoid_colors": [],
         "pattern": pattern,
+        "sequence": sequence,
     }
 
     if dob:

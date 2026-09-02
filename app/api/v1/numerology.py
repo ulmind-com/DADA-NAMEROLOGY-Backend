@@ -9,6 +9,7 @@ from app.numerology import rules
 from app.numerology.chaldean import destiny_number, radical_number
 from app.numerology.mobile import analyse_mobile, compare_numbers
 from app.numerology.name import full_name_report, newborn_report, quick_name, suggest_corrections
+from app.numerology.numeroscope import build as build_numeroscope
 from app.numerology.vehicle import analyse_vehicle, suggest_plate_numbers
 from app.schemas.numerology import (
     AnalysisOut,
@@ -202,6 +203,27 @@ def reference_vehicle():
 @router.get("/reference/mobile-combinations", summary="Client's mobile digit-pair combinations")
 def reference_mobile_combinations():
     return rules.all_mobile_combinations()
+
+
+@router.post("/numeroscope", response_model=AnalysisOut, summary="Numeroscope grid + lucky/unlucky numbers")
+def numeroscope(body: NewBornIn):
+    """The client's numeroscope: the 3x3 grid built from the date of birth, with the
+    missing, lucky, unlucky and neutral numbers derived from their compatibility table."""
+    return AnalysisOut(result=build_numeroscope(body.dob))
+
+
+@router.get("/reference/compatibility", summary="Client's Compatibility of Numbers table")
+def reference_compatibility():
+    return {
+        "table": rules.all_number_compatibility(),
+        "ideal_grid": rules.ideal_grid(),
+        "note": rules.compatibility_note(),
+    }
+
+
+@router.get("/reference/good-compounds", summary="Client's Good Compounds per benefic root")
+def reference_good_compounds():
+    return rules.all_good_compounds()
 
 
 @router.get("/reference/mobile-points", summary="Client's Points to Remember checklist")

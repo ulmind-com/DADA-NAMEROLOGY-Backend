@@ -205,3 +205,103 @@ class TestPdfSafety:
         cell = next(g for g in r["grid"] if g["pair"] == "1:1")
         assert cell["planets"] == mobile_multiples(1)["planet"]
         assert cell["impact"]
+
+
+class TestNumeroscope:
+    """Reproduces the two worked examples printed in the client's notes."""
+
+    def test_client_example_18_6_1985(self):
+        from datetime import date
+
+        from app.numerology.numeroscope import build
+
+        n = build(date(1985, 6, 18))
+        assert (n["mulank"], n["bhagyank"]) == (9, 2)
+        # the client prints:  x 99 2 / x 5 x / 88 11 6
+        assert [[c["display"] or "x" for c in row] for row in n["grid"]] == [
+            ["x", "99", "2"],
+            ["x", "5", "x"],
+            ["88", "11", "6"],
+        ]
+        assert sorted(n["missing_numbers"]) == [3, 4, 7]      # client: 4,3,7
+        assert n["lucky_numbers"] == [1, 3, 5]                # client: 1,5,3
+        assert n["unlucky_numbers"] == [2, 4, 8, 9]           # client: 2,4,8,9
+        assert n["neutral_numbers"] == [6, 7]                 # client: 6,7
+
+    def test_client_example_12_11_1995(self):
+        from datetime import date
+
+        from app.numerology.numeroscope import build
+
+        n = build(date(1995, 11, 12))
+        assert (n["mulank"], n["bhagyank"]) == (3, 2)         # client: M=3, B=2
+
+    def test_single_placement_day_rule(self):
+        """Born on 1-9, 20 or 30 the Mulank is already in the date, so it is not
+        placed twice (client's rule, example 2/4/1984)."""
+        from datetime import date
+
+        from app.numerology.numeroscope import build
+
+        n = build(date(1984, 4, 2))
+        assert (n["mulank"], n["bhagyank"]) == (2, 1)         # client: M=2, B=1
+        # digits of 02/04/1984 are 2,4,1,9,8,4 plus Bhagyank 1 -> two 1s, two 4s
+        assert n["counts"]["2"] == 1                          # Mulank not added again
+        assert n["counts"]["1"] == 2
+
+    def test_ideal_grid_is_the_clients(self):
+        from app.numerology.rules import ideal_grid
+
+        assert ideal_grid() == [[4, 9, 2], [3, 5, 7], [8, 1, 6]]
+
+
+class TestGoodCompounds:
+    def test_client_good_compounds(self):
+        from app.numerology.rules import good_compounds
+
+        assert good_compounds(1)["compounds"] == [46, 64, 37, 55]
+        assert good_compounds(3)["compounds"] == [66, 39, 30]
+        assert good_compounds(5)["compounds"] == [41, 32, 50, 59]
+
+    def test_number_flagged_when_its_compound_is_listed(self):
+        from datetime import date
+
+        # 9531199355 -> compound 50, which the client lists under compounds of 5
+        r = analyse_mobile("9531199355", date(1985, 6, 18))
+        assert r["good_compounds"]["is_listed"] is True
+        assert r["good_compounds"]["root"] == 5
+
+
+class TestCompatibilityTable:
+    def test_matches_the_clients_printed_rows(self):
+        from app.numerology.rules import number_compatibility
+
+        one = number_compatibility(1)
+        assert (one["planet"], one["role"]) == ("Sun", "King")
+        assert one["lucky"] == [1, 2, 3, 5, 6, 9] and one["enemy"] == [8]
+        assert one["neutral"] == [4, 7]
+        five = number_compatibility(5)
+        assert five["enemy"] == []          # client prints "None"
+        four = number_compatibility(4)
+        # 8* and 4* are the client's conditional relations
+        assert 8 in four["lucky_conditional"] or 8 in four["enemy_conditional"]
+
+
+class TestVehicleSequences:
+    """The client's third pattern table: Serial & Sequential Series."""
+
+    def test_ascending_and_descending_are_detected(self):
+        asc = analyse_vehicle("WB 06 AB 1234")
+        assert asc["sequence"]["pattern"].startswith("Ascending")
+        desc = analyse_vehicle("KA 05 CD 9876")
+        assert desc["sequence"]["pattern"].startswith("Descending")
+
+    def test_no_sequence_reported_when_none_present(self):
+        assert analyse_vehicle("WB 06 AB 1517")["sequence"] is None
+
+    def test_smart_punctuation_survives(self):
+        """Curly quotes must be converted, not dropped, or "won't" becomes "wont"."""
+        from app.services.pdf import pdf_text
+
+        assert pdf_text("won’t") == "won't"
+        assert pdf_text("a — b") == "a - b"

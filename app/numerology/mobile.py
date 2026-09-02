@@ -8,6 +8,8 @@ from datetime import date
 
 from . import rules
 from .chaldean import destiny_number, radical_number, reduce_to_root, reduction_chain
+from .numeroscope import build as build_numeroscope
+from .numeroscope import good_compounds_for
 
 _DIGITS = re.compile(r"\D+")
 
@@ -210,12 +212,25 @@ def analyse_mobile(
         "digit_counts": dict(sorted(counts.items())),
     }
 
+    # The client's Good Compounds list, for the benefic roots they name
+    gc = good_compounds_for(total)
+    if gc:
+        result["good_compounds"] = {
+            "root": gc.get("root"),
+            "compounds": gc.get("compounds", []),
+            "helps_with": gc.get("helps_with", []),
+            "is_listed": compound in gc.get("compounds", []),
+        }
+
     if dob:
+        result["numeroscope"] = build_numeroscope(dob)
         radical = radical_number(dob.day)
         destiny = destiny_number(dob.day, dob.month, dob.year)
         rp_rad = rules.root_profile_client(radical)
-        friendly = rp_rad.get("friendly", [])
-        enemy = rp_rad.get("enemy", [])
+        # the client's Compatibility of Numbers table decides this
+        compat = rules.number_compatibility(radical)
+        friendly = compat.get("lucky", [])
+        enemy = compat.get("enemy", [])
         level = "friendly" if total in friendly else ("enemy" if total in enemy else "neutral")
         result["owner"] = {
             "dob": dob.isoformat(),

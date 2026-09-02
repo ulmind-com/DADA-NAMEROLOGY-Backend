@@ -196,3 +196,31 @@ def mobile_multiple_rules() -> dict:
 def mobile_points() -> list[str]:
     """Client's 'Points to Remember' checklist."""
     return _get("mobile_points").get("points", [])
+
+
+# --------------------------------------------------------------- numeroscope
+def number_compatibility(n: int) -> dict:
+    """Client's Compatibility of Numbers table (lucky / enemy / neutral per number)."""
+    return _get("mobile_compatibility").get(str(n), {})
+
+
+def all_number_compatibility() -> dict:
+    return {k: v for k, v in _get("mobile_compatibility").items() if not k.startswith("_")}
+
+
+def ideal_grid() -> list[list[int]]:
+    """Client's ideal numeroscope: 4 9 2 / 3 5 7 / 8 1 6."""
+    return _get("mobile_compatibility").get("_ideal_grid", [[4, 9, 2], [3, 5, 7], [8, 1, 6]])
+
+
+def compatibility_note() -> str:
+    return _get("mobile_compatibility").get("_note", {}).get("star", "")
+
+
+def good_compounds(root: int) -> dict:
+    """Client's 'Good Compounds' for a benefic root (1, 3, 5, 6)."""
+    return _get("mobile_good_compounds").get(str(root), {})
+
+
+def all_good_compounds() -> dict:
+    return _get("mobile_good_compounds")
