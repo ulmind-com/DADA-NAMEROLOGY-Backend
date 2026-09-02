@@ -1,5 +1,6 @@
 """The engine is checked against the values printed on the client's own spreadsheet."""
 
+import re
 from datetime import date
 
 from app.numerology.chaldean import analyse_name, destiny_number, radical_number, reduce_to_root
@@ -371,3 +372,32 @@ class TestVehicleClientLists:
 
     def test_unlisted_number_reports_nothing(self):
         assert analyse_vehicle("WB 06 AB 0021")["client_list"] is None
+
+
+class TestClientDataIsClean:
+    """Guards against extraction artefacts leaking into what users read."""
+
+    def test_no_bullet_glyphs_in_any_client_data(self):
+        import glob
+        import re
+
+        bad = re.compile(r"[•▪]")
+        for path in glob.glob("app/numerology/data/*.json"):
+            with open(path, encoding="utf-8") as fh:
+                assert not bad.search(fh.read()), f"bullet artefact in {path}"
+
+    def test_combination_planets_field_holds_only_planets(self):
+        from app.numerology.rules import all_mobile_combinations
+
+        for key, v in all_mobile_combinations().items():
+            # e.g. "4=Rahu, 7=Ketu" — a trait must never have leaked in here
+            assert re.fullmatch(r"\d\s*=\s*\w+,\s*\d\s*=\s*\w+", v["planets"]), (key, v["planets"])
+
+    def test_47_is_benefic_with_the_clients_traits(self):
+        """The client lists 47/74 in the benefic group on page 8."""
+        from app.numerology.rules import mobile_combination
+
+        c = mobile_combination(4, 7)
+        assert c["rating"] == "benefic"
+        assert c["planets"] == "4=Rahu, 7=Ketu"
+        assert c["traits"][0] == "Honest"
