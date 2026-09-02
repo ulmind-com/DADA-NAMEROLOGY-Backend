@@ -38,6 +38,15 @@ def pair_grid(digits: str) -> list[dict]:
     for i in range(len(clean) - 1):
         a, b = int(clean[i]), int(clean[i + 1])
         combo = rules.mobile_combination(a, b)
+        if a == b and not combo:
+            # the client lists no cross-combination for a doubled digit; its effect is
+            # covered by "Multiple Numbers and Their Effects" instead
+            mult = rules.mobile_multiples(a)
+            combo = {
+                "rating": "benefic" if a in rules.mobile_multiple_rules().get("benefic_digits", []) else "neutral",
+                "planets": mult.get("planet", ""),
+                "traits": mult.get("traits", []),
+            }
         rating = combo.get("rating", "neutral")
         meta = _RATING_META[rating]
         traits = combo.get("traits", [])
@@ -59,6 +68,58 @@ def _grid_score(grid: list[dict]) -> int:
     if not grid:
         return 0
     return round(sum(g["score"] for g in grid) * 100 / (2 * len(grid)))
+
+
+def client_checklist(digits: str, total: int, grid: list[dict]) -> list[dict]:
+    """The client's own 'Points to Remember' turned into pass/fail checks.
+
+    Every check maps one-to-one to a numbered point in the client's Mobile
+    Numerology notes; nothing here is invented.
+    """
+    counts = Counter(digits)
+    mrules = rules.mobile_multiple_rules()
+    benefic = mrules.get("benefic_digits", [1, 3, 5, 6])
+    max_ben = mrules.get("benefic_max_repeats", 2)
+    avoid_multiples = [2, 4, 7, 8, 9]
+
+    total_ok = rules.MOBILE_TOTAL_CLASS.get(total) == "benefic"
+    malefic_pairs = [g["pair"] for g in grid if g["rating"] == "malefic"]
+
+    bad_multiples = [
+        f"{d}×{counts[str(d)]}" for d in avoid_multiples if counts.get(str(d), 0) > 1
+    ]
+    over_benefic = [
+        f"{d}×{counts[str(d)]}" for d in benefic if counts.get(str(d), 0) > max_ben
+    ]
+
+    zeros = counts.get("0", 0)
+    n = len(digits)
+    zero_at_end = digits.endswith("0")
+    zero_in_centre = "0" in digits[max(0, n // 2 - 1): n // 2 + 2]
+
+    return [
+        {"point": "The mobile total should be good.",
+         "passed": total_ok,
+         "detail": f"Total {total} is {rules.MOBILE_TOTAL_CLASS.get(total, 'neutral')}."},
+        {"point": "The mobile internal pairs should be good.",
+         "passed": not malefic_pairs,
+         "detail": ("No malefic pairs." if not malefic_pairs
+                    else f"Malefic pairs: {', '.join(malefic_pairs)}.")},
+        {"point": "Avoid multiples of 2, 4, 7, 8, 9.",
+         "passed": not bad_multiples,
+         "detail": ("None repeat." if not bad_multiples
+                    else f"Repeated: {', '.join(bad_multiples)}.")},
+        {"point": "Multiples of benefic numbers 1, 3, 5, 6 should not be taken more than two times.",
+         "passed": not over_benefic,
+         "detail": ("Within the limit." if not over_benefic
+                    else f"Over the limit: {', '.join(over_benefic)}.")},
+        {"point": "Too many zeroes should be avoided, especially at the centre and the end.",
+         "passed": zeros <= 1 and not zero_at_end and not zero_in_centre,
+         "detail": (f"{zeros} zero(s)"
+                    + (", one at the end" if zero_at_end else "")
+                    + (", one near the centre" if zero_in_centre else "")
+                    + ".") if zeros else "No zeroes."},
+    ]
 
 
 def _verdict(score: int) -> dict:
@@ -87,12 +148,12 @@ def analyse_mobile(
     compound = sum(int(d) for d in digits) if digits else 0
     total = reduce_to_root(compound)
     grid = pair_grid(digits)
-    grid_score = _grid_score(grid)
-    # The client's primary rule: the mobile Total 1/3/5/6 is benefic, 4/7/8 malefic,
-    # 2/9 neutral. Weight that alongside the internal-combination grid.
     total_class = rules.MOBILE_TOTAL_CLASS.get(total, "neutral")
-    total_points = {"benefic": 100, "neutral": 55, "malefic": 25}[total_class]
-    score = round(total_points * 0.5 + grid_score * 0.5)
+    # The client gives no numeric score, only the "Points to Remember" checklist —
+    # so the headline figure is simply how many of those points the number passes.
+    checklist = client_checklist(digits, total, grid)
+    passed = sum(1 for c in checklist if c["passed"])
+    score = round(passed * 100 / len(checklist))
 
     counts = Counter(digits)
     missing = [n for n in "123456789" if n not in counts]
@@ -132,6 +193,18 @@ def analyse_mobile(
         },
         "score": score,
         "verdict": _verdict(score),
+        "checklist": checklist,
+        "points_to_remember": rules.mobile_points(),
+        "multiples": [
+            {
+                "digit": int(d),
+                "count": c,
+                "planet": rules.mobile_multiples(int(d)).get("planet", ""),
+                "traits": rules.mobile_multiples(int(d)).get("traits", []),
+            }
+            for d, c in sorted(counts.items())
+            if c > 1 and rules.mobile_multiples(int(d))
+        ],
         "missing_digits": missing,
         "repeated_digits": repeated,
         "digit_counts": dict(sorted(counts.items())),
@@ -174,27 +247,23 @@ def analyse_mobile(
 
 
 def _recommendations(r: dict) -> list[str]:
+    """Built only from the client's own points and multiple-number effects."""
     out: list[str] = []
-    bad = [g for g in r["grid"] if g["rating"] == "malefic"]
-    if bad:
-        out.append(
-            f"{len(bad)} weak pair(s) found: "
-            + ", ".join(g["pair"] for g in bad[:6])
-            + ". These are the points where the number leaks energy."
-        )
-    else:
-        out.append("No conflicting pairs found — the digit flow of this number is clean.")
-    if r["missing_digits"]:
-        out.append(
-            "Missing digits: " + ", ".join(r["missing_digits"])
-            + ". Those energies are absent, so support them through colours, dates and daily habits."
-        )
-    for d, c in r["repeated_digits"].items():
-        planet = rules.root_profile_client(int(d)).get("planet", "")
-        out.append(f"Digit {d} ({planet}) repeats {c} times — that planet's traits are amplified in your daily life.")
-    if r["verdict"]["level"] in ("weak", "bad"):
-        out.append("Use the 'Check New Number' tool before buying a new SIM and compare the scores side by side.")
+    for c in r.get("checklist", []):
+        if not c["passed"]:
+            out.append(f"{c['point']} — {c['detail']}")
+    for m in r.get("multiples", []):
+        if m["traits"]:
+            out.append(
+                f"Digit {m['digit']} appears {m['count']} times ({m['planet']}): "
+                + ", ".join(m["traits"][:4])
+                + "."
+            )
+    if not out:
+        out.append("This number passes every point on the client's checklist.")
     return out
+
+
 
 
 def compare_numbers(current: dict, candidate: dict) -> dict:

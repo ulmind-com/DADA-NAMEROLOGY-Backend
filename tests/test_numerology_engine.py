@@ -121,3 +121,87 @@ class TestVehicle:
         r = analyse_vehicle("XYZ789")
         assert r["total"] > 0
         assert 0 <= r["score"] <= 100
+
+
+class TestBusinessNumerology:
+    """Business names read the client's own Business Numerology database."""
+
+    def test_uses_the_business_database_not_the_personal_chart(self):
+        from app.numerology.name import quick_name
+        from app.numerology.rules import business_compound, name_chart
+
+        b = quick_name("Shree Traders", "business")
+        assert "business" in b
+        # the text is the client's "For Business" wording, not the personal chart
+        assert b["description"] == business_compound(b["compound"])["business_text"]
+        assert b["description"] != name_chart(b["compound"]).get("description")
+
+    def test_carries_the_client_master_columns(self):
+        from app.numerology.name import quick_name
+
+        biz = quick_name("Shree Traders", "business")["business"]
+        for field in ("archetype", "industries", "founder_compatibility",
+                      "financial", "customer", "risk"):
+            assert biz[field], f"{field} missing from the client master"
+        assert 0 <= biz["stability_score"] <= 1
+        assert 0 <= biz["expansion_score"] <= 1
+
+    def test_client_star_ratings_drive_favourability(self):
+        from app.numerology.rules import business_compound, business_favourable
+
+        assert business_compound(1)["stars"] == 5
+        assert business_favourable(1) is True
+        # 13 is worded "challenging" by the client
+        assert business_favourable(13) is False
+
+
+class TestMobileClientChecklist:
+    """The headline figure is the client's own Points to Remember, not a formula."""
+
+    def test_checklist_maps_to_the_clients_points(self):
+        r = analyse_mobile("9531199355")
+        assert len(r["checklist"]) == 5
+        assert r["score"] == round(sum(c["passed"] for c in r["checklist"]) * 100 / 5)
+
+    def test_client_repeat_limits_are_enforced(self):
+        r = analyse_mobile("9531199355")
+        by_point = {c["point"]: c for c in r["checklist"]}
+        # 9 repeats three times -> client says avoid multiples of 2,4,7,8,9
+        assert by_point["Avoid multiples of 2, 4, 7, 8, 9."]["passed"] is False
+        # 5 repeats three times -> client allows benefic digits at most twice
+        assert by_point[
+            "Multiples of benefic numbers 1, 3, 5, 6 should not be taken more than two times."
+        ]["passed"] is False
+
+    def test_multiple_number_traits_come_from_the_client(self):
+        from app.numerology.rules import mobile_multiples
+
+        r = analyse_mobile("9531199355")
+        nine = next(m for m in r["multiples"] if m["digit"] == 9)
+        assert nine["traits"] == mobile_multiples(9)["traits"]
+
+    def test_a_clean_number_passes_every_point(self):
+        # total 6 (benefic), benefic digits repeated at most twice, no zeroes
+        r = analyse_mobile("112335")
+        assert all(c["passed"] for c in r["checklist"]), r["checklist"]
+        assert r["score"] == 100
+
+
+class TestPdfSafety:
+    def test_non_latin_and_bullets_are_stripped_not_boxed(self):
+        """The base PDF fonts are Latin-1, so Devanagari would render as boxes."""
+        from app.services.pdf import pdf_text
+
+        assert pdf_text("Mercury (बुध)") == "Mercury"
+        assert pdf_text("• point") == "· point"
+        assert pdf_text(None) == ""
+
+    def test_doubled_digits_fall_back_to_multiple_numbers(self):
+        """The client lists no cross-combination for 1:1; its meaning comes from
+        'Multiple Numbers and Their Effects' instead of being left blank."""
+        from app.numerology.rules import mobile_multiples
+
+        r = analyse_mobile("9531199355")
+        cell = next(g for g in r["grid"] if g["pair"] == "1:1")
+        assert cell["planets"] == mobile_multiples(1)["planet"]
+        assert cell["impact"]

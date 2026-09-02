@@ -149,3 +149,50 @@ MOBILE_TOTAL_CLASS = {
     4: "malefic", 7: "malefic", 8: "malefic",
     2: "neutral", 9: "neutral",
 }
+
+
+# ------------------------------------------------------- business numerology
+def business_compound(n: int) -> dict:
+    """Client's Business Compound Data (1-99): stars, rating and the 'For Business' text."""
+    return _get("business_compound").get(str(n), {})
+
+
+def all_business_compound() -> dict:
+    return _get("business_compound")
+
+
+def business_master(n: int) -> dict:
+    """Client's Business Name Numerology master row (1-99)."""
+    return _get("business_master").get(str(n), {})
+
+
+def all_business_master() -> dict:
+    return _get("business_master")
+
+
+def business_favourable(compound: int) -> bool:
+    """Client marks quality with a star rating for roots 1-9 and with the wording of
+    the 'For Business' text for compounds. Treat 'challenging'/'demanding' wording
+    and 1-2 star entries as unfavourable."""
+    entry = business_compound(compound)
+    if not entry:
+        return True
+    stars = entry.get("stars") or 0
+    if stars:
+        return stars >= 3
+    text = (entry.get("business_text") or "").lower()
+    return not any(w in text for w in ("challenging", "demanding", "difficult", "unfavourable"))
+
+
+def mobile_multiples(digit: int) -> dict:
+    """Client's 'Multiple Numbers and Their Effects' entry for a repeated digit."""
+    return _get("mobile_multiples").get(str(digit), {})
+
+
+def mobile_multiple_rules() -> dict:
+    return _get("mobile_multiples").get("_rules", {})
+
+
+def mobile_points() -> list[str]:
+    """Client's 'Points to Remember' checklist."""
+    return _get("mobile_points").get("points", [])

@@ -45,35 +45,53 @@ def _luckiest_letters(target_roots: list[int]) -> list[str]:
 
 # ------------------------------------------------------- free / quick result
 def quick_name(name: str, kind: str = "personal") -> dict:
-    """Free name result, driven entirely by the client's Name Compound Chart."""
+    """Free name result.
+
+    Personal names read the client's Name Compound Chart; business names read the
+    client's separate Business Numerology database.
+    """
     a = analyse_name(name)
     compound = a["compound"]
     total = a["root"]
+    is_business = kind == "business"
 
-    entry = rules.name_chart(compound)
-    description = entry.get("description", "")
-    favourable = rules.name_favourable(compound)
+    if is_business:
+        entry = rules.business_compound(compound)
+        master = rules.business_master(compound)
+        description = entry.get("business_text", "") or master.get("description", "")
+        favourable = rules.business_favourable(compound)
+    else:
+        entry = rules.name_chart(compound)
+        master = {}
+        description = entry.get("description", "")
+        favourable = rules.name_favourable(compound)
     rating = "good" if favourable else "bad"
 
     if favourable:
         suggest = (
-            "Your name is well aligned with its number. No correction is required — "
+            "This business name is well aligned with its number. No correction is required."
+            if is_business
+            else "Your name is well aligned with its number. No correction is required — "
             "keep the spelling exactly as it is."
         )
     else:
         suggest = (
-            "Your Name is not perfectly aligned. It would be advisable to make "
+            "This business name is not perfectly aligned. It would be advisable to make "
+            "the necessary corrections."
+            if is_business
+            else "Your Name is not perfectly aligned. It would be advisable to make "
             "the necessary corrections."
         )
 
-    return {
+    out = {
         "kind": kind,
         "name": name,
         "normalized": a["normalized"],
         "compound": compound,
         "total": total,
         "chain": a["chain"],
-        "title": f"Name Number {compound}",
+        "title": (master.get("title") or f"Number {compound}") if is_business
+                 else f"Name Number {compound}",
         "rating": rating,
         "rating_color": rules.rating_color(rating),
         "description": description,
@@ -85,6 +103,25 @@ def quick_name(name: str, kind: str = "personal") -> dict:
             for w in a["words"]
         ],
     }
+
+    if is_business:
+        # everything below comes straight from the client's business database
+        out["business"] = {
+            "archetype": master.get("archetype", ""),
+            "stars": entry.get("stars", 0),
+            "star_rating": entry.get("rating", ""),
+            "detailed_description": master.get("description", ""),
+            "example_company": master.get("example_company", ""),
+            "industries": master.get("industries", ""),
+            "founder_compatibility": master.get("founder_compatibility", ""),
+            "financial": master.get("financial", ""),
+            "customer": master.get("customer", ""),
+            "stability_score": master.get("stability_score"),
+            "expansion_score": master.get("expansion_score"),
+            "risk": master.get("risk", ""),
+            "case_study": master.get("case_study", ""),
+        }
+    return out
 
 
 # --------------------------------------------------------- name corrections
@@ -122,6 +159,7 @@ def suggest_corrections(
     radical: int | None = None,
     destiny: int | None = None,
     limit: int = 8,
+    kind: str = "personal",
 ) -> list[dict]:
     """Spelling variants of the same name that carry a favourable compound number."""
     norm = normalize_name(name)
@@ -139,9 +177,15 @@ def suggest_corrections(
         if full == norm or full in candidates:
             return
         a = analyse_name(full)
-        if not rules.name_favourable(a["compound"]):
-            return
-        entry = rules.name_chart(a["compound"])
+        is_business = kind == "business"
+        if is_business:
+            if not rules.business_favourable(a["compound"]):
+                return
+            entry = {"description": rules.business_compound(a["compound"]).get("business_text", "")}
+        else:
+            if not rules.name_favourable(a["compound"]):
+                return
+            entry = rules.name_chart(a["compound"])
         score = 20
         # bonus when the corrected root befriends the birth numbers
         for birth in (radical, destiny):
@@ -153,7 +197,8 @@ def suggest_corrections(
             "name": " ".join(w.capitalize() for w in full_words),
             "compound": a["compound"],
             "total": a["root"],
-            "title": f"Name Number {a['compound']}",
+            "title": (rules.business_master(a["compound"]).get("title") or f"Number {a['compound']}")
+                     if is_business else f"Name Number {a['compound']}",
             "rating": "good",
             "rating_color": rules.rating_color("good"),
             "short": (entry.get("description", "")[:70] + "…") if entry.get("description") else "",
@@ -206,7 +251,7 @@ def full_name_report(
     name_vs_radical = _compat(a["root"], radical)
     name_vs_destiny = _compat(a["root"], destiny)
 
-    corrections = suggest_corrections(name, radical, destiny)
+    corrections = suggest_corrections(name, radical, destiny, kind=kind)
 
     verdict_score = 0
     verdict_score += 45 if quick["rating"] == "good" else 0

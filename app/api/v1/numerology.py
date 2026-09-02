@@ -202,3 +202,18 @@ def reference_vehicle():
 @router.get("/reference/mobile-combinations", summary="Client's mobile digit-pair combinations")
 def reference_mobile_combinations():
     return rules.all_mobile_combinations()
+
+
+@router.get("/reference/mobile-points", summary="Client's Points to Remember checklist")
+def reference_mobile_points():
+    return {"points": rules.mobile_points(), "multiple_rules": rules.mobile_multiple_rules()}
+
+
+@router.get("/reference/business", summary="Client's business numerology database (1-99)")
+def reference_business():
+    master = rules.all_business_master()
+    compound = rules.all_business_compound()
+    return {
+        k: {**master.get(k, {}), **compound.get(k, {})}
+        for k in sorted(set(master) | set(compound), key=int)
+    }

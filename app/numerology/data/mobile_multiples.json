@@ -1,0 +1,116 @@
+{
+ "1": {
+  "digit": 1,
+  "planet": "Sun",
+  "traits": [
+   "Egoistic",
+   "Attitude",
+   "Aggressive",
+   "Authoritative",
+   "Attention seeker",
+   "Fast communication "
+  ]
+ },
+ "3": {
+  "digit": 3,
+  "planet": "Jupiter",
+  "traits": [
+   "Arrogance or haughtiness of knowledge",
+   "Over trusting nature",
+   "Hungry for knowledge",
+   "Will start many things but won’t be able to complete "
+  ]
+ },
+ "5": {
+  "digit": 5,
+  "planet": "Mercury",
+  "traits": [
+   "Good communication",
+   "Overly adventurous",
+   "Laid back/casual attitude",
+   "Problem with interference",
+   "Extreme risk takers "
+  ]
+ },
+ "6": {
+  "digit": 6,
+  "planet": "Venus",
+  "traits": [
+   "Obsessed with family & kids",
+   "Insecurity",
+   "Doubtful nature",
+   "Spend money on luxurious things"
+  ]
+ },
+ "4": {
+  "digit": 4,
+  "planet": "Rahu",
+  "traits": [
+   "Stomach-related, gastric issue",
+   "False accusation",
+   "Delay",
+   "Struggles",
+   "Obstacles",
+   "Uncertainty in life "
+  ]
+ },
+ "7": {
+  "digit": 7,
+  "planet": "Ketu",
+  "traits": [
+   "Health issues",
+   "Relationship issues",
+   "Emotionally confused",
+   "Overthinking",
+   "Issues in/for marriage "
+  ]
+ },
+ "8": {
+  "digit": 8,
+  "planet": "Saturn",
+  "traits": [
+   "Delay",
+   "Struggles",
+   "Hurdles",
+   "Disturbance",
+   "Responsibility from an early age",
+   "Attract Debt",
+   "Money issues Neutral numbers 2 & 9 can be used twice if the rest of the combinations are very good. But using 2 & 9 more than once gives issues. "
+  ]
+ },
+ "9": {
+  "digit": 9,
+  "planet": "Mars",
+  "traits": [
+   "Aggressive",
+   "Anger issues",
+   "Attract debt",
+   "Destroy relationship because of anger",
+   "Ok for noble field/profession if you are spiritual "
+  ]
+ },
+ "0": {
+  "digit": 0,
+  "planet": "0,00,000……",
+  "traits": [
+   "Growth stucks",
+   "Avoid in center & end of the number"
+  ]
+ },
+ "_rules": {
+  "benefic_max_repeats": 2,
+  "benefic_digits": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "malefic_digits": [
+   4,
+   7,
+   8
+  ],
+  "malefic_max_repeats": 1,
+  "note": "Benefic 1,3,5,6 may repeat up to two times (11,33,55,66); more than twice gives bad results. Malefic 4,7,8 should be used only once and only in friendly or neutral combinations."
+ }
+}
