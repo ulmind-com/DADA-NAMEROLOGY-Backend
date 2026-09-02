@@ -401,3 +401,31 @@ class TestClientDataIsClean:
         assert c["rating"] == "benefic"
         assert c["planets"] == "4=Rahu, 7=Ketu"
         assert c["traits"][0] == "Honest"
+
+
+class TestNothingInvented:
+    """Every line a user reads as guidance must come from the client's documents."""
+
+    def test_vehicle_recommendations_are_all_client_wording(self):
+        from datetime import date
+
+        from app.numerology.rules import vehicle_master
+
+        r = analyse_vehicle("WB 26 J 0050", date(1985, 6, 18))
+        master = vehicle_master(r["compound"]) or vehicle_master(r["total"])
+        joined = " ".join(r["recommendations"])
+        # each fragment traces back to a field in the client's master row
+        assert master["best_use"] in joined
+        assert master["vehicle_types"][0] in joined
+        assert master["vehicle_colors"][0] in joined
+
+    def test_no_invented_safety_advice_remains(self):
+        """The old hand-written road-safety lines are gone; the field now only
+        carries the client's own caution wording when their tables give one."""
+        import app.numerology.vehicle as veh
+
+        assert not hasattr(veh, "_safety_note")
+        plain = analyse_vehicle("WB 26 J 0050")
+        assert plain["safety_note"] == ""            # client gives no caution here
+        repeated = analyse_vehicle("MH 12 CD 0055")  # 55 is in the client's repeated table
+        assert repeated["safety_note"]               # and it is their wording

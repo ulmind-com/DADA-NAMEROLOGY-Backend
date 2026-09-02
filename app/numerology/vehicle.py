@@ -167,7 +167,8 @@ def analyse_vehicle(
         "grade": grade,
         "grid": [],
         "grid_summary": {"good": 0, "average": 0, "bad": 0, "total_pairs": 0},
-        "safety_note": _safety_note(run_total),
+        # the client's own caution wording, when their tables give one
+        "safety_note": (pattern or {}).get("risk", ""),
         "colors": master.get("vehicle_colors", []),
         "avoid_colors": [],
         "pattern": pattern,
@@ -189,8 +190,13 @@ def analyse_vehicle(
                 "label": {"friendly": "Suits You", "neutral": "Neutral", "enemy": "Does Not Suit You"}[level],
                 "color": {"friendly": "#1E9E6A", "neutral": "#E0A32E", "enemy": "#D24B4B"}[level],
                 "note": (
-                    f"This number's friendly owner roots are {friendly or '—'} and it advises "
-                    f"avoiding {avoid or '—'}. Your radical number is {radical}, which "
+                    "This number's friendly owner roots are "
+                    + (", ".join(map(str, friendly)) if friendly else "not listed")
+                    + (
+                        " and it advises avoiding " + ", ".join(map(str, avoid))
+                        if avoid else ""
+                    )
+                    + f". Your radical number is {radical}, which "
                     + {
                         "friendly": "is friendly — a supportive match.",
                         "neutral": "is neutral — no special benefit or obstruction.",
@@ -230,34 +236,47 @@ def _format_plate(parts: dict, plate: str) -> str:
     return " ".join(p for p in [parts["state"], parts["rto"], parts["series"], parts["digits"]] if p)
 
 
-def _safety_note(total: int) -> str:
-    notes = {
-        1: "Confident driving. Avoid overtaking out of ego.",
-        2: "Calm, comfortable rides. Stay alert on night journeys.",
-        3: "Fortunate for long-distance travel and family trips.",
-        4: "Sudden mechanical faults are possible — service the vehicle on schedule.",
-        5: "Fast and agile. Keep an eye on speed; it invites challans.",
-        6: "Comfort-oriented and smooth. Excellent for family and luxury vehicles.",
-        7: "Good for long solo journeys; keep the paperwork always inside the vehicle.",
-        8: "Delays, fines and heavy repair bills are common. Never skip insurance.",
-        9: "High speed and high energy — accident risk if the temper is not controlled.",
-    }
-    return notes.get(total, "")
 
 
 def _recommendations(r: dict) -> list[str]:
-    out = []
-    bad = [g for g in r["grid"] if g["rating"] == "bad"]
-    if bad:
-        out.append("Weak digit pairs in the running number: " + ", ".join(g["pair"] for g in bad) + ".")
-    if r["colors"]:
-        out.append("Favourable vehicle colours: " + ", ".join(r["colors"]) + ".")
-    if r["avoid_colors"]:
-        out.append("Colours to avoid: " + ", ".join(r["avoid_colors"]) + ".")
-    if r["safety_note"]:
-        out.append(r["safety_note"])
-    if r["score"] < 45:
-        out.append("If the registration is not final yet, choose a plate whose running number totals to one of your friendly numbers.")
+    """Assembled only from the client's own wording for this number."""
+    out: list[str] = []
+
+    if r.get("best_use"):
+        out.append(f"Best use: {r['best_use']}.")
+    if r.get("vehicle_types"):
+        out.append("Suited vehicle types: " + ", ".join(r["vehicle_types"]) + ".")
+    if r.get("colors"):
+        out.append("Favoured colours: " + ", ".join(r["colors"]) + ".")
+
+    friendly, avoid = r.get("friendly_numbers"), r.get("avoid_numbers")
+    if friendly:
+        line = "Friendly owner root numbers: " + ", ".join(map(str, friendly)) + "."
+        if avoid:
+            line += " Avoid: " + ", ".join(map(str, avoid)) + "."
+        out.append(line)
+
+    pattern = r.get("pattern") or {}
+    if pattern.get("positive"):
+        out.append(f"{pattern.get('kind', 'Pattern')} {pattern.get('number', '')}: {pattern['positive']}")
+    if pattern.get("risk"):
+        out.append(f"Caution: {pattern['risk']}")
+    if pattern.get("suitability"):
+        out.append(f"Suited to: {pattern['suitability']}")
+
+    seq = r.get("sequence") or {}
+    if seq.get("impact"):
+        out.append(f"{seq.get('pattern', 'Series')}: {seq['impact']}")
+    if seq.get("recommended_use"):
+        out.append(f"Recommended use: {seq['recommended_use']}")
+
+    listed = r.get("client_list") or {}
+    if listed.get("note"):
+        out.append(listed["note"])
+
+    if r.get("owner", {}).get("match", {}).get("note"):
+        out.append(r["owner"]["match"]["note"])
+
     return out
 
 
